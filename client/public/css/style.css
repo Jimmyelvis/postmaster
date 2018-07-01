@@ -18,7 +18,7 @@ nav .brand-logo {
     color: #fff;
     display: inline-block;
     font-size: 2.1rem;
-    padding: 0 0 0 40px;
+    padding-left: 10px!important;
 }
 
 .btn{
@@ -32,4 +32,32 @@ background: linear-gradient(to bottom, rgba(255,175,75,1) 0%, rgba(255,146,10,1)
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaf4b', endColorstr='#ff920a', GradientType=0 );
 margin-right: 36px;
 border-radius: 15px;
+}
+
+nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+    height: 64px;
+    line-height: 64px;
+    margin-bottom: 27px;
+}
+
+
+input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea
+{
+  border-bottom: 1px solid #e0e4f0!important;
+  padding-left: 10px!important;
+  color: rgb(14, 94, 170)!important;
+}
+
+label {
+    font-size: 1rem!important;
+    font-weight: bold;
+    color: #2ba5ff!important;
+    padding-left: 10px;
+}
+
+.orange-text {
+    color: rgba(255, 152, 0, 1.0) !important;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 4px;
 }
