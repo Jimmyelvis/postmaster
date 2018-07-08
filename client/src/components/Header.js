@@ -45,7 +45,7 @@ class Header extends Component {
               Emaily
             </Link>
 
-            <ul className="right">
+            <ul className="pull-right">
                {this.renderContent()}
             </ul>
 

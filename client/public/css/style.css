@@ -1,3 +1,32 @@
+@font-face {
+    font-family: 'ClearSans';
+    src: url('../fonts/ClearSans-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'ClearSansBold';
+    src: url('../fonts/ClearSans-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'ClearSansMedium';
+    src: url('../fonts/ClearSans-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'Inder';
+    src: url('../fonts/Inder-Regular.ttf');
+}
+
+
+
+body{
+  background-image: url(/images/blue-bg.jpg);
+  font-family: 'ClearSans';
+}
+
+
+
 nav {
     color: #fff;
     background: rgba(73,155,234,1);
@@ -19,6 +48,249 @@ nav .brand-logo {
     display: inline-block;
     font-size: 2.1rem;
     padding-left: 10px!important;
+}
+
+.loginbox{
+  background-image: url(/images/login-bg.jpg);
+  width: 1080px;
+  height: 1094px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 111px;
+  margin-bottom: 100px;
+  padding-top: 0.1px
+}
+
+
+.loginbox .title {
+    margin-top: 80px;
+    padding: 0 5%;
+}
+
+.loginbox .logo img{
+  width: 50%;
+  float: right;
+}
+
+
+.loginbox .heading{
+  padding: 0 20px;
+}
+
+.loginbox .heading h1{
+  color: #fff;
+  font-family: 'ClearSansBold';
+  letter-spacing: 2px;
+  margin-bottom: 0px;
+  font-size: 50px;
+}
+
+.loginbox .heading h2{
+  color: #144885;
+  font-family: 'Inder';
+  letter-spacing: 2px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.loginbox .welmsg{
+  margin-top: 65px;
+}
+
+.loginbox .welmsg p{
+  width: 60%;
+  margin: 0 auto;
+  font-size: 30px;
+  color: #fff;
+  text-align: center;
+}
+
+.loginbox .picrow{
+  margin-top: 100px;
+}
+
+.loginbox .picrow ul{
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.loginbox .picrow ul li{
+  float: left;
+  list-style: none;
+  margin: 0 5px;
+}
+
+.loginbox .picrow ul li img{
+  width: 90%;
+  display: block;
+  margin: 0 auto;
+}
+
+.loginbox .loginbtns{
+  margin-top: 140px;
+}
+
+.loginbox .loginbtns ul{
+  padding: 0;
+}
+
+.loginbox .loginbtns ul li{
+  float: left;
+  list-style: none;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.loginbox .loginbtns ul li img{
+  display: block;
+  margin: 0 auto;
+}
+
+@media(max-width:1600px){
+
+  .loginbox{
+    width: 90%;
+    margin-bottom: 100px;
+  }
+
+  .loginbox {
+    background-image: url(/images/login-bg-clear.png);
+    background-size: cover;
+  }
+
+  .loginbox .heading h1{
+      font-size: 370%;
+  }
+
+  .loginbox .heading h2{
+    font-size: 135%;
+  }
+
+  .loginbox .welmsg p{
+    font-size: 200%;
+  }
+
+}
+
+@media(max-width:990px){
+
+  .loginbox  {
+    width: 100%;
+  }
+
+  .loginbox .logo img{
+    width: 65%;
+    float: right;
+  }
+
+  .loginbox .heading h1{
+    font-size: 285%;
+  }
+
+  .loginbox .heading h2{
+    font-size: 105%;
+  }
+
+}
+
+@media(max-width:650px){
+
+  .loginbox {
+      height: auto;
+      padding-bottom: 12%;
+  }
+
+  .loginbox .title {
+      margin-top: 55px;
+      padding: 0 5%;
+  }
+
+  .logo {
+      width: 100%;
+      float: none;
+  }
+
+  .loginbox .logo img {
+      width: 25%;
+      float: none;
+      margin: 0 auto;
+      display: block;
+  }
+
+  .heading {
+      width: 100%;
+  }
+
+  .loginbox .heading h1 {
+      text-align: center;
+  }
+
+  .loginbox .heading h2 {
+      text-align: center;
+  }
+
+  .loginbox .welmsg p{
+    width: 80%;
+  }
+
+  .loginbox .picrow {
+      margin-top: 70px;
+  }
+
+  .loginbox .picrow ul {
+      width: 68%;
+  }
+
+  .loginbox .loginbtns {
+      margin-top: 90px;
+  }
+
+}
+
+@media(max-width:420px){
+
+  .loginbox .heading h1 {
+      font-size: 229%;
+  }
+
+  .loginbox .heading h2 {
+      font-size: 84%;
+  }
+
+  .loginbox .picrow {
+      margin-top: 40px;
+  }
+
+  .loginbox .picrow ul {
+      display: block;
+  }
+
+  .loginbox .picrow ul li {
+      float: none;
+      list-style: none;
+      margin: 10px 0;
+  }
+
+  .loginbox .picrow ul li img {
+      width: 66%;
+      display: block;
+      margin: 0 auto;
+  }
+
+  .loginbox .loginbtns {
+      margin-top: 40px;
+  }
+
+  .loginbox .loginbtns ul li img {
+      display: block;
+      margin: 0 auto;
+      width: 67%;
+  }
+
 }
 
 .btn{

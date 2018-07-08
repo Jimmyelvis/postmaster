@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Header from './Header';
 import SurveyList from './surveys/SurveyList';
 
 
@@ -8,6 +9,7 @@ const Dashboard = () => {
 
   return (
        <div>
+         <Header />
          <SurveyList />
 
           <div className="fixed-action-btn">
