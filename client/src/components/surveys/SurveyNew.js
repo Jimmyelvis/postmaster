@@ -1,6 +1,7 @@
 // SurveyNew shows SurveyForm and SurveyFormReview
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
+import Header from '../Header';
 import SurveyForm from './SurveyForm';
 import SurveyFormReview from './SurveyFormReview';
 
@@ -29,7 +30,20 @@ class SurveyNew extends Component {
   render(){
     return(
       <div>
-        {this.renderContent()}
+
+        <Header />
+
+         <div className="surveyNew container">
+
+             <div className="container">
+
+                  {this.renderContent()}
+
+             </div>
+
+         </div>
+
+
       </div>
     );
   }

@@ -47,7 +47,7 @@ const Landing = () => {
               <div className="loginbtns row">
 
                   <ul>
-                    <li><img src="images/btn-facebook.png" alt=""/></li>
+                    {/* <li><img src="images/btn-facebook.png" alt=""/></li> */}
                     <li><a href="/auth/google"><img src="images/btn-google.png" alt=""/></a></li>
                   </ul>
 

@@ -10,13 +10,18 @@ const Dashboard = () => {
   return (
        <div>
          <Header />
-         <SurveyList />
 
-          <div className="fixed-action-btn">
+          <div className="surveylist container">
 
-              <Link to="/surveys/new" className="btn-floating btn-large blue">
-                <i className="material-icons">add_circle</i>
-              </Link>
+             <SurveyList />
+
+              <div className="fixed-action-btn">
+
+                  <Link to="/surveys/new" className="addsurvey">
+                    <img className="addsurvey" src="images/plus.png" alt=""/>
+                  </Link>
+
+              </div>
 
           </div>
 
