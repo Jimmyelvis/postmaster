@@ -476,6 +476,29 @@ nav .menu ul li a:hover{
   padding: 70px 0;
 }
 
+.readme {
+    background-color: #fff;
+    margin: 0 auto 54px auto;
+    width: 100%;
+    height: auto;
+    padding: 40px;
+    border-radius: 4px;
+    padding-top: 10px;
+    -webkit-box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.29);
+    -moz-box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.29);
+    box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.29);
+}
+
+.readme p {
+    color: #79a4d8;
+    text-align: center;
+    margin: 10px auto;
+    font-family: 'Inder';
+    width: 80%;
+    display: block;
+    font-size: 20px;
+}
+
 .card {
     background-color: #fff;
     margin: 10px 20px;
