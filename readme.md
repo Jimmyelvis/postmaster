@@ -1,4 +1,4 @@
-# ![ThePostMaster](images/landing.jpg)
+# ![ThePostMaster](landing.jpg)
 
 # The Post Master
 
