@@ -1,0 +1,23 @@
+/*
+///////////////////////////// STRIPE MODEL ////////////////////////////////////
+*/
+
+.Checkout.is-desktop .Modal {
+  display: inline-block;
+  border-radius: 6px;
+  width: 460px;
+  padding-bottom: 36px;
+  position: relative;
+  background-color: #ffffff;
+  box-shadow: 0 12px 30px 0 rgba(0,0,0,.5), inset 0 1px 0 0 hsla(0,0%,100%,.65);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+
+.Checkout.is-desktop .Header {
+  position: relative;
+  padding: 12px 36px;
+  text-align: center;
+  background-color: #ecf2fb;
+}

@@ -1,55 +1,111 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchSurveys } from '../../actions';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { fetchSurveys } from "../../actions";
+import SiteHeader from "../Siteheader";
+import { Link } from "react-router-dom";
+import Payments from "../Payments";
 
-class SurveyList  extends Component {
-
+class SurveyList extends Component {
   componentDidMount() {
-  this.props.fetchSurveys();
-}
+    this.props.fetchSurveys();
+  }
 
-    renderSurveys() {
+  renderSurveys() {
 
-      return this.props.surveys.reverse().map(survey => {
-        return(
+    const {surveys } = this.props;
 
-            <div className="card col-md-4" key={survey._id}>
-              <div className="card-content">
-                <span className="card-title">{survey.title}</span>
-                <p>
-                  {survey.body}
-                </p>
-                  <p className="pull-right">
-                  Sent On: <span className="date"> {new Date(survey.dateSent).toLocaleDateString()} </span>
-                </p>
-              </div>
+    // return(
+    //   <h1>HI</h1>
+    // )
 
-              <div className="card-action">
-                <a>Yes: {survey.yes}</a>
-                <a>No: {survey.no}</a>
-              </div>
+    
+    return surveys.reverse().map(survey => {
+      return (
+        <div className="surveyInfo">
+          <div className="col-md-4 col-sm-4 col-xs-4">
+            <p>{survey.title}</p>
+          </div>
+          <div className="col-md-4 col-sm-4 col-xs-4">
+            <p>{new Date(survey.dateSent).toLocaleDateString()}</p>
+          </div>
+          <div className="col-md-4 col-sm-4 text-center">
+            
+            <Link to={`/surveydetail/${survey._id}`} className="btn btn-ghostWhite">
+            Details
+            </Link> 
+            
+          </div>
+        </div>
+      );
+    });
+  }
 
-            </div>
+  render() {
+    const { auth, surveys } = this.props;
+    let topContent;
 
-        );
-      });
-
+    if (auth === null) {
+      topContent = "loading......";
+    } else {
+      topContent = (
+        <React.Fragment>
+          <ul>
+            <Link to={"/dashboard"}>
+              <li>Dashboard</li>
+            </Link>
+            <li>
+              <Payments />
+            </li>
+            <li>
+              Credits: <span className="number">{auth.credits}</span>{" "}
+            </li>
+            <li>
+              Surveys: <span className="number">{surveys.length}</span>{" "}
+            </li>
+          </ul>
+        </React.Fragment>
+      );
     }
 
-
-  render(){
-    return(
+    return (
       <div>
+        <div className="surveylist">
+          <SiteHeader />
 
-        {this.renderSurveys()}
+          <div className="container">
+            <div className="dashInfo row">
+              <div className="topbar col-md-12 col-sm-12">
+                <div className="row">
+                  <div className="col-md-12">{topContent}</div>
+                </div>
+              </div>
 
+              <div className="info col-md-12 col-sm-12">
+                <div className="row">
+                  <h3>Your Surveys</h3>
+                </div>
+
+                <div className="row">{this.renderSurveys()}</div>
+              </div>
+            </div>
+
+            <div className="fixed-action-btn">
+              <Link to="/surveys/new" className="addsurvey">
+                <img className="addsurvey" src="images/plus.png" alt="" />
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-function mapStateToProps({ surveys }) {
-  return { surveys };
+function mapStateToProps({ auth, surveys }) {
+  return { auth, surveys };
 }
 
-export default connect(mapStateToProps, { fetchSurveys })(SurveyList);
+export default connect(
+  mapStateToProps,
+  { fetchSurveys }
+)(SurveyList);

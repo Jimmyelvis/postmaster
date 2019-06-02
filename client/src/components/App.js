@@ -3,9 +3,13 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import Landing from './Landing';
-import Header from './Header';
 import Dashboard from './Dashboard';
 import SurveyNew from './surveys/SurveyNew';
+import SurveyList from './surveys/SurveyList';
+import SurveyDetail from "./surveys/SurveyDetail";
+import About from "./About";
+import Contact  from "./Contact";
+
 
 
 class App extends Component {
@@ -19,9 +23,12 @@ class App extends Component {
 
          <BrowserRouter>
            <div>
-             {/* <Header /> */}
              <Route exact path="/" component={Landing} />
-             <Route exact path="/surveys" component={Dashboard} />
+             <Route exact path="/about" component={About} />
+             <Route exact path="/contact" component={Contact} />
+             <Route exact path="/dashboard" component={Dashboard} />
+             <Route exact path="/surveylist" component={SurveyList} />
+             <Route exact path="/surveydetail/:surveyId" component={SurveyDetail} />
              <Route path="/surveys/new" component={SurveyNew} />
 
            </div>

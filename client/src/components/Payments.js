@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import './Stripe.css';
 
 
 
@@ -11,13 +12,14 @@ class Payments extends Component {
 
     return(
       <StripeCheckout
-        name="Emaily"
+        name="ThePostMaster"
         description="$5 for 5 email credits"
+        image="images/logo-postmaster-med.png"
         amount={500}
         token={token => this.props.handleToken(token)}
         stripeKey={process.env.REACT_APP_STRIPE_KEY}
       >
-          <a href="#">Add Credits</a>
+          <a href="#" className="addCredits">Add Credits</a>
       </StripeCheckout>
     );
   }

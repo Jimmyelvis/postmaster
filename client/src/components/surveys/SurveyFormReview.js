@@ -13,7 +13,7 @@ const SurveyFormReview = ({ onCancel, formValues, submitSurvey, history }) => {
 
     return (
       <div  className="labelgroup" key={name}>
-        <label className="labelReview">{label}</label>
+        <label>{label}</label>
         <div className="formValues">
           {formValues[name]}
         </div>
@@ -23,22 +23,21 @@ const SurveyFormReview = ({ onCancel, formValues, submitSurvey, history }) => {
 
   return (
      <div>
-       <h5>Please confirm your entries</h5>
+       <h2>Please confirm your entries</h2>
 
         {reviewFields}
 
        <button
-         className="backBtn"
+         className="btn btn-back"
          onClick={onCancel}>
          Back
        </button>
 
        <button
          onClick={() => submitSurvey(formValues, history)}
-         className="sendSurvey"
+         className="btn btn-sendSurvey"
        >
          Send Survey
-         <i className="material-icons right">email</i>
        </button>
 
      </div>
