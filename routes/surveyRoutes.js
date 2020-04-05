@@ -92,13 +92,15 @@ module.exports = app => {
       title,
       subject,
       body,
+      company,
       recipients
     } = req.body;
 
     const survey = new Survey({
-      title,
-      subject,
-      body,
+      title: title,
+      subject: subject,
+      body: body,
+      company: company,
       recipients: recipients.split(',').map(email => ({
         email: email.trim()
       })),

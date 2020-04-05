@@ -39,6 +39,16 @@ class SurveyForm extends Component {
 
         <div className="surveyfield">
           <Field
+            label="Company Email"
+            Type="text"
+            name="company"
+            placeholder="Enter your company address in the form of no-reply@your-company.com"
+            component={SurveyField}
+          />
+        </div>
+
+        <div className="surveyfield">
+          <Field
             label="Subject"
             Type="text"
             name="subject"
@@ -108,6 +118,10 @@ function validate(values) {
 
   if (!values.title) {
     errors.title = "You need a title";
+  }
+
+  if (!values.company) {
+    errors.company = "You to enter your companies email";
   }
 
   if (!values.subject) {
