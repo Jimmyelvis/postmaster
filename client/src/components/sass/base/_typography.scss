@@ -1,0 +1,46 @@
+@font-face {
+  font-family: "Clearsans";
+  src: url("/fonts/ClearSans.woff2") format("woff2"), url("/assets/fonts/ClearSans.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Clearsans-bold";
+  src: url("/fonts/ClearSans-Bold.woff2") format("woff2"), url("/assets/fonts/ClearSans-Bold.woff") format("woff");
+}
+
+a {
+  font-family: $font-links;
+  // font-weight: 700;
+  font-style: normal;
+  text-decoration: none;
+}
+
+%heading {
+  font-family: $font-display;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.heading-1 {
+  @extend %heading;
+  font-size: 4.5rem;
+  line-height: 1;
+}
+
+.heading-2 {
+  @extend %heading;
+  font-size: 4rem;
+  line-height: 1;
+}
+
+.heading-3 {
+  @extend %heading;
+  font-size: 1.6rem;
+}
+
+.heading-4 {
+  @extend %heading;
+  font-size: 1.9rem;
+}
+
+

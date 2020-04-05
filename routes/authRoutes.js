@@ -39,6 +39,7 @@ module.exports = app => {
   });
 
 
+  // Decides whether or not a user is signed in
   app.get('/api/current_user', (req, res) => {
     res.send(req.user);
   });

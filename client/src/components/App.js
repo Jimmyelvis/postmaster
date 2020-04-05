@@ -9,6 +9,9 @@ import SurveyList from './surveys/SurveyList';
 import SurveyDetail from "./surveys/SurveyDetail";
 import About from "./About";
 import Contact  from "./Contact";
+import Scrolltop from "../utils/ScrollToTop"
+
+import './sass/App.scss';
 
 
 
@@ -22,7 +25,8 @@ class App extends Component {
       return (
 
          <BrowserRouter>
-           <div>
+           <React.Fragment>
+             <Scrolltop />
              <Route exact path="/" component={Landing} />
              <Route exact path="/about" component={About} />
              <Route exact path="/contact" component={Contact} />
@@ -30,8 +34,7 @@ class App extends Component {
              <Route exact path="/surveylist" component={SurveyList} />
              <Route exact path="/surveydetail/:surveyId" component={SurveyDetail} />
              <Route path="/surveys/new" component={SurveyNew} />
-
-           </div>
+           </React.Fragment>
          </BrowserRouter>
 
       );

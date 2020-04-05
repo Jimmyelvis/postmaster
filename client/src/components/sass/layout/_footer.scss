@@ -1,0 +1,83 @@
+.footer {
+  background-image: url(/images/footer-bg.jpg);
+  padding: 5rem 0;
+
+  display: grid;
+  grid-template-rows: 11rem max-content 15rem min-content;
+  grid-template-columns: 1fr 2fr 2fr 1fr;
+  align-items: center;
+
+  h2 {
+    text-align: center;
+    grid-column: 2 / 4;
+    color: #fff;
+    font-size: 6rem;
+    font-family: $font-primary;
+    font-weight: 400;
+
+    @media only screen and (max-width: $bp-medium) {
+      font-size: 5rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 4rem;
+    }
+  }
+
+  .span-orange {
+    color: $orange;
+  }
+
+  .btn--signup-header {
+    grid-column: 1 / 5;
+    margin: 0 auto;
+    padding: 1rem 6rem;
+    align-self: center;
+    justify-self: center;
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+
+    .btn--signup-header h5 {
+      font-size: 2.2rem;
+    }
+  }
+
+  @media only screen and (max-width: $bp-small) {
+
+    .btn--signup-header h5 {
+      font-size: 1.9rem;
+    }
+  }
+
+  .icons {
+    grid-column: 2 / 4;
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 1fr;
+    grid-column-gap: 10rem;
+    padding: 2rem 0;
+    grid-row: 3 / span 2;
+    align-self: end;
+
+    &__facebook {
+      grid-column-start: 2;
+      justify-self: end;
+    }
+
+    &__twitter {
+
+    }
+
+
+    img {
+      min-width: 3.5rem;
+      max-width: 5rem;
+    }
+  }
+
+  .copyright {
+    grid-column: 2 / 4;
+    text-align: center;
+    color: #fff;
+  }
+}

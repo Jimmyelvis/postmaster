@@ -1,0 +1,100 @@
+.contact {
+  padding-top: 20rem;
+  display: grid;
+  grid-template-rows: max-content;
+  grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 15rem) [col-end] ) [center-end] minmax(6rem, 1fr) [full-end];
+  align-items: center;
+
+  .content {
+    grid-column: center-start / center-end;
+    display: grid;
+    justify-items: center;
+    grid-template-rows: 5rem 4rem 1fr;
+    grid-template-columns: repeat(2, 1fr);
+
+    h2{
+      text-align: center;
+      color: $orange;
+      grid-column: 1 / -1;
+    }
+
+    p {
+      text-align: center;
+      grid-column: 1 / -1;
+    }
+
+    .contact-form {
+      display: grid;
+      grid-column: 1 / -1;
+
+      grid-template-rows: repeat(3, max-content);
+      grid-template-columns: repeat(auto-fit, minmax(44.1rem, 1fr));
+      align-content: center;
+      justify-items: center;
+      width: 100%;
+      grid-row-gap: 3rem;
+
+      .form__group {
+        width: 60%;
+
+        @media only screen and (max-width: $bp-medium) {
+          width: 100%;
+        }
+      }
+
+      .textarea {
+        grid-column: 1 / -1;
+        width: 80% !important;
+
+        @media only screen and (max-width: $bp-medium) {
+          width: 100% !important;
+        }
+      }
+
+      .input {
+        // background-color: yellowgreen;
+        width: 100%;
+        font-size: 1.5rem;
+        font-family: inherit;
+        color: inherit;
+        padding: 1.5rem 2rem;
+        border-radius: 2px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(162, 201, 242, 0.4);
+        transition: all .3s;
+        display: block;
+        box-shadow: 0 1rem 2rem rgba(202, 223, 235, 0);
+  
+        &:focus {
+          outline: none;
+          box-shadow: 0 0.6rem 1rem rgba(202, 223, 235, 0.3);
+          border: 1px solid rgba(163, 202, 242, 0.23);
+        }
+  
+        &::-webkit-input-placeholder {
+          color: $babyblue;
+          font-weight: 800;
+        }
+
+        &::-moz-input-placeholder {
+          color: $babyblue;
+          font-weight: 800;
+        }
+    
+        // &:focus:invalid {
+        //   border-bottom: 3px solid #ccc;
+        // }
+      }
+
+    }
+
+
+
+  }
+
+  .footer {
+    grid-column: full-start / full-end;
+    margin-top: 12rem;
+  }
+  
+}

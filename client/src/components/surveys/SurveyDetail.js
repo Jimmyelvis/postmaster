@@ -1,17 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import SiteHeader from "../Siteheader";
+import SiteHeader from "../dashcomponents/dashheader";
 import Payments from "../Payments";
 import * as actions from "../../actions";
 import { fetchSurvey } from "../../actions";
+import plus from "../../images/plus-btn.png"
 
 class SurveyDetail extends Component {
 
-  // componentDidMount() {
-  //   const { surveyId } = this.props.match.params;
-  //   surveyId && this.props.fetchSurvey(surveyId);
-  // }
 
   componentDidMount() {
 
@@ -21,6 +18,7 @@ class SurveyDetail extends Component {
   }
 
   render() {
+    
     const { auth, surveys } = this.props;
     let sideContent;
     let surveyContent;
@@ -30,34 +28,17 @@ class SurveyDetail extends Component {
     } else {
       sideContent = (
         <React.Fragment>
-          <div className="row">
-            <div className="col-md-12">
-              <h3>Dashboard</h3>
-            </div>
+          <div className="newsurvey-btn mb-md">
+            <span>
+              <Link to="/surveys/new">
+                <img src={plus} alt="" />
+
+                <h3>New Survey</h3>
+              </Link>
+            </span>
           </div>
-          <div className="row">
-            <div className="col-md-12">
-              <h4>
-                <Payments />
-              </h4>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-12">
-              <h4>
-                Credits <span className="numTotal">{auth.credits}</span>
-              </h4>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-12">
-              <h4>
-                <a href="/surveyList" >
-                  Surveys <span className="numTotal"></span>
-                </a>
-              </h4>
-            </div>
-          </div>
+
+          <Payments />
         </React.Fragment>
       );
     }
@@ -67,61 +48,78 @@ class SurveyDetail extends Component {
     } else {
       surveyContent = (
         <React.Fragment>
-          <div className="row">
-            <div className="infodetails col-md-6">
-              <h3>Survey Title</h3>
+
+          <div className="surveycontent">
+
+            <div className="infodetails">
+
+              <h3 className="heading-3">Survey Title</h3>
 
               <p>{surveys.title}</p>
 
-              <h3>Survey Subject</h3>
+              <h3 className="heading-3">Survey Subject</h3>
 
               <p>{surveys.subject}</p>
 
-              <h3>Survey Body</h3>
+              <h3 className="heading-3">Survey Body</h3>
 
               <p>{surveys.body}</p>
+
             </div>
 
-            <div className="col-md-6">
-              <h3>Survey Results</h3>
+            <div className="results">
+              <h3 className="heading-3">Survey Results</h3>
 
-              <p>
-                YES <span className="badge badge-yes">{surveys.yes}</span>
-              </p>
-              <p>
-                NO <span className="badge badge-no">{surveys.no}</span>
-              </p>
+
+              <div className="yesnodata">
+
+                <p>
+                  YES <span className="badge badge-yes">{surveys.yes}</span>
+                </p>
+                <p>
+                  NO <span className="badge badge-no">{surveys.no}</span>
+                </p>
+
+              </div>
+
             </div>
+
+          <Link to="/surveyList" className="btn btn--return">
+            RETURN
+          </Link>
+          
           </div>
 
-          <div className="row">
-            <div className="return col-md-12">
-              <a href="/surveyList" className="btn btn-return">
-                RETURN
-              </a>
-            </div>
-          </div>
+          
+          
+
         </React.Fragment>
       );
     }
 
     return (
       <div>
-        <div className="surveydetail">
-          <SiteHeader />
+        <SiteHeader />
+        <div className="dashboard">
 
-          <div className="container">
-            <div className="dashInfo row">
-              <div className="sidebar col-md-3 col-sm-3">{sideContent}</div>
+            <div className="dashInfo">
+              <div className="sidebar">{sideContent}</div>
 
-              <div className="info col-md-9 col-sm-9">
-                <div className="surveyHeader">
-                  <h2>Survey Detail</h2>
+              <div className="mainarea">
+
+                <div className="mainarea__heading mb-lg">
+                  <h2 className="heading-2 mb-md">Survey Details</h2>
+
+                  <p>
+                    An informational overview of this survey 
+                  </p>
                 </div>
+
                 {surveyContent}
+
               </div>
             </div>
-          </div>
+          
         </div>
       </div>
     );

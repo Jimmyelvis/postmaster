@@ -1,26 +1,28 @@
 import React from 'react';
 
-import './Modal.css';
+// import './Modal.css';
 
 const modal = (props) => {
     return (
-        <div>
+        <React.Fragment>
+
             <div className="modal-wrapper"
                 style={{
                     opacity: props.show ? '1' : '0',
                     zIndex: props.show ? '2000' : '0',
+                    visibility: props.show ? 'visible' : 'hidden',
                     // transform: props.show ? 'translateY(0vh)' : 'translateY(-100vh)',
                     // display: props.show ? 'block' : 'none'
                 }}>
-                
-                <div className="modal-body">
-                   
+                    <div className="modal-container">
+
                         {props.children}
+
+                    </div>
                     
-                </div>
-               
             </div>
-        </div>
+
+        </React.Fragment>
     )
 }
 

@@ -1,0 +1,16 @@
+.linkNotify {
+  position: relative;
+}
+
+.notification {
+  color: white;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: -20px;
+    font-size: 1.9rem;
+    border-radius: 30px;
+    line-height: 28px;
+    background-color: #fb8844;
+    text-align: center;
+}

@@ -2,18 +2,27 @@
 // label and text input
 import React from 'react';
 
-export default ({ textarea, label, rows, meta: { error, touched } }) => {
+export default ({ textarea, input, label, placeholder, meta:{ error, touched } }) => {
+   console.log('====================================');
+   console.log(error);
+   console.log('====================================');
 
  
   return (
-     <div>
-        <label>{label}</label>
-        <rows>{20}</rows>
-        <textarea>{ textarea }</textarea>
-        <div className="error-text">
-        {touched && error}
-        </div>
-     </div>
+    <React.Fragment>
+      <label>{label}</label>
+      <textarea 
+         rows="6"
+         placeholder={placeholder}
+         // autoComplete="off"
+         // onBlur={input.onBlur}
+         // onChange={input.onChange}
+         {...input} 
+      />
+      <div className="invalid">
+         {touched && error}
+      </div>
+    </React.Fragment>
   );
 
 

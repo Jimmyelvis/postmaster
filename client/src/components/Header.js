@@ -2,17 +2,58 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Modal from "./Modal/Modal";
-import Payments from "./Payments";
+import classnames from "classnames";
+
 
 class Header extends Component {
 
   constructor() {
     super();
 
+    this.navRef = React.createRef();
+
     this.state = {
-      isShowing: false
+      isShowing: false,
+      prevScrollpos: window.pageYOffset,
+      visible: true,
+      limit: 115,
+      width: 0,
+      height: 0
     };
+
+    // this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
+
+  componentDidMount() {
+
+    window.addEventListener("scroll", this.handleScroll);
+
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions = () => {
+    this.setState({ 
+      width: window.innerWidth, 
+      height: window.innerHeight 
+    });
+
+    // mobilemenu();
+
+    console.log('====================================');
+    console.log(this.state.width);
+    console.log('====================================');
+  }
+
+  // mobilemenu = () => {
+
+  // }
 
   openModalHandler = e => {
     e.preventDefault();
@@ -27,15 +68,22 @@ class Header extends Component {
     });
   };
 
-  openSlideMenu(){
-    
-    document.getElementById('side-menu').style.width = '100%';
-    
-  }
+   // Adjust menu background based on pageYOffset position
+   handleScroll = () => {
+    const { prevScrollpos, limit } = this.state;
 
-  closeSlideMenu(){
-    document.getElementById('side-menu').style.width = '0';
-  }
+    const currentScrollPos = window.pageYOffset;
+    const visible = currentScrollPos < limit;
+
+    console.log('====================================');
+    console.log(currentScrollPos);
+    console.log('====================================');
+
+    this.setState({
+      prevScrollpos: currentScrollPos,
+      visible
+    });
+  };
 
   renderContent() {
     switch (this.props.auth) {
@@ -45,145 +93,147 @@ class Header extends Component {
       case false:
         return (
           <React.Fragment>
-            <ul>
-              <li>
-                <a href="/">HOME</a>
-              </li>
-              <li>
-                <a href="/about">ABOUT</a>
-              </li>
-              <li>
-                <a href="/contact">CONTACT</a>
-              </li>
-              <li>
-                <div 
-                  className="btn btn-login"
-                  onClick={this.openModalHandler}
-                >
-                  LOGIN
-                </div>
-              </li>
-            </ul>
-
-            <span className="open-slide">
-              <a href="#" onClick={()=> this.openSlideMenu()}>
-                <img src="images/hamburger.png" alt=""/>
-              </a>
-            </span>
-
-            <div id="side-menu" className="side-nav">
-              <li>
-                <a href="#" className="btn-close" onClick={()=> this.closeSlideMenu()}>
-                  &times;
-                </a>
-              </li>
-              <li>
-                <a href="/">HOME</a>
-              </li>
-              <li>
-                <a href="/about">ABOUT</a>
-              </li>
-              <li>
-                <a href="/contact">CONTACT</a>
-              </li>
-              <li>
-                <div 
-                  onClick={this.openModalHandler}
-                >
-                  LOGIN
-                </div>
-              </li>
+          <div className="container">
+            <div className="brand-logo">
+              <img src="images/new-logo.png" alt="" />
             </div>
-          </React.Fragment>
+
+            <div
+              className={classnames("header", {
+                hidden: this.state.width <= 800
+              })}
+            >
+              <ul>
+                <li>
+                  <Link to="/">HOME</Link>
+                </li>
+                <li>
+                  <Link to="/about">ABOUT</Link>
+                </li>
+                <li>
+                  <Link to="/contact">CONTACT</Link>
+                </li>
+                <li className="log" onClick={this.openModalHandler}>
+                  <a href="#">LOGIN</a>
+                </li>
+              </ul>
+            </div>
+
+            <div
+              className={classnames("mobilemenu", {
+                hidden: this.state.width > 800
+              })}
+            >
+              <input type="checkbox" className="mobilemenu__checkbox" id="navi-toggle"/>
+
+              <label htmlFor="navi-toggle" className="mobilemenu__button">
+                <span className="mobilemenu__icon">&nbsp;</span>
+              </label>
+
+              <div class="mobilemenu__background">
+                  &nbsp;
+              </div>
+
+              <nav className="mobilemenu__nav">
+                
+                <ul className="mobilemenu__list">
+                  <li>
+                    <Link to="/">HOME</Link>
+                  </li>
+                  <li>
+                    <Link to="/about">ABOUT</Link>
+                  </li>
+                  <li>
+                    <Link to="/contact">CONTACT</Link>
+                  </li>
+                  <li className="log" onClick={this.openModalHandler}>
+                    <a href="#">LOGIN</a>
+                  </li>
+                </ul>
+
+              </nav>
+            </div>
+          </div>
+        </React.Fragment>
         );
 
       default:
-        return [
-          <ul key="4">
-            <li>
-              <a href="/">HOME</a>{" "}
-            </li>
-            <li>
-              <a href="/about">ABOUT</a>{" "}
-            </li>
-            <li>
-              <a href="/contact">CONTACT</a>{" "}
-            </li>
-            <li>
-              <a href="/dashboard">DASHBOARD</a>{" "}
-            </li>
-            <li className="logout" key="2">
-              <a href="/api/logout">Logout</a>
-            </li>
-          </ul>
-        ];
+        return (
+          <React.Fragment>
+          <div className="container">
+            <div className="brand-logo">
+              <img src="images/new-logo.png" alt="" />
+            </div>
+
+            <div className={classnames("header", {
+                "hidden" : this.state.width < 800
+              })}>
+              <ul>
+                <li>
+                  <Link to="/">HOME</Link>
+                </li>
+                <li>
+                  <Link to="/about">ABOUT</Link>
+                </li>
+                <li>
+                  <Link to="/contact">CONTACT</Link>
+                </li>
+                <li className="log">
+                  <a href="/api/logout">
+                    LOGOUT
+                  </a>href               
+                </li>
+              </ul>
+            </div>
+          </div>
+        </React.Fragment>
+        );
     }
   }
 
   render() {
     return (
       <React.Fragment>
-
-         {
-           this.state.isShowing ? (
-              <div onClick={this.closeModalHandler} className="back-drop" />
-            ) : null
-         }
+        {this.state.isShowing ? (
+          <div onClick={this.closeModalHandler} className="back-drop" />
+        ) : null}
 
         <Modal
-           className="modal"
-           show={this.state.isShowing}
-           close={this.closeModalHandler}
-           heading="A header"
+          className="modal"
+          show={this.state.isShowing}
+          close={this.closeModalHandler}
+          heading="Login"
         >
+          <p className="directions">
+            Login with whatever method you used to create an account.
+          </p>
 
-          <div className="container">
-            <div className="row">
-              <div className="logo col-md-12">
-                <img src="images/logo-postmaster-med.png" alt="" />
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="loginDir col-md-12">
-                <p>
-                 Login with whatever method you used to create an account.
-                </p>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="faceGoogle col-md-4 col-md-offset-2 col-sm-4 col-sm-offset-2 col-xs-4 col-xs-offset-2">
-                <a href="/auth/google">
-                  <img src="images/btn-google.png" alt="" />
-                </a>
-              </div>
-
-              <div className="faceGoogle col-md-4 col-sm-4 col-xs-4">
-                <a href="/auth/facebook">
-                  <img src="images/btn-facebook.png" alt="" />
-                </a>
-              </div>
-            </div>
-
+          <div onClick={this.closeModalHandler} className="closebtn">
+            X
           </div>
 
+          <a className="btn-google" href="/auth/google">
+            <img src="images/btn-google.png" alt="" />
+          </a>
+
+          <a className="btn-facebook" href="/auth/facebook">
+            <img src="images/btn-facebook.png" alt="" />
+          </a>
         </Modal>
 
-        <nav>
-          <div className="row">
-            <div className="col-md-2 col-sm-2 col-xs-2 brand-logo">
+        <nav
+          className={classnames("sitenav", {
+            "nav--scrolled": !this.state.visible
+          })}
+        >
+          {/* <div className="brand-logo">
               <Link to={this.props.auth ? "/dashboard" : "/"}>
                 <img src="images/logo-postmaster-med.png" alt="" />
               </Link>
-            </div>
+            </div> */}
 
-            <div className="menu col-md-offset-3 col-md-7">
-              {this.renderContent()}
-            </div>
-          </div>
+          {this.renderContent()}
         </nav>
-
       </React.Fragment>
     );
   }

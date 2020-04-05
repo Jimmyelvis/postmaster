@@ -1,0 +1,28 @@
+@import './abstracts/_variables.scss';
+
+@import './base/_base.scss';
+@import './base/_typography.scss';
+@import './base/_utilities.scss';
+
+@import './components/_buttons.scss';
+@import './components/_modal.scss';
+@import './components/_notification.scss';
+@import './components/_stripe.scss';
+@import './components/_surveyRecord.scss';
+
+
+@import './layout/_about.scss';
+@import './layout/_contact.scss';
+@import './layout/_dashboard.scss';
+@import './layout/_footer.scss';
+@import './layout/_header.scss';
+@import './layout/_landingheader.scss';
+@import './layout/_landing.scss';
+
+
+
+
+
+body {
+  // background-color: $secondary-color;
+}

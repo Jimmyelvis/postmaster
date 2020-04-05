@@ -1,0 +1,76 @@
+.btn {
+  &,
+  &:link, 
+  &:visited{
+  
+    text-transform: uppercase;
+    text-decoration: none;
+    // padding: 1.5rem 7.4rem;
+    display: inline-block;
+    transition: all .2s;
+    position: relative;
+    font-size: $default-font-size;
+
+    // Change for the <button> element
+    border: none;
+    cursor: pointer;
+  
+  }
+
+  &:active,
+  &:focus{
+    outline: none;
+  }
+
+  &--signup-header {
+    background-image: linear-gradient(180deg, #ffffff 0%, #fff 20%, #e1eefb 55%, rgba(158, 207, 255, 0.88) 100%);
+    border: 6px solid #a8d1f5;
+    -webkit-transition: all 500ms linear;
+    transition: all 500ms linear;
+    padding: 1.3rem 7rem;
+    border-radius: 100px;
+
+
+    h5 {
+      font-size: 2.8rem;
+      font-family: $font-display;
+      background-color: #1a96ee;
+      color: rgba(110, 172, 235, 0.68);
+      text-shadow: 0px 2px 4.4px rgba(255, 255, 255, 1);
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      background-clip: text;
+    }
+
+    &:hover {
+      box-shadow: 0px 0px 22px 9px rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  &--ghostWhite {
+    border: 2px solid rgba(168, 209, 245, 0.42);
+    padding: 0.7rem 3rem;
+    background-color: white;
+    box-shadow: 1px 2px 1px 0px rgba(0, 0, 0, 0.05);
+    transition: all 300ms linear;
+
+    &:hover {
+      box-shadow: 3px 4px 2px 0px rgba(0, 0, 0, 0.07);
+      border: 2px solid rgb(137, 194, 245);
+    }
+
+    a {
+      color: $alternateblue;
+      letter-spacing: 1px;
+    }
+  }
+
+  &--return {
+    background: linear-gradient(to bottom, rgba(81,188,255,1) 0%, rgba(15,119,255,1) 100%);
+    padding: 0.7rem 3rem;
+    box-shadow: 1px 2px 1px 0px rgba(0, 0, 0, 0.05);
+    color: #fff;
+  }
+
+
+}

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchSurveys } from "../../actions";
-import SiteHeader from "../Siteheader";
+import SiteHeader from "../dashcomponents/dashheader";
 import { Link } from "react-router-dom";
 import Payments from "../Payments";
 
@@ -12,92 +12,91 @@ class SurveyList extends Component {
 
   renderSurveys() {
 
-    const {surveys } = this.props;
-
-    // return(
-    //   <h1>HI</h1>
-    // )
-
-    
-    return surveys.reverse().map(survey => {
+    return this.props.surveys.reverse().map(survey => {
       return (
-        <div className="surveyInfo">
-          <div className="col-md-4 col-sm-4 col-xs-4">
-            <p>{survey.title}</p>
-          </div>
-          <div className="col-md-4 col-sm-4 col-xs-4">
-            <p>{new Date(survey.dateSent).toLocaleDateString()}</p>
-          </div>
-          <div className="col-md-4 col-sm-4 text-center">
+        <div className="surveyRecord">
             
-            <Link to={`/surveydetail/${survey._id}`} className="btn btn-ghostWhite">
-            Details
-            </Link> 
+              <li>{survey.title}</li>
+              <li>{new Date(survey.dateSent).toLocaleDateString()}</li>
+              <li>
+                <button className="btn btn--ghostWhite">
+                  <Link to={`/surveydetail/${survey._id}`}>Details</Link>
+                </button>
+              </li>
             
           </div>
-        </div>
       );
     });
   }
 
   render() {
+
     const { auth, surveys } = this.props;
-    let topContent;
+    let sideContent;
 
     if (auth === null) {
-      topContent = "loading......";
+      sideContent = "loading......";
     } else {
-      topContent = (
+      sideContent = (
         <React.Fragment>
-          <ul>
-            <Link to={"/dashboard"}>
-              <li>Dashboard</li>
-            </Link>
-            <li>
-              <Payments />
-            </li>
-            <li>
-              Credits: <span className="number">{auth.credits}</span>{" "}
-            </li>
-            <li>
-              Surveys: <span className="number">{surveys.length}</span>{" "}
-            </li>
-          </ul>
+          <div className="newsurvey-btn mb-md">
+            <span>
+              <Link to="/surveys/new">
+                <img src="images/plus-btn.png" alt="" />
+                <h3>New Survey</h3>
+              </Link>
+            </span>
+          </div>
+
+          <Payments />
         </React.Fragment>
       );
-    }
+     }
 
-    return (
-      <div>
-        <div className="surveylist">
+    if (this.props.surveys && this.props.surveys.length) {
+      return (
+        <div>
           <SiteHeader />
+          <div className="dashboard">
+            <div className="dashInfo">
+              <div className="sidebar">{sideContent}</div>
 
-          <div className="container">
-            <div className="dashInfo row">
-              <div className="topbar col-md-12 col-sm-12">
-                <div className="row">
-                  <div className="col-md-12">{topContent}</div>
+              <div className="mainarea">
+                <div className="mainarea__heading mb-lg">
+                  <h2 className="heading-2 mb-md">Your Surveys</h2>
+
+                  <p>
+                    These are your survey that you have sent out. Starting from
+                    the most recent one.
+                  </p>
                 </div>
-              </div>
 
-              <div className="info col-md-12 col-sm-12">
-                <div className="row">
-                  <h3>Your Surveys</h3>
+                <div className="mainarea__surveys">
+
+                  <ul className="mb-sm">
+                    <li>TITLE</li>
+                    <li>DATE SENT</li>
+                    {/* <li>DETAILS</li> */}
+                  </ul>
+
+                  {this.renderSurveys()}
                 </div>
-
-                <div className="row">{this.renderSurveys()}</div>
               </div>
             </div>
 
-            <div className="fixed-action-btn">
-              <Link to="/surveys/new" className="addsurvey">
-                <img className="addsurvey" src="images/plus.png" alt="" />
-              </Link>
-            </div>
+            {/* <div className="fixed-action-btn">
+            <Link to="/surveys/new" className="addsurvey">
+              <img className="addsurvey" src="images/plus-btn.png" alt="" />
+            </Link>
+          </div> */}
           </div>
         </div>
-      </div>
-    );
+      );
+      
+    } else {
+      return(<div></div>)
+    }
+    
   }
 }
 

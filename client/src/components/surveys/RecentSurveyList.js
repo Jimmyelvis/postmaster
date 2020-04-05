@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { fetchSurveys } from "../../actions";
+import { Link } from "react-router-dom";
+
 
 export class RecentSurveyList extends Component {
 
@@ -8,27 +10,40 @@ export class RecentSurveyList extends Component {
     this.props.fetchSurveys();
   }
 
+  
+
   renderSurveys() {
-    return this.props.surveys.reverse().slice(0, 3).map(survey => {
-      return (
-        <div className="surveyInfo">
-          <div className="col-md-6 col-sm-6 col-xs-6">
-            <p>{survey.title}</p>
+
+    if (this.props.surveys && this.props.surveys.length) {
+
+      return this.props.surveys.reverse().slice(0, 3).map(survey => {
+        return (
+          <div className="surveyRecord">
+            <li>{survey.title}</li>
+            <li>{new Date(survey.dateSent).toLocaleDateString()}</li>
+            <li>
+              <button className="btn btn--ghostWhite">
+                <Link to={`/surveydetail/${survey._id}`}>Details</Link>
+              </button>
+            </li>
           </div>
-          <div className="col-md-6 col-sm-6 col-xs-6">
-            <p>{new Date(survey.dateSent).toLocaleDateString()}</p>
-          </div>
-          {/* <div className="col-md-4 col-sm-4 text-center">
-            <div className="btn btn-ghostWhite">Details</div>
-          </div> */}
-        </div>
-      );
-    });
+        );
+      });
+      
+    } else {
+      return(
+      <React.Fragment>
+      </React.Fragment>
+      )
+      
+    }
+    
+    
   }
 
 
   render() {
-    return <div>{this.renderSurveys()}</div>;
+    return <React.Fragment>{this.renderSurveys()}</React.Fragment>;
   }
 }
 

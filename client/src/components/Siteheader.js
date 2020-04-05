@@ -48,13 +48,13 @@ class Siteheader extends Component {
           <React.Fragment>
             <ul>
               <li>
-                <a href="/">HOME</a>
+                <Link to ="/">HOME</Link>
               </li>
               <li>
-                <a href="/about">ABOUT</a>
+                <Link to ="/about">ABOUT</Link>
               </li>
               <li>
-                <a href="/contact">CONTACT</a>
+                <Link to ="/contact">CONTACT</Link>
               </li>
               <li>
                 <div 
@@ -67,9 +67,9 @@ class Siteheader extends Component {
             </ul>
 
             <span className="open-slide">
-              <a href="#" onClick={() => this.openSlideMenu()}>
+              <Link to ="#" onClick={() => this.openSlideMenu()}>
                 <img src="images/hamburger.png" alt="" />
-              </a>
+              </Link>
             </span>
 
             <div id="side-menu" className="side-nav">
@@ -83,13 +83,13 @@ class Siteheader extends Component {
                 </a>
               </li>
               <li>
-                <a href="/">HOME</a>
+                <Link to ="/">HOME</Link>
               </li>
               <li>
-                <a href="/about">ABOUT</a>
+                <Link to ="/about">ABOUT</Link>
               </li>
               <li>
-                <a href="/contact">CONTACT</a>
+                <Link to ="/contact">CONTACT</Link>
               </li>
               <li>
                 <div 
@@ -107,36 +107,35 @@ class Siteheader extends Component {
           <React.Fragment>
 
             <ul key="4">
-              {/* <li><a href="/contact">CONTACT</a> </li> */}
+              {/* <li><Link to ="/contact">CONTACT</Link> </li> */}
               <li>
-                <a href="/dashboard">DASHBOARD</a>
+                <Link to ="/dashboard">DASHBOARD</Link>
               </li>
               <li className="logout" key="2">
-                <a href="/api/logout">Logout</a>
+                <Link to ="/api/logout">Logout</Link>
               </li>
             </ul>
 
             <span className="open-slide">
-              <a href="#" onClick={() => this.openSlideMenu()}>
+              <Link to ="#" onClick={() => this.openSlideMenu()}>
                 <img src="images/hamburger.png" alt="" />
-              </a>
+              </Link>
             </span>
 
             <div id="side-menu" className="side-nav">
               <li>
-                <a
-                  href="#"
+                <Link to ="#"
                   className="btn-close"
                   onClick={() => this.closeSlideMenu()}
                 >
                   &times;
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/dashboard">DASHBOARD</a>
+                <Link to ="/dashboard">DASHBOARD</Link>
               </li>
               <li className="logout" key="2">
-                <a href="/api/logout">Logout</a>
+                <Link to ="/api/logout">Logout</Link>
               </li>
             </div>
           </React.Fragment>

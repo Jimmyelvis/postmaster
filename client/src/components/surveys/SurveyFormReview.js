@@ -22,25 +22,24 @@ const SurveyFormReview = ({ onCancel, formValues, submitSurvey, history }) => {
   });
 
   return (
-     <div>
-       <h2>Please confirm your entries</h2>
+    <React.Fragment>
+      <h3 className="heading-3 mb-md">Please confirm your entries</h3>
 
-        {reviewFields}
+      {reviewFields}
 
-       <button
-         className="btn btn-back"
-         onClick={onCancel}>
-         Back
-       </button>
+      <div className="submitButtons">
+        <button className="btn btn-cancel" onClick={onCancel}>
+          Back
+        </button>
 
-       <button
-         onClick={() => submitSurvey(formValues, history)}
-         className="btn btn-sendSurvey"
-       >
-         Send Survey
-       </button>
-
-     </div>
+        <button
+          onClick={() => submitSurvey(formValues, history)}
+          className="btn btn-next"
+        >
+          Send Survey
+        </button>
+      </div>
+    </React.Fragment>
   );
 
 };
