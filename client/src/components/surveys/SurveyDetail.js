@@ -110,7 +110,7 @@ class SurveyDetail extends Component {
                 <div className="mainarea__heading mb-lg">
                   <h2 className="heading-2 mb-md">Survey Details</h2>
 
-                  <p>
+                  <p style={{ textAlign: 'center' }}>
                     An informational overview of this survey 
                   </p>
                 </div>

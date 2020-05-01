@@ -158,14 +158,14 @@
 
       &__instructions {
 
-        p{
-          margin: 0 auto;
+        p {
+          margin: 2rem auto;
         }
       }
 
       p {
         max-width: 75%;
-        // margin: 0 auto;
+        text-align: left;
       }
       
       .heading-2 {
@@ -184,7 +184,7 @@
       &__surveys {
 
         ul {
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(4, 1fr);
           align-items: center;
           justify-items: center;
           display: grid;
@@ -193,6 +193,19 @@
           li {
             list-style: none;
             font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .toggle {
+              margin-left: 5%;
+              position: relative;
+              flex: 0 0 1.2rem;
+
+              .arrow {
+                display: block;
+              }
+            }
           }
         }
 

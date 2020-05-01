@@ -57,15 +57,14 @@ class Dashboard extends Component {
                 <h3 className="heading-3 mb-sm">Instructions</h3>
 
                 <p>
-                  Purchase Credits to create Surveys. <br />
-                  Create Surveys with a title and a question
-                  <br />
-                  Send surveys to single/multiple email addresses
-                  <br />
-                  To View all your sent surveys, go to the Surveys tab <br />
-                  To Add Credits, click on the Credits tab
-                  <br />
+                  To start you will need to purchase credits to send out a survey. Click on the <span className="span-orange">ADD CREDITS</span> button on your left to add credits. <span className="span-orange">IMPORTANT</span> this app uses a developmental version of the Stripe Payment system. So DO NOT enter any real credit/debit card info, simply enter <span className="span-orange">4242 4242 4242 4242</span> and you should be all set.
                 </p>
+
+                <p>
+                  Then click the <span className="span-orange">NEW SURVEY</span> and fill
+                  out all the information thats needed. To View all your sent surveys, click the surveys button above
+                </p>
+
               </div>
 
               <div className="mainarea__surveys">

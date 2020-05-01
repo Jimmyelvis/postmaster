@@ -26,6 +26,11 @@ export class RecentSurveyList extends Component {
                 <Link to={`/surveydetail/${survey._id}`}>Details</Link>
               </button>
             </li>
+            <li>
+                <a href="#" onClick={() => this.props.deleteSurvey(survey._id)} className="right">
+                  <i class="fas fa-trash"></i>
+                </a>
+            </li>
           </div>
         );
       });

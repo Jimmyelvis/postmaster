@@ -115,13 +115,15 @@ function validate(values) {
 
   errors.recipients = validateEmails(values.recipients || "");
 
+  errors.company = validateEmails(values.company || "");
+
 
   if (!values.title) {
     errors.title = "You need a title";
   }
 
   if (!values.company) {
-    errors.company = "You to enter your companies email";
+    errors.company = "You need to enter your companies email";
   }
 
   if (!values.subject) {
@@ -129,7 +131,7 @@ function validate(values) {
   }
 
   if (!values.body) {
-    errors.body = "You going to need some text for your email";
+    errors.body = "You're going to need some text for your email";
   }
 
   if (!values.recipients) {

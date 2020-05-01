@@ -1,10 +1,14 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+
 import Welcomemsg from "./landingcomponents/Welcomemsg";
 import Header from "./landingcomponents/Landingheader";
 import Jumbotron from "./landingcomponents/Jumbotron";
 import Ourcomp from "./landingcomponents/Ourcomp";
 import Ourteam from "./landingcomponents/Ourteam";
 import Customers from "./landingcomponents/Customers";
+
+
 import Footer from './Footer';
 
 
@@ -33,6 +37,8 @@ class Landing extends Component {
     });
   };
 
+ 
+
   render() {
     return (
       <>
@@ -51,4 +57,8 @@ class Landing extends Component {
   }
 }
 
-export default Landing;
+function mapStateToProps({ auth }) {
+  return { auth };
+}
+
+export default connect(mapStateToProps)(Landing);

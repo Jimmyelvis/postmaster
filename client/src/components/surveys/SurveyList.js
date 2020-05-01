@@ -1,37 +1,142 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchSurveys } from "../../actions";
+import { fetchSurveys, deleteSurvey  } from "../../actions";
 import SiteHeader from "../dashcomponents/dashheader";
 import { Link } from "react-router-dom";
 import Payments from "../Payments";
+import asc from "../../images/arrow-up.svg"
+import desc from "../../images/arrow-down.svg"
+
 
 class SurveyList extends Component {
+
+
+  constructor(props) {
+    super(props);
+      this.state = {
+        surveyList: [],
+        isFirstinLine: true
+      }
+    
+  }
+
   componentDidMount() {
     this.props.fetchSurveys();
+
+    const surveyList = this.props.surveys;
+
+    this.setState({
+      isFirstinLine: true,
+      surveyList: surveyList
+    })
   }
+
+  toggleTitle = (e) => {
+    e.preventDefault();
+
+    const {surveyList} = this.state
+    let newSurveyList = surveyList
+
+      if (this.state.isFirstinLine) {
+        newSurveyList = surveyList.sort((a, b) => (a.title < b.title) ? 1 : -1);
+
+      } else {
+        newSurveyList = surveyList.sort((a, b) => (a.title > b.title) ? 1 : -1);
+      }
+
+      this.setState({
+        isFirstinLine: !this.state.isFirstinLine,
+        surveyList: newSurveyList,
+      });
+
+     
+  }
+
+  toggleDate = (e) => {
+    e.preventDefault();
+
+    const {surveyList} = this.state
+    let newSurveyList = surveyList
+
+      if (this.state.isFirstinLine) {
+        newSurveyList = surveyList.sort((a, b) => (a.dateSent < b.dateSent) ? 1 : -1);
+
+      } else {
+        newSurveyList = surveyList.sort((a, b) => (a.dateSent > b.dateSent) ? 1 : -1);
+      }
+
+      this.setState({
+        isFirstinLine: !this.state.isFirstinLine,
+        surveyList: newSurveyList,
+      });
+
+     
+  }
+
 
   renderSurveys() {
 
-    return this.props.surveys.reverse().map(survey => {
-      return (
-        <div className="surveyRecord">
+    const { surveyList } = this.state;
+
+    return (
+      <div>
+        {
+          surveyList.map((survey, index) => {
+
+            return (
+              <div className="surveyRecord" key={`${index}`}>
+                <li>{survey.title}</li>
+                <li>{new Date(survey.dateSent).toLocaleDateString()}</li>
+                <li>
+                  <button className="btn btn--ghostWhite">
+                    <Link to={`/surveydetail/${survey._id}`}>Details</Link>
+                  </button>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onClick={() => this.props.deleteSurvey(survey._id)}
+                    className="right"
+                  >
+                    <i class="fas fa-trash"></i>
+                  </a>
+                </li>
+              </div>
+            );
+          })
+        }
+      </div>
+    )
+
+    // return this.props.surveys.reverse.map((survey, index) => {
+    //   return (
+    //     <div className="surveyRecord" key={`${index}`}>
             
-              <li>{survey.title}</li>
-              <li>{new Date(survey.dateSent).toLocaleDateString()}</li>
-              <li>
-                <button className="btn btn--ghostWhite">
-                  <Link to={`/surveydetail/${survey._id}`}>Details</Link>
-                </button>
-              </li>
+    //           <li>
+    //             {survey.title}
+    //           </li>
+    //           <li>{new Date(survey.dateSent).toLocaleDateString()}</li>
+    //           <li>
+    //             <button className="btn btn--ghostWhite">
+    //               <Link to={`/surveydetail/${survey._id}`}>Details</Link>
+    //             </button>
+    //           </li>
+    //           <li>
+    //             <a href="#" onClick={() => this.props.deleteSurvey(survey._id)} className="right">
+    //               <i class="fas fa-trash"></i>
+    //             </a>
+    //           </li>
             
-          </div>
-      );
-    });
+    //       </div>
+    //   );
+    // });
   }
 
   render() {
 
     const { auth, surveys } = this.props;
+    const { isFirstinLine } = this.state;
+
     let sideContent;
 
     if (auth === null) {
@@ -65,18 +170,36 @@ class SurveyList extends Component {
                 <div className="mainarea__heading mb-lg">
                   <h2 className="heading-2 mb-md">Your Surveys</h2>
 
-                  <p>
+                  <p style={{ textAlign: "center" }}>
                     These are your survey that you have sent out. Starting from
                     the most recent one.
                   </p>
                 </div>
 
                 <div className="mainarea__surveys">
-
                   <ul className="mb-sm">
-                    <li>TITLE</li>
-                    <li>DATE SENT</li>
-                    {/* <li>DETAILS</li> */}
+                    <li>
+                      TITLE
+                      <a href="#" onClick={this.toggleTitle} className="toggle">
+                        {
+                        isFirstinLine === false ? 
+                          <img src={asc} className="arrow" alt=""/> : 
+                          <img src={desc} className="arrow" alt=""/> 
+                        }
+                      </a>
+                    </li>
+                    <li>
+                      DATE SENT
+                    <a href="#" onClick={this.toggleDate} className="toggle">
+                        {
+                        isFirstinLine === false ? 
+                          <img src={asc} className="arrow" alt=""/> : 
+                          <img src={desc} className="arrow" alt=""/> 
+                        }
+                      </a>
+                    </li>
+                    <li>DETAILS</li>
+                    <li>DELETE</li>
                   </ul>
 
                   {this.renderSurveys()}
@@ -106,5 +229,5 @@ function mapStateToProps({ auth, surveys }) {
 
 export default connect(
   mapStateToProps,
-  { fetchSurveys }
+  { fetchSurveys, deleteSurvey }
 )(SurveyList);
