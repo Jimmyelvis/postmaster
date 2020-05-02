@@ -28,7 +28,7 @@ export class dashheader extends Component {
 
   componentDidMount() {
 
-    this.props.fetchSurveys();
+    // this.props.fetchSurveys();
     window.addEventListener("scroll", this.handleScroll);
 
     this.updateWindowDimensions();

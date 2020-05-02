@@ -10,12 +10,20 @@ import desc from "../../images/arrow-down.svg"
 
 class SurveyList extends Component {
 
+  componentDidMount() {
+    this.props.fetchSurveys();
+
+  }
+
+  /*
+
+  Code for sorting method to be implemented soon
 
   constructor(props) {
     super(props);
       this.state = {
         surveyList: [],
-        isFirstinLine: true
+        isFirstinLine: false
       }
     
   }
@@ -29,10 +37,13 @@ class SurveyList extends Component {
       isFirstinLine: true,
       surveyList: surveyList
     })
+
   }
 
   toggleTitle = (e) => {
     e.preventDefault();
+
+    
 
     const {surveyList} = this.state
     let newSurveyList = surveyList
@@ -73,69 +84,95 @@ class SurveyList extends Component {
      
   }
 
+  */
+
 
   renderSurveys() {
 
+    /*
+      Sorting method to be implemented soon
+    
+
+
     const { surveyList } = this.state;
 
-    return (
-      <div>
-        {
-          surveyList.map((survey, index) => {
+    if (this.state.surveyList && this.state.surveyList.length) {
 
-            return (
-              <div className="surveyRecord" key={`${index}`}>
-                <li>{survey.title}</li>
-                <li>{new Date(survey.dateSent).toLocaleDateString()}</li>
-                <li>
-                  <button className="btn btn--ghostWhite">
-                    <Link to={`/surveydetail/${survey._id}`}>Details</Link>
-                  </button>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    onClick={() => this.props.deleteSurvey(survey._id)}
-                    className="right"
-                  >
-                    <i class="fas fa-trash"></i>
-                  </a>
-                </li>
-              </div>
-            );
-          })
-        }
-      </div>
-    )
+      return (
+        <div>
+          {
+            surveyList.map((survey, index) => {
+  
+              return (
+                <div className="surveyRecord" key={`${index}`}>
+                  <li>{survey.title}</li>
+                  <li>{new Date(survey.dateSent).toLocaleDateString()}</li>
+                  <li>
+                    <button className="btn btn--ghostWhite">
+                      <Link to={`/surveydetail/${survey._id}`}>Details</Link>
+                    </button>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      onClick={() => this.props.deleteSurvey(survey._id)}
+                      className="right"
+                    >
+                      <i class="fas fa-trash"></i>
+                    </a>
+                  </li>
+                </div>
+              );
+            })
+          }
+        </div>
+      )
 
-    // return this.props.surveys.reverse.map((survey, index) => {
-    //   return (
-    //     <div className="surveyRecord" key={`${index}`}>
-            
-    //           <li>
-    //             {survey.title}
-    //           </li>
-    //           <li>{new Date(survey.dateSent).toLocaleDateString()}</li>
-    //           <li>
-    //             <button className="btn btn--ghostWhite">
-    //               <Link to={`/surveydetail/${survey._id}`}>Details</Link>
-    //             </button>
-    //           </li>
-    //           <li>
-    //             <a href="#" onClick={() => this.props.deleteSurvey(survey._id)} className="right">
-    //               <i class="fas fa-trash"></i>
-    //             </a>
-    //           </li>
-            
-    //       </div>
-    //   );
-    // });
+    } else {
+      return (
+        <div>
+          loading......
+        </div>
+      )
+    }
+    
+   */
+
+    if (this.props.surveys && this.props.surveys.length) {
+
+      return this.props.surveys.reverse().map(survey => {
+        return (
+          <div className="surveyRecord">
+            <li>{survey.title}</li>
+            <li>{new Date(survey.dateSent).toLocaleDateString()}</li>
+            <li>
+              <button className="btn btn--ghostWhite">
+                <Link to={`/surveydetail/${survey._id}`}>Details</Link>
+              </button>
+            </li>
+            <li>
+                <a href="#" onClick={() => this.props.deleteSurvey(survey._id)} className="right">
+                  <i class="fas fa-trash"></i>
+                </a>
+            </li>
+          </div>
+        );
+      });
+      
+    } else {
+      return(
+      <React.Fragment>
+      </React.Fragment>
+      )
+      
+    }
+    
   }
 
   render() {
 
     const { auth, surveys } = this.props;
-    const { isFirstinLine } = this.state;
+    // const { isFirstinLine } = this.state;
 
     let sideContent;
 
@@ -180,23 +217,23 @@ class SurveyList extends Component {
                   <ul className="mb-sm">
                     <li>
                       TITLE
-                      <a href="#" onClick={this.toggleTitle} className="toggle">
+                      {/* <a href="#" onClick={this.toggleTitle} className="toggle">
                         {
                         isFirstinLine === false ? 
                           <img src={asc} className="arrow" alt=""/> : 
                           <img src={desc} className="arrow" alt=""/> 
                         }
-                      </a>
+                      </a> */}
                     </li>
                     <li>
                       DATE SENT
-                    <a href="#" onClick={this.toggleDate} className="toggle">
+                    {/* <a href="#" onClick={this.toggleDate} className="toggle">
                         {
                         isFirstinLine === false ? 
                           <img src={asc} className="arrow" alt=""/> : 
                           <img src={desc} className="arrow" alt=""/> 
                         }
-                      </a>
+                      </a> */}
                     </li>
                     <li>DETAILS</li>
                     <li>DELETE</li>
