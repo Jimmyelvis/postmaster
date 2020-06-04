@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_SURVEYS, FETCH_SURVEY } from './types';
+import { FETCH_USER, FETCH_SURVEYS, FETCH_SURVEY, SORT_SURVEYS_TITLE_ASC, SORT_SURVEYS_TITLE_DESC, SORT_SURVEYS_DATE_ASC, SORT_SURVEYS_DATE_DESC } from './types';
 
 
 // export const fetchUser = () => {
@@ -64,6 +64,35 @@ export const fetchSurvey = (surveyId) => async dispatch => {
   })
 
 }
+
+export const sortSurveysTitleAsc = () => async dispatch => {
+
+  const res = await axios.get('/api/surveys');
+  dispatch({ type: SORT_SURVEYS_TITLE_ASC, payload: res.data });
+}
+
+export const sortSurveysTitleDesc = () => async dispatch => {
+
+  const res = await axios.get('/api/surveys');
+  dispatch({ type: SORT_SURVEYS_TITLE_DESC, payload: res.data });
+}
+
+export const sortSurveysDateAsc = () => async dispatch => {
+
+  const res = await axios.get('/api/surveys');
+  dispatch({ type: SORT_SURVEYS_DATE_ASC, payload: res.data });
+}
+
+export const sortSurveysDateDesc = () => async dispatch => {
+
+  const res = await axios.get('/api/surveys');
+  dispatch({ type: SORT_SURVEYS_DATE_DESC, payload: res.data });
+}
+
+
+
+
+
 
 export const deleteSurvey = (id) => async dispatch => {
   let { data } = await axios.delete(`/api/surveys/delete/${id}`);

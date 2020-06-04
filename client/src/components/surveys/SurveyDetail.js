@@ -19,7 +19,8 @@ class SurveyDetail extends Component {
 
   render() {
     
-    const { auth, surveys } = this.props;
+    const { survey } = this.props.surveys;
+    const { auth } = this.props;
     let sideContent;
     let surveyContent;
 
@@ -43,7 +44,7 @@ class SurveyDetail extends Component {
       );
     }
 
-    if (surveys.recipients === null) {
+    if (survey.recipients === null) {
       surveyContent = "loading......";
     } else {
       surveyContent = (
@@ -55,15 +56,15 @@ class SurveyDetail extends Component {
 
               <h3 className="heading-3">Survey Title</h3>
 
-              <p>{surveys.title}</p>
+              <p>{survey.title}</p>
 
               <h3 className="heading-3">Survey Subject</h3>
 
-              <p>{surveys.subject}</p>
+              <p>{survey.subject}</p>
 
               <h3 className="heading-3">Survey Body</h3>
 
-              <p>{surveys.body}</p>
+              <p>{survey.body}</p>
 
             </div>
 
@@ -74,10 +75,10 @@ class SurveyDetail extends Component {
               <div className="yesnodata">
 
                 <p>
-                  YES <span className="badge badge-yes">{surveys.yes}</span>
+                  YES <span className="badge badge-yes">{survey.yes}</span>
                 </p>
                 <p>
-                  NO <span className="badge badge-no">{surveys.no}</span>
+                  NO <span className="badge badge-no">{survey.no}</span>
                 </p>
 
               </div>

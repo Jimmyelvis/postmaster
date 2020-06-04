@@ -86,7 +86,9 @@ export class dashheader extends Component {
   };
 
   renderContent() {
-    const { auth, surveys } = this.props;
+    const {  surveyList } = this.props.surveys;
+    const { auth } = this.props;
+
 
     switch (this.props.auth) {
       case null:
@@ -190,7 +192,7 @@ export class dashheader extends Component {
                   </li>
                   <li>
                     <Link to="/surveylist" className="linkNotify">
-                      SURVEYS <span className="notification">{surveys.length}</span>
+                      SURVEYS <span className="notification">{surveyList.length}</span>
                     </Link>
                   </li>
                   <li className="log">
@@ -227,7 +229,7 @@ export class dashheader extends Component {
                     </li>
                     <li>
                       <Link to="/surveylist" className="linkNotify">
-                        SURVEYS <span className="notification">{surveys.length}</span>
+                        SURVEYS <span className="notification">{surveyList.length}</span>
                       </Link>
                     </li>
                     <li className="log">

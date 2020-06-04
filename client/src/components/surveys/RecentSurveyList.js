@@ -14,9 +14,9 @@ export class RecentSurveyList extends Component {
 
   renderSurveys() {
 
-    if (this.props.surveys && this.props.surveys.length) {
+    if (this.props.surveys.surveyList && this.props.surveys.surveyList.length) {
 
-      return this.props.surveys.reverse().slice(0, 3).map(survey => {
+      return this.props.surveys.surveyList.reverse().slice(0, 3).map(survey => {
         return (
           <div className="surveyRecord">
             <li>{survey.title}</li>
