@@ -37,7 +37,7 @@ class SurveyForm extends Component {
           />
         </div>
 
-        <div className="surveyfield">
+        {/* <div className="surveyfield">
           <Field
             label="Company Email"
             Type="text"
@@ -45,7 +45,7 @@ class SurveyForm extends Component {
             placeholder="Enter your company address in the form of no-reply@your-company.com"
             component={SurveyField}
           />
-        </div>
+        </div> */}
 
         <div className="surveyfield">
           <Field
@@ -91,6 +91,9 @@ class SurveyForm extends Component {
       <React.Fragment>
 
         <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
+
+          {/* this.props.handleSubmit comes from ReduxForm */}
+
           {this.renderFields()}
 
          

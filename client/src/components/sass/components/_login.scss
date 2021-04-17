@@ -1,0 +1,384 @@
+.login {
+  width: 114.1rem;
+  height: 71.9rem;
+  display: flex;
+  background-image: url(/images/Login-bg.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  // @media only screen and (max-width: $bp-largest) {
+  //   width: 113rem;
+  // }
+
+  @media only screen and (max-width: $bp-large) {
+    width: 97rem;
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    width: 100%;
+    background-image: url(/images/tablet-form.png);
+    flex-direction: column;
+    width: 100%;
+    height: 79.9rem;
+    position: relative;
+    background-clip: padding-box;
+    border: solid 5px transparent;
+    border-radius: 1em;
+    background-size: cover;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      margin: -5px;
+      border-radius: inherit;
+      background: linear-gradient(to bottom, rgb(45, 105, 165) 0%, rgb(182, 207, 243) 100%);
+    }
+  }
+
+  @media only screen and (max-width: $bp-smallest) {
+    // background-image: url(/images/login-mobile-bg.png);
+  }
+
+  .left {
+    height: 100%;
+    flex: 1;
+    position: relative;
+
+    @media only screen and (max-width: $bp-medium) {
+      flex: 0 0 37%;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      flex: 0 0 30%;
+    }
+
+    .closesvg-tablet {
+      display: none;
+
+      @media only screen and (max-width: $bp-medium) {
+        display: block;
+        position: absolute;
+        right: 3.2rem;
+        top: 4.5rem;
+        width: 3rem;
+      }
+
+      @media only screen and (max-width: $bp-small) {
+        right: 3.2rem;
+        top: 10.5rem;
+      }
+
+      @media only screen and (max-width: $bp-smallest) {
+        right: 5.1rem;
+        top: 4.2rem;
+      }
+
+      @media only screen and (max-width: $bp-tiny) {
+        right: 2.6rem;
+        top: 6.9rem;
+      }
+
+    }
+
+    .login-logo {
+      position: absolute;
+      z-index: 100;
+      top: 11.2rem;
+      left: 9.2rem;
+
+      @media only screen and (max-width: $bp-medium) {
+        position: relative;
+        top: unset;
+        left: unset;
+        width: 40%;
+        margin: 7rem auto 0 auto;
+        display: block;
+      }
+
+      @media only screen and (max-width: $bp-small) {
+        margin: 6.5rem auto 0 auto;
+      }
+
+      @media only screen and (max-width: $bp-smallest) {
+        margin: 8.2rem auto 0 auto;
+      }
+
+      @media only screen and (max-width: $bp-tiny) {
+        width: 60%;
+        margin: 5rem auto 0 auto;
+      }
+
+    }
+
+    .slogan {
+      position: absolute;
+      color: white;
+      font-size: 2.7rem;
+      top: 22.9rem;
+      left: 9.2rem;
+
+      @media only screen and (max-width: $bp-large) {
+        font-size: 2.1rem;
+        top: 28.2rem;
+        left: 6.2rem;
+      }
+
+      @media only screen and (max-width: $bp-medium) {
+        position: relative;
+        top: unset;
+        left: unset;
+        text-align: center;
+      }
+
+      @media only screen and (max-width: $bp-small) {
+        font-size: 17px;
+        margin-top: 5px;
+      }
+
+    }
+
+    .email-group {
+      position: absolute;
+      z-index: 100;
+      bottom: 4.6rem;
+      left: 22.8rem;
+
+      @media only screen and (max-width: $bp-largest) {
+        bottom: 10%;
+        left: 83%;
+        width: 100%;
+      }
+
+      @media only screen and (max-width: $bp-large) {
+        bottom: 21%;
+        left: 83%;
+        width: 84%;
+      }
+
+      @media only screen and (max-width: $bp-medium) {
+        display: none;
+      }
+    }
+  }
+
+  .right {
+    background-image: url(/images/Subtraction5.svg);
+    height: 100%;
+    flex: 0 0 68.3%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    margin-top: 0 !important;
+
+    @media only screen and (max-width: $bp-medium) {
+      background-image: none;
+      flex: 1;
+    }
+
+    .closesvg {
+      position: absolute;
+      top: 3.5rem;
+      right: 4.6rem;
+      width: 3rem;
+      cursor: pointer;
+
+      @media only screen and (max-width: $bp-largest) {
+        top: 10%;
+        right: 8%;
+      }
+
+      @media only screen and (max-width: $bp-large) {
+        top: 14%;
+        right: 9%;
+      }
+
+      @media only screen and (max-width: $bp-medium) {
+        position: relative;
+        display: none;
+      }
+
+    }
+
+    .errormsg {
+      font-size: 2.3rem;
+      color: $orange;
+      position: absolute;
+      right: 10%;
+      top: 13rem;
+      transition: all 600ms linear;
+    }
+
+    form {
+      width: 360px;
+      position: absolute;
+      right: 10%;
+
+      @media only screen and (max-width: $bp-large) {
+        width: 30.4rem;
+        position: absolute;
+        right: 10%;
+        // top: 2.8rem;
+      }
+
+      @media only screen and (max-width: $bp-medium) {
+        position: relative;
+        right: unset;
+        top: unset;
+        margin: 0 auto;
+      }
+
+    }
+
+    .form-control {
+      position: relative;
+      padding-bottom: 2.6rem;
+
+      @media only screen and (max-width: $bp-large) {
+
+        .form-control {
+          position: relative;
+          padding-bottom: 1.7rem;
+        }
+      }
+
+      @media only screen and (max-width: $bp-small) {
+
+        .form-control {
+          padding-bottom: 5rem;
+        }
+      }
+
+      label {
+        display: block;
+        position: absolute;
+        top: -1.8rem;
+        left: 0;
+        color: #619EED;
+        font-family: 'Helvetica',
+          sans-serif;
+        font-size: 1.6rem;
+        z-index: 1;
+        transition: all 0.3s ease-out;
+        font-weight: bold;
+      }
+
+
+      .input {
+        display: block;
+        position: relative;
+        background: none;
+        border: none;
+        border-bottom: 1px solid #B7D0FF;
+        width: 100%;
+        font-family: 'Helvetica', sans-serif;
+        font-weight: bold;
+        font-size: 1.6rem;
+        z-index: 2;
+        margin-bottom: 3rem;
+
+
+        &::before {
+          right: 50%;
+        }
+
+        &::after {
+          left: 50%;
+        }
+
+
+        &:focus,
+        &:valid {
+          outline: none;
+          background-color: transparent !important;
+        }
+
+        &:focus+label {
+          top: -3.3rem;
+          font-size: 1.1rem;
+          color: $orange;
+        }
+
+        &:valid+label {
+          top: -3.3rem;
+          font-size: 1.1rem;
+          color: $orange;
+        }
+
+
+      }
+
+
+      .input.focus:before,
+      .input.focus:after {
+        width: 50%;
+      }
+
+    }
+
+    .btn {
+      display: block;
+      width: 60%;
+      outline: none;
+      margin: 1rem auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+
+      @media only screen and (max-width: $bp-small) {
+
+        // width: 48%;
+        height: 4.3rem;
+        margin: 5rem auto;
+
+      }
+
+      &--signup-header {
+        background-image: linear-gradient(180deg, #b1d0f9 0%, #b9d6fc 20%, #9dc2f4 55%, rgb(97, 151, 225) 100%);
+        border: 6px solid #c9d9ef;
+
+        @media only screen and (max-width: $bp-large) {
+          border: 5px solid #c9d9ef;
+        }
+
+        @media only screen and (max-width: $bp-small) {
+          padding: 2.1rem 7rem;
+
+        }
+
+
+        h5 {
+          background-color: #5c94e0;
+          color: rgb(255, 255, 255);
+          text-shadow: 0px 2px 4.4px #518cdd;
+          font-size: 2.2rem;
+        }
+
+        &:hover {
+          box-shadow: 0px 0px 22px 9px rgba(255, 255, 255, 0.3);
+        }
+      }
+    }
+
+
+
+
+
+  }
+
+}
+
+
+.marginfix {
+  margin-top: 20rem;
+}

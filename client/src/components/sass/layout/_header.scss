@@ -5,11 +5,11 @@
   position: fixed;
   width: 100%;
   z-index: 10;
-  height: 13rem;
+  height: 11rem;
   transition: all 600ms ease-in-out;
 
 
-  &--scrolled{
+  &--scrolled {
     padding: 1rem 0;
     background-color: rgba(125, 180, 237, 0.85);
     height: 13rem;
@@ -30,43 +30,77 @@
   }
 
 
-}
-
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-.brand-logo {
-
-  img{
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 
     @media only screen and (max-width: $bp-medium) {
-      width: 75%;
+      padding: 0 3rem;
+    }
+  }
+
+  .brand-logo {
+    flex: 0 0 22rem;
+
+    @media only screen and (max-width: $bp-large) {
+      flex: 0 0 18rem;
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      flex: 0 0 22rem;
+    }
+
+    img {}
+  }
+
+  .header {
+    flex-basis: 65%;
+
+    @media only screen and (max-width: $bp-large) {
+      flex-basis: 70%;
+    }
+
+    ul {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      li {
+        list-style: none;
+        flex: 0 0 15%;
+      }
+
+      a {
+        font-size: 2.4rem;
+        color: white;
+        letter-spacing: 1.5px;
+        font-weight: 500;
+      }
+
+      .profileHeading {
+        display: flex;
+        color: white;
+        justify-content: center;
+        align-items: center;
+        flex: 0 0 26% !important;
+
+        img {
+          width: 24%;
+          margin-right: 2rem;
+        }
+
+        h4 {
+          text-align: center;
+        }
+      }
+
+
     }
   }
 }
 
-.header {
-  flex-basis: 50%;
-
-  ul {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-
-    li {
-      list-style: none;
-      flex: 0 0 15%;
-    }
-
-    .log {
-
-    }
-  }
-}
 
 .mobilemenu {
   flex-basis: 50%;
@@ -116,6 +150,20 @@
 
     }
 
+  }
+
+  .profileHeading {
+    margin-bottom: 5rem;
+
+    img {
+      width: 14%;
+      margin-bottom: 2rem;
+    }
+
+    h4 {
+      font-size: 2.3rem;
+      color: white;
+    }
   }
 
 }

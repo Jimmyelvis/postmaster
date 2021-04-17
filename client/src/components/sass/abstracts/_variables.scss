@@ -9,15 +9,20 @@ $dashboard: #eff0f4;
 $dashboard-text: #6398d1;
 
 // RESPONSIVE BREAKPOINTS
-$bp-largest: 75em;   // 1200px 1200/16 = 75
-$bp-large: 62.5em;   // 1000px
-$bp-medium: 50em;    // 800px;
-$bp-small: 37.5em;    // 600px;
-$bp-smallest: 31.25em;    // 500px;
+$bp-largest: 75em; // 1200px 1200/16 = 75
+$bp-large: 62.5em; // 1000px
+$bp-medium: 50em; // 800px;
+$bp-small: 37.5em; // 600px;
+$bp-smallest: 31.25em; // 500px;
+$bp-tiny: 25em; // 500px;
+
 
 
 // FONT VARIABLES
 $default-font-size: 1.6rem;
-$font-primary: 'clear sans', sans-serif;
-$font-display: 'serenity', sans-serif;
-$font-links: 'antarctican-headline', sans-serif;
+$font-primary: 'clear sans',
+sans-serif;
+$font-display: 'serenity',
+sans-serif;
+$font-links: 'antarctican-headline',
+sans-serif;

@@ -8,9 +8,7 @@ import Ourcomp from "./landingcomponents/Ourcomp";
 import Ourteam from "./landingcomponents/Ourteam";
 import Customers from "./landingcomponents/Customers";
 
-
-import Footer from './Footer';
-
+import Footer from "./Footer";
 
 import Modal from "./Modal/Modal";
 import { Link } from "react-router-dom";
@@ -20,39 +18,36 @@ class Landing extends Component {
     super();
 
     this.state = {
-      isShowing: false
+      isShowing: false,
     };
   }
 
-  openModalHandler = e => {
+  openModalHandler = (e) => {
     e.preventDefault();
     this.setState({
-      isShowing: true
+      isShowing: true,
     });
   };
 
   closeModalHandler = () => {
     this.setState({
-      isShowing: false
+      isShowing: false,
     });
   };
-
- 
 
   render() {
     return (
       <>
         <Header />
         <div className="landing">
-            <Jumbotron />
-            <Welcomemsg/>
-            <Ourcomp />
-            <Ourteam/>
-            <Customers />
-            <Footer />
+          <Jumbotron />
+          <Welcomemsg />
+          <Ourcomp />
+          <Ourteam />
+          <Customers />
+          <Footer />
         </div>
       </>
-     
     );
   }
 }

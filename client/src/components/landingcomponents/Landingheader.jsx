@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import { loginUser } from "../../actions";
 import { connect } from "react-redux";
 import Modal from "../Modal/Modal";
 import classnames from "classnames";
@@ -18,7 +19,11 @@ class Landingheader extends Component {
       visible: true,
       limit: 115,
       width: 0,
-      height: 0
+      height: 0,
+      username: "",
+      password: "",
+      errors : {}
+
     };
 
     // this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
@@ -34,7 +39,6 @@ class Landingheader extends Component {
 
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
-
     window.removeEventListener('resize', this.updateWindowDimensions);
   }
 
@@ -44,16 +48,7 @@ class Landingheader extends Component {
       height: window.innerHeight 
     });
 
-    // mobilemenu();
-
-    console.log('====================================');
-    console.log(this.state.width);
-    console.log('====================================');
   }
-
-  // mobilemenu = () => {
-
-  // }
 
   openModalHandler = e => {
     e.preventDefault();
@@ -68,6 +63,23 @@ class Landingheader extends Component {
     });
   };
 
+   onLoginSubmit = e => {
+    e.preventDefault();
+
+    const userData = {
+      username: this.state.username,
+      password: this.state.password
+    };
+
+    this.props.loginUser(userData, this.props.history);
+    // this.props.setAlert('Login Successful', 'success');
+
+  };
+
+  onChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
    // Adjust menu background based on pageYOffset position
    handleScroll = () => {
     const { prevScrollpos, limit } = this.state;
@@ -75,9 +87,6 @@ class Landingheader extends Component {
     const currentScrollPos = window.pageYOffset;
     const visible = currentScrollPos < limit;
 
-    console.log('====================================');
-    console.log(currentScrollPos);
-    console.log('====================================');
 
     this.setState({
       prevScrollpos: currentScrollPos,
@@ -85,10 +94,26 @@ class Landingheader extends Component {
     });
   };
 
+   componentWillReceiveProps(nextProps) {
+
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+
+      setTimeout(() => {
+        this.setState({ errors: "" });
+      }, 3000);
+    }
+  }
+
   renderContent() {
+      
     switch (this.props.auth) {
       case null:
-        return ;
+        return (
+          <div>
+            NULL
+          </div>
+        ) ;
 
       case false:
         return (
@@ -130,7 +155,7 @@ class Landingheader extends Component {
                   <span className="mobilemenu__icon">&nbsp;</span>
                 </label>
 
-                <div class="mobilemenu__background">
+                <div className="mobilemenu__background">
                     &nbsp;
                 </div>
 
@@ -226,14 +251,18 @@ class Landingheader extends Component {
         </React.Fragment>
         );
     }
+
+
   }
 
 
   render() {
+
+    const { errors } = this.state;
+
+
     return (
       <React.Fragment>
-
-
         {
            this.state.isShowing ? (
               <div  onClick={this.closeModalHandler} className="back-drop" />
@@ -247,25 +276,87 @@ class Landingheader extends Component {
            heading="Login"
         >
 
-            <p className="directions">
-              Login with whatever method you used to create an account.
-            </p>
+          {/* 
+              <a className="btn-google" href="/auth/google">
+                <img src="images/btn-google.png" alt="" />
+              </a>
 
-            <div 
-              onClick={this.closeModalHandler}
-              className="closebtn"
-            >
-              X
+              <a className="btn-facebook" href="/auth/facebook">
+                <img src="images/btn-facebook.png" alt="" />
+              </a> */}
+         
+
+          <div className="login marginfix" >
+
+            <div className="left">
+
+              {/* <img src="images/close.svg" alt="" class="closesvg-tablet"/> */}
+              <img src="images/logo.png" alt="" class="login-logo"/>
+
+              <p class="slogan"> Already Have an Account,
+               go ahead and log in</p>
+              
+              <img src="/images/email-group.svg" alt="" class="email-group" />
+
             </div>
+
+            <div className="right">
+
+                  <img onClick={this.closeModalHandler} src="/images/close.svg" alt="" class="closesvg" />
+                
+                  <span className="errormsg">{this.state.errors.msg}</span>
+
+
+                <form
+                  className='authform'
+                  onSubmit={this.onLoginSubmit}
+                >
+                  <div className="form-control">
+
+                    <input
+                      name='username'
+                      type="text"
+                      value={this.state.username}
+                      onChange={this.onChange}
+                      className="input"
+                      autoComplete="new-off"
+                      required
+                    />
+
+                    <label for="username">Username</label>
+
+                  </div>
+
+                  <div className="form-control">
+
+                      <input
+                        name='password'
+                        type='password'
+                        value={this.state.password}
+                        onChange={this.onChange}
+                        className="input"
+                        autoComplete="new-off"
+                        required
+                      />
+
+                    <label for="password">Password</label>
+
+
+                  </div>
+
+                  <button type='submit' className="btn btn--signup-header ">
+                    <h5>Login</h5>
+                  </button>
+                </form>
+
+            </div>
+
+          </div>
             
 
-            <a className="btn-google" href="/auth/google">
-              <img src="images/btn-google.png" alt="" />
-            </a>
+        
 
-            <a className="btn-facebook" href="/auth/facebook">
-              <img src="images/btn-facebook.png" alt="" />
-            </a>
+
 
         </Modal>
 
@@ -276,14 +367,16 @@ class Landingheader extends Component {
           
         >
             {this.renderContent()}
+
+      
         </nav>
       </React.Fragment>
     );
   }
 }
 
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps({ auth, errors }) {
+  return { auth, errors };
 }
 
-export default connect(mapStateToProps)(Landingheader);
+export default connect(mapStateToProps, {loginUser})(withRouter (Landingheader));

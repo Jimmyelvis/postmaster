@@ -1,24 +1,20 @@
-const sendgrid = require('sendgrid');
+const sendgrid = require("sendgrid");
 const helper = sendgrid.mail;
-const keys = require('../config/keys');
-
+const keys = require("../config/keys");
 
 class Mailer extends helper.Mail {
-
   constructor({ subject, recipients, company }, content) {
     super();
 
     this.sgApi = sendgrid(keys.sendGridKey);
     // this.from_email = new helper.Email('no-reply@thepostmaster.com');
-    this.from_email = new helper.Email(company);
+    this.from_email = new helper.Email("jinjoeweb@gmail.com");
     this.subject = subject;
-    this.body = new helper.Content('text/html', content);
+    this.body = new helper.Content("text/html", content);
     this.recipients = this.formatAddresses(recipients);
 
     this.addContent(this.body);
     this.addClickTracking();
-
-
   }
 
   formatAddresses(recipients) {
@@ -39,7 +35,7 @@ class Mailer extends helper.Mail {
   addRecipients() {
     const personalize = new helper.Personalization();
 
-    this.recipients.forEach(recipient => {
+    this.recipients.forEach((recipient) => {
       personalize.addTo(recipient);
     });
 
@@ -48,16 +44,14 @@ class Mailer extends helper.Mail {
 
   async send() {
     const request = this.sgApi.emptyRequest({
-      method: 'POST',
-      path: '/v3/mail/send',
-      body: this.toJSON()
+      method: "POST",
+      path: "/v3/mail/send",
+      body: this.toJSON(),
     });
 
     const response = await this.sgApi.API(request);
     return response;
   }
-
-
 }
 
 module.exports = Mailer;

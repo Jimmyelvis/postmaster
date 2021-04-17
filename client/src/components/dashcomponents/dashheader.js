@@ -5,6 +5,8 @@ import Modal from "../Modal/Modal";
 import classnames from "classnames";
 import { fetchSurveys } from "../../actions";
 import logo from "../../images/new-logo.png"
+import profileimg from "../../images/profile.png"
+
 
 
 export class dashheader extends Component {
@@ -23,12 +25,10 @@ export class dashheader extends Component {
       height: 0
     };
 
-    // this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
   componentDidMount() {
 
-    // this.props.fetchSurveys();
     window.addEventListener("scroll", this.handleScroll);
 
     this.updateWindowDimensions();
@@ -47,12 +47,7 @@ export class dashheader extends Component {
       width: window.innerWidth, 
       height: window.innerHeight 
     });
-
-    // mobilemenu();
-
-    console.log('====================================');
-    console.log(this.state.width);
-    console.log('====================================');
+ 
   }
 
   openModalHandler = e => {
@@ -74,10 +69,6 @@ export class dashheader extends Component {
 
     const currentScrollPos = window.pageYOffset;
     const visible = currentScrollPos < limit;
-
-    console.log('====================================');
-    console.log(currentScrollPos);
-    console.log('====================================');
 
     this.setState({
       prevScrollpos: currentScrollPos,
@@ -176,9 +167,13 @@ export class dashheader extends Component {
                 <img src={logo} alt="" />
               </div>
 
+              {/*
+                      Desktop menu setup. Will only display if window width is greater than 800
+                  */}
+
               <div
                 className={classnames("header", {
-                  hidden: this.state.width < 800
+                  hidden: this.state.width < 800,
                 })}
               >
                 <ul>
@@ -187,59 +182,90 @@ export class dashheader extends Component {
                   </li>
                   <li>
                     <Link to="#" className="linkNotify">
-                      CREDITS <span className="notification">{auth.credits}</span>
+                      CREDITS{" "}
+                      <span className="notification">{auth.credits}</span>
                     </Link>
                   </li>
                   <li>
                     <Link to="/surveylist" className="linkNotify">
-                      SURVEYS <span className="notification">{surveyList.length}</span>
+                      SURVEYS{" "}
+                      <span className="notification">{surveyList.length}</span>
                     </Link>
                   </li>
                   <li className="log">
-                    <a href="/api/logout">LOGOUT</a>href
+                    <a href="/api/logout">LOGOUT</a>
+                  </li>
+
+                  <li className="profileHeading">
+                      <img src={profileimg} alt=""/>
+                      <h4>
+                          Welcome Back
+                          <br />
+                          { auth.username }
+                      </h4>
                   </li>
                 </ul>
               </div>
 
+              {/*
+                      Mobile menu setup. Will only display if window width is less than 800
+                  */}
+
               <div
                 className={classnames("mobilemenu", {
-                  hidden: this.state.width > 800
+                  hidden: this.state.width > 800,
                 })}
               >
-                <input type="checkbox" className="mobilemenu__checkbox" id="navi-toggle"/>
+                <input
+                  type="checkbox"
+                  className="mobilemenu__checkbox"
+                  id="navi-toggle"
+                />
 
                 <label htmlFor="navi-toggle" className="mobilemenu__button">
                   <span className="mobilemenu__icon">&nbsp;</span>
                 </label>
 
-                <div class="mobilemenu__background">
-                    &nbsp;
-                </div>
+                <div class="mobilemenu__background">&nbsp;</div>
 
                 <nav className="mobilemenu__nav">
-                  
+
+
                   <ul className="mobilemenu__list">
+
+                      <li className="profileHeading">
+                      <img src={profileimg} alt=""/>
+                      <h4>
+                          Welcome Back
+                          <br />
+                          { auth.username }
+                      </h4>
+                  </li>
                     <li>
                       <Link to="/dashboard">HOME</Link>
                     </li>
                     <li>
                       <Link to="#" className="linkNotify">
-                        CREDITS <span className="notification">{auth.credits}</span>
+                        CREDITS{" "}
+                        <span className="notification">{auth.credits}</span>
                       </Link>
                     </li>
                     <li>
                       <Link to="/surveylist" className="linkNotify">
-                        SURVEYS <span className="notification">{surveyList.length}</span>
+                        SURVEYS{" "}
+                        <span className="notification">
+                          {surveyList.length}
+                        </span>
                       </Link>
                     </li>
                     <li className="log">
                       <a href="/api/logout">LOGOUT</a>
                     </li>
-                  </ul>
 
+                     
+                  </ul>
                 </nav>
               </div>
-
             </div>
           </React.Fragment>
         );
@@ -256,39 +282,12 @@ export class dashheader extends Component {
           <div onClick={this.closeModalHandler} className="back-drop" />
         ) : null}
 
-        {/* <Modal
-          className="modal"
-          show={this.state.isShowing}
-          close={this.closeModalHandler}
-          heading="Login"
-        >
-          <p className="directions">
-            Login with whatever method you used to create an account.
-          </p>
-
-          <div onClick={this.closeModalHandler} className="closebtn">
-            X
-          </div>
-
-          <a className="btn-google" href="/auth/google">
-            <img src="images/btn-google.png" alt="" />
-          </a>
-
-          <a className="btn-facebook" href="/auth/facebook">
-            <img src="images/btn-facebook.png" alt="" />
-          </a>
-        </Modal> */}
-
         <nav
           className={classnames("sitenav", {
             "nav--scrolled": !this.state.visible
           })}
         >
-          {/* <div className="brand-logo">
-              <Link to={this.props.auth ? "/dashboard" : "/"}>
-                <img src="images/logo-postmaster-med.png" alt="" />
-              </Link>
-            </div> */}
+  
 
           {this.renderContent()}
         </nav>

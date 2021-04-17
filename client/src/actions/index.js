@@ -1,6 +1,14 @@
-import axios from 'axios';
-import { FETCH_USER, FETCH_SURVEYS, FETCH_SURVEY, SORT_SURVEYS_TITLE_ASC, SORT_SURVEYS_TITLE_DESC, SORT_SURVEYS_DATE_ASC, SORT_SURVEYS_DATE_DESC } from './types';
-
+import axios from "axios";
+import {
+  FETCH_USER,
+  FETCH_SURVEYS,
+  FETCH_SURVEY,
+  GET_ERRORS,
+  SORT_SURVEYS_TITLE_ASC,
+  SORT_SURVEYS_TITLE_DESC,
+  SORT_SURVEYS_DATE_ASC,
+  SORT_SURVEYS_DATE_DESC,
+} from "./types";
 
 // export const fetchUser = () => {
 
@@ -12,90 +20,130 @@ import { FETCH_USER, FETCH_SURVEYS, FETCH_SURVEY, SORT_SURVEYS_TITLE_ASC, SORT_S
 
 // };
 
-
-export const fetchUser = () => async dispatch => {
-  
-  const res = await axios.get('/api/current_user');
+export const fetchUser = () => async (dispatch) => {
+  const res = await axios.get("/api/current_user");
 
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const handleToken = token => async dispatch => {
-
-  const res = await axios.post('/api/stripe', token);
+export const handleToken = (token) => async (dispatch) => {
+  const res = await axios.post("/api/stripe", token);
 
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const submitSurvey = (values, history) => async dispatch => {
+// export const submitSurvey = (values, history) => async (dispatch) => {
+//   const res = await axios.post("/api/surveys", values);
 
-  const res = await axios.post('/api/surveys', values);
+//   history.push("/surveylist");
 
-  history.push('/surveylist');
+//   dispatch({ type: FETCH_USER, payload: res.data });
+// };
 
-  dispatch({ type: FETCH_USER, payload: res.data });
-
-
+export const submitSurvey = (values, history) => (dispatch) => {
+   axios
+     .post("/api/surveys", values)
+     .then((res) => {
+       dispatch({ type: FETCH_USER, payload: res.data });
+     })
+     .then((res) => history.push("/surveylist"))
+     .catch((err) => 
+        dispatch({
+          type: GET_ERRORS,
+          payload: err.response.data,
+        })
+      )
 };
 
-export const fetchSurveys = () => async dispatch => {
+export const fetchSurveys = () => async (dispatch) => {
+  const res = await axios.get("/api/surveys");
 
- 
-
-  const res = await axios.get('/api/surveys');
-
-  console.log('======export const fetchSurveys===========');
-  console.log('surveys fetched');
-  console.log('====================================');
+  console.log("======export const fetchSurveys===========");
+  console.log("surveys fetched");
+  console.log("====================================");
 
   dispatch({ type: FETCH_SURVEYS, payload: res.data });
-}
+};
 
-export const fetchSurvey = (surveyId) => async dispatch => {
+export const fetchSurvey = (surveyId) => async (dispatch) => {
+  const res = await axios.get(`/api/surveys/${surveyId}`);
 
-  const res = await axios.get(`/api/surveys/${surveyId}`)
-
-  console.log('======export const fetchSurvey ===========');
-  console.log('a survey is fetched');
-  console.log('====================================');
+  console.log("======export const fetchSurvey ===========");
+  console.log("a survey is fetched");
+  console.log("====================================");
   dispatch({
     type: FETCH_SURVEY,
     payload: res.data,
-  })
+  });
+};
 
-}
-
-export const sortSurveysTitleAsc = () => async dispatch => {
-
-  const res = await axios.get('/api/surveys');
+export const sortSurveysTitleAsc = () => async (dispatch) => {
+  const res = await axios.get("/api/surveys");
   dispatch({ type: SORT_SURVEYS_TITLE_ASC, payload: res.data });
-}
+};
 
-export const sortSurveysTitleDesc = () => async dispatch => {
-
-  const res = await axios.get('/api/surveys');
+export const sortSurveysTitleDesc = () => async (dispatch) => {
+  const res = await axios.get("/api/surveys");
   dispatch({ type: SORT_SURVEYS_TITLE_DESC, payload: res.data });
-}
+};
 
-export const sortSurveysDateAsc = () => async dispatch => {
-
-  const res = await axios.get('/api/surveys');
+export const sortSurveysDateAsc = () => async (dispatch) => {
+  const res = await axios.get("/api/surveys");
   dispatch({ type: SORT_SURVEYS_DATE_ASC, payload: res.data });
-}
+};
 
-export const sortSurveysDateDesc = () => async dispatch => {
-
-  const res = await axios.get('/api/surveys');
+export const sortSurveysDateDesc = () => async (dispatch) => {
+  const res = await axios.get("/api/surveys");
   dispatch({ type: SORT_SURVEYS_DATE_DESC, payload: res.data });
-}
+};
 
-
-
-
-
-
-export const deleteSurvey = (id) => async dispatch => {
+export const deleteSurvey = (id) => async (dispatch) => {
   let { data } = await axios.delete(`/api/surveys/delete/${id}`);
   dispatch({ type: FETCH_SURVEYS, payload: data });
-}
+};
 
+// Login
+export const loginUser = (userData, history) => (dispatch) => {
+  axios
+    .post("/api/login", userData)
+    .then((res) => {
+      dispatch(fetchUser());
+    })
+    .then((res) => history.push("/dashboard"))
+    .catch((err) =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      })
+    );
+};
+
+// Register
+export const registerUser = (userData, history) => (dispatch) => {
+  axios
+    .post("/api/register", userData)
+    .then((res) => {
+      dispatch(loginUser(userData, history));
+    })
+    .catch((err) =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      })
+    );
+};
+
+// export const registerUser = (userData, history) => (dispatch) => {
+//   axios
+//     .post("/api/register", userData)
+//     .then((res) => {
+//       dispatch(fetchUser());
+//     })
+//     .then((res) => history.push("/dashboard"))
+//     .catch((err) =>
+//       dispatch({
+//         type: GET_ERRORS,
+//         payload: err.response.data,
+//       })
+//     );
+// };

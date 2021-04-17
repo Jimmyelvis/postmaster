@@ -4,13 +4,24 @@
 
 .notification {
   color: white;
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    top: -20px;
-    font-size: 1.9rem;
-    border-radius: 30px;
-    line-height: 28px;
-    background-color: #fb8844;
-    text-align: center;
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  top: -2.4rem;
+  right: -2rem;
+  font-size: 1.9rem;
+  border-radius: 50%;
+  line-height: 28px;
+  background-color: $orange;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media only screen and (max-width: $bp-medium) {
+    width: 3.5rem;
+    height: 3.5rem;
+    top: 0;
+    right: -1rem;
+  }
 }

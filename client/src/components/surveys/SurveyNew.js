@@ -11,6 +11,12 @@ import * as actions from "../../actions";
 import { fetchSurvey } from "../../actions";
 import plus from "../../images/plus-btn.png"
 
+/*
+The overall component that houses both the new survey creation component and the survey
+review component
+
+*/
+
 class SurveyNew extends Component {
   state = { showFormReview: false };
 
@@ -44,7 +50,6 @@ class SurveyNew extends Component {
           <div className="newsurvey-btn mb-md">
             <span>
               <Link to="/surveys/new">
-                <img src={plus} alt="" />
 
                 <h3>New Survey</h3>
               </Link>

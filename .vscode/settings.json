@@ -2,5 +2,6 @@
   "workbench.colorCustomizations": {
     "tab.unfocusedActiveBorder": "#fff0"
   },
-  "workbench.colorTheme": "City Lights"
+  "workbench.colorTheme": "Kai Light Accent",
+  "workbench.preferredDarkColorTheme": "Community Material Theme High Contrast"
 }

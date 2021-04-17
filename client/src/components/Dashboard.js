@@ -24,7 +24,7 @@ class Dashboard extends Component {
           <div className="newsurvey-btn mb-md">
             <span>
               <Link to="/surveys/new">
-                <img src="images/plus-btn.png" alt="" />
+                {/* <img src="images/plus-btn.png" alt="" /> */}
                 <h3>New Survey</h3>
               </Link>
             </span>

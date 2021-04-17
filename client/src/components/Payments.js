@@ -23,7 +23,7 @@ class Payments extends Component {
           stripeKey={process.env.REACT_APP_STRIPE_KEY}
         >
           <a href="#" >
-            <img src={plus} alt="" />
+            {/* <img src={plus} alt="" /> */}
             <h3>Add Credits</h3>
           </a>
         </StripeCheckout>

@@ -32,8 +32,6 @@ class SurveyDetail extends Component {
           <div className="newsurvey-btn mb-md">
             <span>
               <Link to="/surveys/new">
-                <img src={plus} alt="" />
-
                 <h3>New Survey</h3>
               </Link>
             </span>
