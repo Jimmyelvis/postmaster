@@ -4,8 +4,8 @@
   "description": "Emailing System",
   "main": "index.js",
   "engines": {
-    "node": "10.18.1",
-    "npm": "6.13.7"
+    "node": "16.13.2",
+    "npm": "8.13.2"
   },
   "scripts": {
     "start": "node index.js",

@@ -1,236 +1,181 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import {
-  fetchSurveys,
-  deleteSurvey,
-  sortSurveysTitleAsc,
-  sortSurveysTitleDesc,
-  sortSurveysDateAsc,
-  sortSurveysDateDesc,
-} from "../../actions";
-import SiteHeader from "../dashcomponents/dashheader";
-import { Link } from "react-router-dom";
-import Payments from "../Payments";
-import asc from "../../images/arrow-up.svg";
-import desc from "../../images/arrow-down.svg";
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import SiteHeader from '../../pages/Dashboard/components/dashheader';
+import { Link } from 'react-router-dom';
+import Payments from '../../pages/Dashboard/components/Payments';
+import { fetchSurveys } from 'ReduxStore';
+import asc from '../../images/arrow-up.svg';
+import desc from '../../images/arrow-down.svg';
 
-class SurveyList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isSortedAscTitle: false,
-      isSortedAscDate: false,
-    };
-  }
+const SurveyList = () => {
+  const [isSortedAscTitle, setIsSortedAscTitle] = useState(false);
+  const [isSortedAscDate, setIsSortedAscDate] = useState(false);
+  const [list, setList] = useState([])
+  const [sortOrder, setsortOrder] = useState("desc")
 
-  componentDidMount() {
-    this.props.fetchSurveys();
-  }
+  const { auth, surveys } = useSelector((store) => ({
+    auth: store.auth,
+    surveys: store.surveys.surveyList,
+  }));
 
-  sortTitle = (e) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchSurveys());
+   
+  }, []);
+
+  useEffect(() => {
+    if (surveys) {
+      let surveyList = [...surveys]
+      setList(surveyList)
+    }
+  
+  }, [dispatch, surveys]);
+
+
+  /*
+    TODO: Figure a better way to show the sorting arrows
+  */
+  
+
+  const sortTitle = (e) => {
     e.preventDefault();
 
-    if (this.state.isSortedAscTitle === false) {
-      this.props.sortSurveysTitleAsc();
+    console.log("sortOrder", sortOrder);
+
+    if (sortOrder === "desc") {
+      setList(list.sort((a, b) => a.title.localeCompare(b.title)))
+      setsortOrder("asc")
     } else {
-      this.props.sortSurveysTitleDesc();
+      setList(list.sort((a, b) => b.title.localeCompare(a.title)))
+      setsortOrder("desc")
     }
 
-    this.setState((prevState) => ({
-      isSortedAscTitle: !prevState.isSortedAscTitle,
-    }));
-
-    console.log(this.state.isSortedAscTitle);
   };
 
-  sortDate = (e) => {
+  const sortDate = (e) => {
     e.preventDefault();
 
-    if (this.state.isSortedAscDate === false) {
-      this.props.sortSurveysDateAsc();
+    if (sortOrder === "desc") {
+      setList(list.sort((a, b ) => new Date(a.dateSent) - new Date(b.dateSent)))
+      setsortOrder("asc")
     } else {
-      this.props.sortSurveysDateDesc();
+      setList(list.sort((a, b ) => new Date(b.dateSent) - new Date(a.dateSent)))
+      setsortOrder("desc")
     }
-
-    this.setState((prevState) => ({
-      isSortedAscDate: !prevState.isSortedAscDate,
-    }));
-
-    console.log(this.state.isSortedAscDate);
   };
 
-  renderSurveys() {
-    if (this.props.surveys.surveyList && this.props.surveys.surveyList.length) {
-      return this.props.surveys.surveyList.reverse().map((survey) => {
-        return (
-          <div className="surveyRecord">
-            <li>{survey.title}</li>
-            <li>{new Date(survey.dateSent).toLocaleDateString()}</li>
-            <li>
-              <button className="btn btn--ghostWhite">
-                <Link to={`/surveydetail/${survey._id}`}>Details</Link>
-              </button>
-            </li>
-            <li>
-              <a
-                href="#"
-                onClick={() => this.props.deleteSurvey(survey._id)}
-                className="right"
-              >
-                <i class="fas fa-trash"></i>
-              </a>
-            </li>
-          </div>
-        );
-      });
+  const getSort = () => { 
+    return (a, b) => new Date(b.dateSent) - new Date(a.dateSent)
+   }
+
+  const renderSurveys = () => {
+
+  
+
+     if (list && list.length) {
+      return list
+      .map((survey) => (
+        <div className="surveyRecord" key={survey._id}>
+          <li>{survey.title}</li>
+          <li>{new Date(survey.dateSent).toLocaleDateString()}</li>
+          <li>
+            <button className="btn btn--ghostWhite">
+              <Link to={`/surveydetail/${survey._id}`}>Details</Link>
+            </button>
+          </li>
+          <li>
+            <a
+              href="#"
+              onClick={() => dispatch(deleteSurvey(survey._id))}
+              className="right"
+            >
+              <i className="fas fa-trash"></i>
+            </a>
+          </li>
+        </div>
+      ));
     } else {
       return (
         <React.Fragment>
-          <br/>
-            <h3>No Surveys Found</h3>
+          <br />
+          <h3>No Surveys Found</h3>
         </React.Fragment>
       );
     }
+  };
+
+  let sideContent;
+
+  if (auth === null) {
+    sideContent = 'loading......';
+  } else {
+    sideContent = (
+      <React.Fragment>
+        <div className="newsurvey-btn mb-md">
+          <span>
+            <Link to="/surveys/new">
+              <h3>New Survey</h3>
+            </Link>
+          </span>
+        </div>
+
+        <Payments />
+      </React.Fragment>
+    );
   }
 
-  render() {
-    const { auth, surveys } = this.props;
+  return (
+    <div>
+      <SiteHeader />
+      <div className="dashboard">
+        <div className="dashInfo">
+          <div className="sidebar">{sideContent}</div>
 
-    let sideContent;
+          <div className="mainarea">
+            <div className="mainarea__heading mb-lg">
+              <h2 className="heading-2 mb-md">Your Surveys</h2>
 
-    if (auth === null) {
-      sideContent = "loading......";
-    } else {
-      sideContent = (
-        <React.Fragment>
-          <div className="newsurvey-btn mb-md">
-            <span>
-              <Link to="/surveys/new">
-                <h3>New Survey</h3>
-              </Link>
-            </span>
-          </div>
+              <p style={{ textAlign: 'center' }}>
+                These are your surveys that you have sent out. Starting from the
+                most recent one.
+              </p>
+            </div>
 
-          <Payments />
-        </React.Fragment>
-      );
-    }
+            <div className="mainarea__surveys">
+              <ul className="mb-sm">
+                <li>
+                  TITLE
+                  <Link to="#" onClick={sortTitle} className="toggle">
+                    {sortOrder === "desc" ? (
+                      <img src={desc} className="arrow" alt="" />
+                    ) : (
+                      <img src={asc} className="arrow" alt="" />
+                    )}
+                  </Link>
+                </li>
+                <li>
+                  DATE SENT
+                  <Link to="#" onClick={sortDate} className="toggle">
+                    {sortOrder === "desc" ? (
+                      <img src={desc} className="arrow" alt="" />
+                    ) : (
+                      <img src={asc} className="arrow" alt="" />
+                    )}
+                  </Link>
+                </li>
+                <li>DETAILS</li>
+                <li>DELETE</li>
+              </ul>
 
-    if (this.props.surveys.surveyList && this.props.surveys.surveyList.length) {
-      return (
-        <div>
-          <SiteHeader />
-          <div className="dashboard">
-            <div className="dashInfo">
-              <div className="sidebar">{sideContent}</div>
-
-              <div className="mainarea">
-                <div className="mainarea__heading mb-lg">
-                  <h2 className="heading-2 mb-md">Your Surveys</h2>
-
-                  <p style={{ textAlign: "center" }}>
-                    These are your survey that you have sent out. Starting from
-                    the most recent one.
-                  </p>
-                </div>
-
-                <div className="mainarea__surveys">
-                  <ul className="mb-sm">
-                    <li>
-                      TITLE
-                      <Link to="#" onClick={this.sortTitle} className="toggle">
-                        {this.state.isSortedAscTitle === false ? (
-                          <img src={asc} className="arrow" alt="" />
-                        ) : (
-                          <img src={desc} className="arrow" alt="" />
-                        )}
-                      </Link>
-                    </li>
-                    <li>
-                      DATE SENT
-                      <Link to="#" onClick={this.sortDate} className="toggle">
-                        {this.state.isSortedAscDate === false ? (
-                          <img src={asc} className="arrow" alt="" />
-                        ) : (
-                          <img src={desc} className="arrow" alt="" />
-                        )}
-                      </Link>
-                    </li>
-                    <li>DETAILS</li>
-                    <li>DELETE</li>
-                  </ul>
-
-                  {this.renderSurveys()}
-                </div>
-              </div>
+              {renderSurveys()}
             </div>
           </div>
         </div>
-      );
-    } else {
-      return (
-        <div>
-          <SiteHeader />
-          <div className="dashboard">
-            <div className="dashInfo">
-              <div className="sidebar">{sideContent}</div>
+      </div>
+    </div>
+  );
+};
 
-              <div className="mainarea">
-                <div className="mainarea__heading mb-lg">
-                  <h2 className="heading-2 mb-md">Your Surveys</h2>
-
-                  <p style={{ textAlign: "center" }}>
-                    These are your survey that you have sent out. Starting from
-                    the most recent one.
-                  </p>
-                </div>
-
-                <div className="mainarea__surveys">
-                  <ul className="mb-sm">
-                    <li>
-                      TITLE
-                      <Link to="#" onClick={this.sortTitle} className="toggle">
-                        {this.state.isSortedAscTitle === false ? (
-                          <img src={asc} className="arrow" alt="" />
-                        ) : (
-                          <img src={desc} className="arrow" alt="" />
-                        )}
-                      </Link>
-                    </li>
-                    <li>
-                      DATE SENT
-                      <Link to="#" onClick={this.sortDate} className="toggle">
-                        {this.state.isSortedAscDate === false ? (
-                          <img src={asc} className="arrow" alt="" />
-                        ) : (
-                          <img src={desc} className="arrow" alt="" />
-                        )}
-                      </Link>
-                    </li>
-                    <li>DETAILS</li>
-                    <li>DELETE</li>
-                  </ul>
-
-                  {this.renderSurveys()}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    }
-  }
-}
-
-function mapStateToProps({ auth, surveys }) {
-  return { auth, surveys };
-}
-
-export default connect(mapStateToProps, {
-  fetchSurveys,
-  deleteSurvey,
-  sortSurveysTitleAsc,
-  sortSurveysTitleDesc,
-  sortSurveysDateAsc,
-  sortSurveysDateDesc,
-})(SurveyList);
+export default SurveyList;

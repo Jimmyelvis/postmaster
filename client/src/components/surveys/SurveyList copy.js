@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchSurveys, deleteSurvey, sortSurveys  } from "../../actions";
-import SiteHeader from "../dashcomponents/dashheader";
+import SiteHeader from "../../pages/Dashboard/components/dashheader";
 import { Link } from "react-router-dom";
-import Payments from "../Payments";
+import Payments from "../../pages/Dashboard/components/Payments";
 import asc from "../../images/arrow-up.svg"
 import desc from "../../images/arrow-down.svg"
 

@@ -1,73 +1,81 @@
-import React, { Component } from "react";
-import { BrowserRouter, Route, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { BrowserRouter, Route, Routes, Navigate, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../actions";
-import Landing from "./Landing";
-import Dashboard from "./Dashboard";
-import SurveyNew from "./surveys/SurveyNew";
-import SurveyList from "./surveys/SurveyList";
-import SurveyDetail from "./surveys/SurveyDetail";
-import About from "./About";
-import Contact from "./Contact";
+import Landing from "../pages/Landing";
+import { Dashboard_Home, SurveyList, SurveyDetail, SurveyNew } from "pages/Dashboard";
+import About from "../pages/About";
+import Contact from "../pages/Contact";
+import { Navbar } from "components/ui/Layout/Navbar";
+import DashHeader from "../pages/Dashboard/components/dashheader";
 import Scrolltop from "../utils/ScrollToTop";
+import { fetchUser } from "ReduxStore"
 
 import "./sass/App.scss";
 
-class App extends Component {
-  componentDidMount() {
-    this.props.fetchUser();
-  }
+const App = () => {
 
-  render() {
-    console.log(this.props.auth);
-    const authenticatedUser = this.props.auth;
+  const dispatch = useDispatch();
 
-    return (
-      <BrowserRouter>
-        <React.Fragment>
-          <Scrolltop />
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, [dispatch]);
 
-          {authenticatedUser ? (
-            <React.Fragment>
-              <Redirect to="/dashboard" />
-              <Route exact path="/dashboard" component={Dashboard} />
-              <Route exact path="/surveylist" component={SurveyList} />
-              <Route
-                exact
-                path="/surveydetail/:surveyId"
-                component={SurveyDetail}
-              />
-              <Route path="/surveys/new" component={SurveyNew} />
-            </React.Fragment>
-          ) : (
-            <React.Fragment>
-              <Redirect to="/" />
-              <Route exact path="/" component={Landing} />
-              <Route exact path="/about" component={About} />
-              <Route exact path="/contact" component={Contact} />
-            </React.Fragment>
-          )}
-        </React.Fragment>
-      </BrowserRouter>
+  const auth = useSelector((store) => {
+    return store.auth
+  });
 
-      //  <BrowserRouter>
-      //    <React.Fragment>
-      //      <Scrolltop />
-      //      <Route exact path="/" component={Landing} />
-      //      <Route exact path="/about" component={About} />
-      //      <Route exact path="/contact" component={Contact} />
-      //      <Route exact path="/dashboard" component={Dashboard} />
-      //      <Route exact path="/surveylist" component={SurveyList} />
-      //      <Route exact path="/surveydetail/:surveyId" component={SurveyDetail} />
-      //      <Route path="/surveys/new" component={SurveyNew} />
-      //    </React.Fragment>
-      //  </BrowserRouter>
-    );
-  }
-}
+  const authenticatedUser = auth?.user;
+  const location = useLocation(); 
 
-function mapStateToProps({ auth }) {
-  return { auth };
-}
+  // function to check if the current route is one of the specific routes
+  const isSpecificRoute = (pathname) => {
+    return ["/", "/about", "/contact"].includes(pathname);
+  };
 
-export default connect(mapStateToProps, actions)(App);
+
+
+
+  return (
+    <>
+      <Scrolltop />
+
+      
+  {/* Render the appropriate NavBar component based on the current route */}
+  {isSpecificRoute(location.pathname) ? <Navbar /> : <DashHeader />}
+
+      <Routes>
+
+        <Route path="/" element={<Landing />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route 
+          path="/dashboard" 
+          element={
+            <Dashboard_Home />
+          } 
+        />
+        <Route 
+          path="/surveylist" 
+          element={ <SurveyList />} 
+        />
+        <Route 
+          path="/surveydetail/:surveyId" 
+          element={
+           <SurveyDetail />
+          } 
+        />
+        <Route 
+          path="/surveys/new" 
+          element={
+           <SurveyNew />
+          }
+        />
+      
+      </Routes>
+    </>
+  );
+};
+
+
+export default App;

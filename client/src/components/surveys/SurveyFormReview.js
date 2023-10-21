@@ -1,125 +1,88 @@
-// SurveyFormReview shows users their form inputs for review
-import _ from 'lodash';
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom'; // Updated import for React Router 6
 import formFields from './formFields';
-import { withRouter } from 'react-router-dom';
-import * as actions from '../../actions';
+// import { submitSurvey } from '../../actions'; // Import the specific action
+import { createSlice, configureStore } from '@reduxjs/toolkit';
 
+// Define Redux slice and reducer using Redux Toolkit
+const initialState = {
+  formValues: {},
+  errors: {},
+};
 
-export class SurveyFormReview extends Component {
-  constructor() {
-    super();
+const surveySlice = createSlice({
+  name: 'survey',
+  initialState,
+  reducers: {
+    setFormValues: (state, action) => {
+      state.formValues = action.payload;
+    },
+    setErrors: (state, action) => {
+      state.errors = action.payload;
+    },
+    clearErrors: state => {
+      state.errors = {};
+    },
+  },
+});
 
-    this.state = {
-      errors: {},
-    };
-  }
+const { setFormValues, setErrors, clearErrors } = surveySlice.actions;
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+// Create Redux store using Redux Toolkit
+const store = configureStore({
+  reducer: {
+    survey: surveySlice.reducer,
+  },
+});
+
+const SurveyFormReview = () => {
+  const [errors, setErrors] = useState({});
+  const formValues = useSelector(state => state.survey.formValues);
+  const dispatch = useDispatch();
+  const navigate = useNavigate(); // Replace withRouter with useNavigate
+
+  useEffect(() => {
+    if (errors) {
+      setErrors(errors);
 
       setTimeout(() => {
-        this.setState({ errors: "" });
+        dispatch(clearErrors()); // Dispatch the clearErrors action
       }, 3000);
     }
-  }
+  }, [errors, dispatch]);
 
-  render() {
+  const reviewFields = formFields.map(({ name, label }) => (
+    <div className="labelgroup" key={name}>
+      <label>{label}</label>
+      <div className="formValues">{formValues[name]}</div>
+    </div>
+  ));
 
-    // const { errors } = this.state;
+  return (
+    <React.Fragment>
+      <h3 className="heading-3 mb-md">Please confirm your entries</h3>
 
+      <div className="errormsg">
+        <h2>{errors.msg}</h2>
+      </div>
 
-    const { onCancel, formValues, submitSurvey, history, errors } = this.props;
+      {reviewFields}
 
-    const reviewFields = _.map(formFields, ({ name, label }) => {
-      return (
-        <div className="labelgroup" key={name}>
-          <label>{label}</label>
-          <div className="formValues">{formValues[name]}</div>
-        </div>
-      );
-    });
+      <div className="submitButtons">
+        <button className="btn btn-cancel" onClick={() => navigate(-1)}>
+          Back
+        </button>
 
-    return (
-      <React.Fragment>
-        <h3 className="heading-3 mb-md">Please confirm your entries</h3>
+        {/* <button
+          onClick={() => dispatch(submitSurvey(formValues, navigate))}
+          className="btn btn-next"
+        >
+          Send Survey
+        </button> */}
+      </div>
+    </React.Fragment>
+  );
+};
 
-        <div className="errormsg">
-          <h2>{this.state.errors.msg}</h2>
-        </div>
-
-        {reviewFields}
-
-        <div className="submitButtons">
-          <button className="btn btn-cancel" onClick={onCancel}>
-            Back
-          </button>
-
-          <button
-            onClick={() => submitSurvey(formValues, history)}
-            className="btn btn-next"
-          >
-            Send Survey
-          </button>
-        </div>
-      </React.Fragment>
-    );
-  }
-}
-
-
-// const SurveyFormReview = ({ onCancel, formValues, submitSurvey, history }) => {
-
-//   const reviewFields = _.map(formFields, ({ name, label }) => {
-
-//     return (
-//       <div  className="labelgroup" key={name}>
-//         <label>{label}</label>
-//         <div className="formValues">
-//           {formValues[name]}
-//         </div>
-//       </div>
-//     );
-//   });
-
-//   return (
-//     <React.Fragment>
-//       <h3 className="heading-3 mb-md">Please confirm your entries</h3>
-
-//       {reviewFields}
-
-//       <div className="submitButtons">
-//         <button className="btn btn-cancel" onClick={onCancel}>
-//           Back
-//         </button>
-
-//         <button
-//           onClick={() => submitSurvey(formValues, history)}
-//           className="btn btn-next"
-//         >
-//           Send Survey
-//         </button>
-//       </div>
-//     </React.Fragment>
-//   );
-
-// };
-
-// function mapStateToProps(state) {
-
-//   console.log("==================state==================");
-//   console.log(state);
-//   console.log('====================================');
-//   return { formValues: state.form.surveyForm.values, errors: state.errors.msg };
-// }
-
-function mapStateToProps({ form, errors}) {
-
-  
-  return { formValues: form.surveyForm.values, errors };
-}
-
-
-export default connect(mapStateToProps, actions)(withRouter(SurveyFormReview));
+export default SurveyFormReview;

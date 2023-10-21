@@ -13,13 +13,34 @@ const Survey = mongoose.model('surveys');
 
 module.exports = app => {
 
+  app.get('/api/surveysallusers', requireLogin, async (req, res) => {
+    const surveys = await Survey.find()
+      .select({
+        recipients: false
+      })
+      .populate('_user', ['username'])
+      .sort({
+        dateSent: -1
+      });
+
+      console.log("req.user.id: ", req.user);
+
+    res.send(surveys);
+  });
+
   app.get('/api/surveys', requireLogin, async (req, res) => {
     const surveys = await Survey.find({
         _user: req.user.id
       })
       .select({
         recipients: false
+      })
+      .populate('_user', ['username'])
+      .sort({
+        dateSent: -1
       });
+
+      console.log("req.user.id: ", req.user);
 
     res.send(surveys);
   });

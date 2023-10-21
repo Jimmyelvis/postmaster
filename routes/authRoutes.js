@@ -13,23 +13,7 @@ module.exports = (app) => {
     res.send(req.user); // The req.user stores the entire user that has been authenticated inside of it.
   });
 
-  // app.post("/api/register", (req, res, next) => {
-  //   User.findOne({ username: req.body.username }, async (err, doc) => {
-  //     if (err) throw err;
-  //     if (doc) res.send("User Already Exists");
 
-  //     if (!doc) {
-  //       const hashedPassword = await bcrypt.hash(req.body.password, 10);
-
-  //       const newUser = new User({
-  //         username: req.body.username,
-  //         password: hashedPassword,
-  //       });
-  //       await newUser.save();
-  //       res.send("User Created");
-  //     }
-  //   });
-  // });
 
    app.post("/api/register", (req, res, next) => {
      User.findOne({ username: req.body.username }, async (err, doc) => {
@@ -61,7 +45,8 @@ module.exports = (app) => {
       } else {
         req.logIn(user, (err) => {
           if (err) throw err;
-          res.send("Successfully Authenticated");
+          res.send(user)
+          // res.send("Successfully Authenticated");
           console.log(req.user);
         });
       }
@@ -76,6 +61,9 @@ module.exports = (app) => {
 
   // Decides whether or not a user is signed in
   app.get("/api/current_user", (req, res) => {
+
+    console.log("req", req.body);
+
     res.send(req.user);
   });
 };
