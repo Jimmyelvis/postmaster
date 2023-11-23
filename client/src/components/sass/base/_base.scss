@@ -46,10 +46,14 @@ html {
 body {
   font-family: $font-primary;
   color: $maintext;
-  line-height: 1.6;
+  line-height: 1.4;
   font-size: 1.6rem;
   min-height: 100%;
 
+}
+
+.container {
+  overflow: hidden;
 }
 
 img {

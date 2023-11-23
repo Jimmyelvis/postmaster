@@ -10,6 +10,7 @@ import { Navbar } from "components/ui/Layout/Navbar";
 import DashHeader from "../pages/Dashboard/components/dashheader";
 import Scrolltop from "../utils/ScrollToTop";
 import { fetchUser } from "ReduxStore"
+import { Footer } from "components/ui/Layout/Footer";
 
 import "./sass/App.scss";
 
@@ -73,6 +74,8 @@ const App = () => {
         />
       
       </Routes>
+
+      {/* <Footer /> */}
     </>
   );
 };

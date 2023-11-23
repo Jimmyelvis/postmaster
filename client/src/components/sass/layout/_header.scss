@@ -7,6 +7,12 @@
   z-index: 10;
   height: 11rem;
   transition: all 600ms ease-in-out;
+  display: grid;
+  @include gridTempColumn;
+  align-items: center;
+  z-index: 3000;
+  background-size: cover;
+
 
 
   &--scrolled {
@@ -17,86 +23,71 @@
     transition: all 600ms ease-in-out;
 
 
-    &::after {
-      content: "";
-      display: block;
-      width: 0;
-      margin: 0 auto;
-      padding-top: 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.0);
-      transition: all 800ms ease-in-out;
+    // &::after {
+    //   content: "";
+    //   display: block;
+    //   width: 0;
+    //   margin: 0 auto;
+    //   padding-top: 0;
+    //   border-bottom: 1px solid rgba(255, 255, 255, 0.0);
+    //   transition: all 800ms ease-in-out;
 
-    }
+    // }
+
   }
 
 
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+  // .container {
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   height: 100%;
 
-    @media only screen and (max-width: $bp-medium) {
-      padding: 0 3rem;
-    }
-  }
+  //   @media only screen and (max-width: $bp-medium) {
+  //     padding: 0 3rem;
+  //   }
+  // }
 
   .brand-logo {
-    flex: 0 0 22rem;
+    grid-column: col-start 2/col-end 2;
+    width: 9rem;
 
-    @media only screen and (max-width: $bp-large) {
-      flex: 0 0 18rem;
+    @include respond(bp-small) {
+     width: 8rem;
     }
-
-    @media only screen and (max-width: $bp-medium) {
-      flex: 0 0 22rem;
-    }
-
-    img {}
   }
 
   .header {
-    flex-basis: 65%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 6rem;
+    grid-column: col-start 6 / col-end 11;
 
-    @media only screen and (max-width: $bp-large) {
-      flex-basis: 70%;
+    @include respond(bp-medium) {
+      display: none; 
     }
 
-    ul {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-
-      li {
-        list-style: none;
-        flex: 0 0 15%;
-      }
+    li {
+      list-style: none;
 
       a {
-        font-size: 2.4rem;
-        color: white;
-        letter-spacing: 1.5px;
-        font-weight: 500;
+        font-weight: bold;
       }
+    }
 
-      .profileHeading {
-        display: flex;
-        color: white;
-        justify-content: center;
-        align-items: center;
-        flex: 0 0 26% !important;
+    .log {
+      list-style: none;
+      background: rgb(255 255 255 / 14%);
+      padding: 1rem 3rem;
+      border-radius: 4rem;
+      border: 2px solid rgb(255 255 255 / 57%);
+    }
 
-        img {
-          width: 24%;
-          margin-right: 2rem;
-        }
-
-        h4 {
-          text-align: center;
-        }
-      }
-
-
+    a {
+      font-size: 2rem;
+      color: $white;
+      font-weight: bold;
     }
   }
 }

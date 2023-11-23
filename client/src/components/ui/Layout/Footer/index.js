@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import TwitterIcon from "assets/images/twitter.svg";
+import FacebookIcon from "assets/images/facebook.svg";
 // import { registerUser } from "../../actions";
 
 export const Footer = () => {
@@ -48,44 +50,29 @@ export const Footer = () => {
   }, [errors]);
 
   const renderContent = () => {
-    switch (auth) {
-      case null:
-        return null;
-      case false:
-        return (
-          <>
-            <h2 className="heading-2 mb-md">
-              <span className="span-orange">Improve</span> Your Business
-            </h2>
-            <button className="btn btn--signup-header" onClick={openModalHandler}>
-              <h5>SIGN UP</h5>
-            </button>
-            <div className="icons">
-              <img src="images/icon-facebook.png" className="icons__facebook" alt="" />
-              <img src="images/icon-twitter.png" className="icons__twitter" alt="" />
-            </div>
-            <div className="copyright">
-              <p>&copy; 2020 ThePostMaster</p>
-            </div>
-          </>
-        );
-      default:
-        return (
-          <>
-            <h2 className="heading-2 mb-md">
-              <span className="span-orange">Improve</span> Your Business
-            </h2>
-            <div className="icons">
-              <img src="images/icon-facebook.png" className="icons__facebook" alt="" />
-              <img src="images/icon-twitter.png" className="icons__twitter" alt="" />
-            </div>
-            <div className="copyright">
-              <p>&copy; 2020 ThePostMaster</p>
-            </div>
-          </>
-        );
+
+    return (
+      <>
+        <h2 className="heading-2 mb-md">
+          Improve Your Business
+        </h2>
+
+        {
+          auth.user === "" ? (
+          <button className="btn btn--signup-header" onClick={openModalHandler}>
+            <h5>SIGN UP</h5>
+          </button>) : (  "" )
+        }
+        <div className="copyright">
+          <p>&copy; 2023 ThePostMaster</p>
+        </div>
+      </>
+    );
+
+  
     }
-  };
+
+
 
   return (
     <>

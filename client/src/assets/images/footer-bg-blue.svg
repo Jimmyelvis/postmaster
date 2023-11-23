@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1922.676" height="711.841" viewBox="0 0 1922.676 711.841">
+  <defs>
+    <radialGradient id="radial-gradient" cx="0.504" cy="0.434" r="0.85" gradientTransform="matrix(0.477, -0.879, 0.655, 0.356, -0.021, 0.723)" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#21659c"/>
+    </radialGradient>
+    <linearGradient id="linear-gradient" x1="1.021" y1="0.245" x2="-0.022" y2="0.05" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#a7d3ff"/>
+      <stop offset="1" stop-color="#3a82cd"/>
+    </linearGradient>
+    <radialGradient id="radial-gradient-2" cx="0.504" cy="0.434" r="0.85" gradientTransform="matrix(0.477, -0.879, 0.655, 0.356, -0.021, 0.723)" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ccdcef"/>
+      <stop offset="1" stop-color="#085798"/>
+    </radialGradient>
+    <clipPath id="clip-path">
+      <path id="footer-swirl" d="M-378.338,5042.849C339.369,5368.892,403.534,4938.8,949.9,5118.144s594.24,57.027,594.24,57.027-3.381,123.7,0,561.818c-484.523,2-1920.348,6.7-1920.348,6.7S-379.326,5359.78-378.338,5042.849Z" transform="translate(378 147.93)" opacity="0.89" fill="url(#radial-gradient)"/>
+    </clipPath>
+    <linearGradient id="linear-gradient-2" x1="0.013" y1="-0.206" x2="0.904" y2="1.051" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#bae1ff" stop-opacity="0.42"/>
+      <stop offset="0.369" stop-color="#bae1ff"/>
+      <stop offset="0.711" stop-color="#fbfcff"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+  </defs>
+  <g id="footer-bg-blue" transform="translate(0.531 -5179.778)">
+    <path id="footer-swirl-2" data-name="footer-swirl" d="M-378.338,5042.849C339.369,5368.892,403.534,4938.8,949.9,5118.144s594.24,57.027,594.24,57.027-3.381,123.7,0,561.818c-484.523,2-1920.348,6.7-1920.348,6.7S-379.326,5359.78-378.338,5042.849Z" transform="translate(378 136.93)" opacity="0.18" fill="url(#linear-gradient)"/>
+    <path id="footer-swirl-3" data-name="footer-swirl" d="M-378.338,5042.849C339.369,5368.892,403.534,4938.8,949.9,5118.144s594.24,57.027,594.24,57.027-3.381,123.7,0,561.818c-484.523,2-1920.348,6.7-1920.348,6.7S-379.326,5359.78-378.338,5042.849Z" transform="translate(378 147.93)" opacity="0.89" fill="url(#radial-gradient-2)"/>
+    <g id="Group_317" data-name="Group 317">
+      <g id="Group_320" data-name="Group 320" opacity="0.38">
+        <g id="Mask_Group_12" data-name="Mask Group 12" clip-path="url(#clip-path)">
+          <path id="Polygon_27" data-name="Polygon 27" d="M449.511,0a70,70,0,0,1,61.582,36.719l125.92,233a70,70,0,0,1,0,66.562l-125.92,233A70,70,0,0,1,449.511,606H205.488a70,70,0,0,1-61.582-36.719l-125.92-233a70,70,0,0,1,0-66.562l125.92-233A70,70,0,0,1,205.488,0Z" transform="matrix(0.966, 0.259, -0.259, 0.966, -113.418, 4970.561)" opacity="0.23" fill="url(#linear-gradient-2)"/>
+          <path id="Polygon_28" data-name="Polygon 28" d="M449.511,0a70,70,0,0,1,61.582,36.719l125.92,233a70,70,0,0,1,0,66.562l-125.92,233A70,70,0,0,1,449.511,606H205.488a70,70,0,0,1-61.582-36.719l-125.92-233a70,70,0,0,1,0-66.562l125.92-233A70,70,0,0,1,205.488,0Z" transform="translate(1533.195 5585.131) rotate(-19)" opacity="0.45" fill="url(#linear-gradient-2)"/>
+          <path id="Polygon_29" data-name="Polygon 29" d="M238.017,0A70,70,0,0,1,299.6,36.712l55.41,102.5a70,70,0,0,1,0,66.576l-55.41,102.5A70,70,0,0,1,238.017,345H134.983A70,70,0,0,1,73.4,308.288l-55.409-102.5a70,70,0,0,1,0-66.576L73.4,36.712A70,70,0,0,1,134.983,0Z" transform="matrix(0.766, 0.643, -0.643, 0.766, -74.382, 5669.313)" opacity="0.12" fill="url(#linear-gradient-2)"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

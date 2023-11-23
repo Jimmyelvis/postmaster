@@ -1,343 +1,491 @@
-.landing {
-  font-size: 2rem;
+
+.jumbotron {
+  background-image: url(/assets/images/landing-pg-header.svg);
+  background-repeat: no-repeat;
+  grid-column: full-start/full-end;
   display: grid;
-  grid-template-rows: 75rem repeat(5, min-content);
-  grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 15rem) [col-end] ) [center-end] minmax(6rem, 1fr) [full-end];
+  @include gridTempColumn;
+  height: 147rem;
+  grid-template-rows: repeat(2, max-content);
 
-
-
-  & > * {
-    margin-top: 10rem;
+  @include respond(big-desktop) {
+    background-size: cover;
+    background-position-y: -50rem;
+    height: 190rem;
   }
 
-
-  .left, .right {
-    margin-top: 2rem;
+  @include respond(bp-largest) {
+    background-size: cover;
+    background-position-y: -60rem;
   }
 
-  .jumbotron {
-    background-image: linear-gradient(174deg, transparent 0%, transparent 74%, rgba(255, 255, 255, 1) 74.3%), url(/assets/images/landing.jpg);
-    grid-column: full-start / full-end;
+  @include respond(bp-medium) {
+    background-position-y: -35rem;
+    height: 122rem;
+  }
 
-    background-size: 100%;
-    padding: 5vh 15%;
-    margin-top: 0;
+  @include respond(bp-small) {
+    background-position-y: -31rem;
+    height: 104rem;
+  }
 
+  @include respond(bp-smallest) {
+    background-position-x: -13rem;
+    position: relative;
+  }
+
+  .left {
+    grid-column: col-start 2/col-end 5;
+    padding-top: 22.6rem;
     display: grid;
-    grid-column-gap: 8rem;
-    grid-template-columns: repeat(auto-fit, minmax(31.1rem, 1fr));
-    justify-content: center;
+    grid-template-rows: repeat(3, max-content);
 
-    @media only screen and (max-width: $bp-large) {
-      background-size: cover;
-    }
-    
-
-    .left {
-      padding-top: 25%;
-      text-align: center;
-
-      @media only screen and (max-width: $bp-largest) {
-        padding-top: 40%;    
-      }
-
-      @media only screen and (max-width: $bp-medium) {
-        padding-top: 25%;    
-      }
-
-      .heading-2 {
-        font-size: 7.5rem;
-        line-height: 1;
-        background-color: rgb(70, 113, 158);
-        color: #ffffff00;
-        text-shadow: 0px 1.8px 3.4px rgba(255, 255, 255, 1);
-        -webkit-background-clip: text;
-        letter-spacing: 2px;
-      }
-
-      p {
-        font-weight: bold;
-        font-family: $font-primary;
-        font-size: 2.4rem;
-        color: white;
-      }
+    @include respond(bp-large) {
+      grid-column: col-start 2/col-end 4;  
     }
 
-    .right {
-      padding-top: 20%;
+    @include respond(bp-medium) {
+     grid-column: col-start 2/col-end 7;
+    }
 
-      @media only screen and (max-width: $bp-largest) {
-        padding-top: 35%;    
+    @include respond(bp-small) {
+      grid-column: col-start 3/col-end 7;
+      padding-top: 19.6rem;
+    }
+
+    @include respond(bp-smallest) {
+      position: relative;
+      z-index: 100;
+      padding-top: 15.6rem;
+      grid-column: col-start 3/col-end 9;
+    }
+
+    .heading-2 {
+      font-size: 6.5rem;
+      line-height: 1;
+      background-color: rgb(70, 113, 158);
+      color: #ffffff00;
+      text-shadow: 0px 1.8px 3.4px rgba(255, 255, 255, 1);
+      -webkit-background-clip: text;
+      letter-spacing: 2px;
+      margin-bottom: 4.7rem;
+
+      @include respond(bp-medium) {
+        font-size: 4.5rem;   
       }
 
-      @media only screen and (max-width: $bp-large) {
-        padding-top: 40%;    
+      @include respond(bp-small) {
+       font-size: 4rem;
       }
+    }
 
-      img {
-        width: 90%;
-        margin: 0 auto;
-        display: block;
+    p {
+      font-family: $font-primary;
+      font-size: 2.2rem;
+      color: $white;
+      font-weight: bold;
 
-        @media only screen and (max-width: $bp-medium) {
-          display: none; 
+      @include respond(bp-large) {
+        font-size: 1.8rem;
+      }
+    }
+
+    .btn--signup-header {
+      justify-self: end;
+
+      @include respond(bp-snall) {
+        padding: 0.8rem 2.7rem;
+
+        h5 {
+          font-size: 1.9rem;
         }
       }
     }
   }
 
-  .welcomemsg {
+  .right {
+    grid-column: col-start 6 / col-end 11;
+    padding-top: 34.5rem;
+
+    @include respond(bp-large) {
+      grid-column: col-start 5 / col-end 11; 
+    }
+
+    @include respond(bp-medium) {
+      grid-column: col-start 8 / col-end 11;
+      justify-content: flex-end;
+      padding-top: 35.5rem;
+      display: flex;
+    }
+
+    @include respond(bp-small) {
+      grid-column: col-start 8/col-end 10;
+    }
+
+    @include respond(bp-smallest) {
+      position: absolute;
+      top: 0;
+      right: 8rem;
+      z-index: 0;
+      padding-top: 16rem;
+      opacity: 0.10;
+    }
+
+    .laptop {
+      
+      @include respond(bp-medium) {
+        width: 35rem
+      }
+
+      @include respond(bp-small) {
+        width: 26rem
+      }
+
+      @include respond(bp-) {
+        width: 38rem;
+      }
+    }
+
+  }
+
+  .trusted-by {
+    grid-column: col-start 1 / col-end 11;
+    grid-row: 2 / -1;
+    justify-self: end;
+    margin-top: 20rem; 
+
+    @include respond(bp-smallest) {
+      justify-self: center;
+      margin-top: 29rem;
+    }
+
+    .heading-4 {
+      font-size: 2.9rem;
+      margin-bottom: 3rem;
+
+      @include respond(bp-medium) {
+        font-size: 2.7rem; 
+      }
+
+      @include respond(bp-tiny) {
+        font-size: 2.4rem;
+      }
+    }
+
+    .sponsers {
+      display: flex;
+      list-style: none;
+      align-items: center;
+      gap: 4rem;
+
+      .icon {
+        height: 9rem;
+        width: 9rem;
+
+        @include respond(bp-medium) {
+          height: 7rem;
+          width: 7rem;  
+        }
+
+        @include respond(bp-tiny) {
+         height: 5.5rem;
+          width: 5.5rem;
+        }
+      }
+    }
+
+  }
+}
+
+.selling-points {
+  display: grid;
+  @include gridTempColumn;
+  position: relative;
+  overflow: hidden;
+
+  .leftPoly{
+    position: absolute;
+    top: -4rem;
+    left: -45rem;
+    z-index: -1;
+    width: 140rem;
+    height: 100rem;
+
+    @include respond(bp-medium) {
+      top: -4rem;
+      left: -85rem;
+      z-index: -1;
+      width: 152rem;
+      height: 75rem;
+    }
+  }
+
+  .rightPoly{
+    position: absolute;
+    top: 65rem;
+    right: -65rem;
+    z-index: -1;
+    width: 140rem;
+    height: 100rem;
+
+    @include respond(bp-medium) {
+      top: 61rem;
+      right: -92rem;
+      z-index: -1;
+      width: 147rem;
+      height: 92rem;
+    }
+  }
+
+  .entries {
     grid-column: center-start / center-end;
-    padding: 3rem 0;
 
-    h2 {
-      // grid-column: 1 / 3;
-      text-align: center;
-      color: $orange;
-    }
-
-
-    @media only screen and (max-width: $bp-medium) {
-      margin-top: 5rem;
-    }
-
-    .lft-rht-contain{
+    .entry {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(41rem, 1fr));
-      grid-column-gap: 6rem;
+      grid-template-columns: repeat(2, 1fr);
+      align-items: center;
+      margin-bottom: 10rem;
+
+      @include respond(bp-smallest) {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, max-content);
+        justify-items: center;
+        row-gap: 4rem;
+      }
+
+      .left {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          width: 40rem;
+
+          @include respond(bp-medium) {
+            width: 26rem;
+          }
+        }
+      }
 
       .right {
-        display: flex;
-        align-items: center;
-      }
 
-      @media only screen and (max-width: $bp-medium) {
+        .heading-3 {
+          font-size: 3.7rem;
+          margin-bottom: 2.1rem;
+          color: $midnightblue;
 
-        grid-row-gap: 3rem;
+          @include respond(bp-medium) {
+            font-size: 3rem;
+          }
 
-        .left p {
-          width: 85%;
-          margin: 0 auto;
-        }
+          @include respond(bp-smallest) {
+            font-size: 3.4rem;
+            text-align: center;
+          }
 
-        .right {
-          order: -1;
-
-          img {
-            width: 60%;
-            margin: 0 auto;
+          @include respond(bp-tiny) {
+            font-size: 2.9rem;
+            text-align: center;
           }
         }
 
+        p {
+          width: 40.7rem;
+
+          @include respond(bp-medium) {
+            width: 26rem;
+          }
+
+          @include respond(bp-smallest) {
+            width: 34rem;
+          }
+        }
 
       }
-
-
     }
-
-    
 
   }
 
-  .ourcomp {
-    grid-column: center-start / center-end;
+}
+
+.welcomemsg {
+  grid-column: center-start / center-end;
+  padding: 3rem 0;
+
+  h2 {
+    // grid-column: 1 / 3;
+    text-align: center;
+    color: $orange;
+  }
+
+
+  @media only screen and (max-width: $bp-medium) {
+    margin-top: 5rem;
+  }
+
+  .lft-rht-contain{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: max-content 46rem;
-    grid-column-gap: 8rem;
-    grid-row-gap: 4rem;
-    // align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(41rem, 1fr));
+    grid-column-gap: 6rem;
+
+    .right {
+      display: flex;
+      align-items: center;
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+
+      grid-row-gap: 3rem;
+
+      .left p {
+        width: 85%;
+        margin: 0 auto;
+      }
+
+      .right {
+        order: -1;
+
+        img {
+          width: 60%;
+          margin: 0 auto;
+        }
+      }
+
+
+    }
+
+
+  }
+
+  
+
+}
+
+.ourcomp {
+  grid-column: center-start / center-end;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: max-content 46rem;
+  grid-column-gap: 8rem;
+  grid-row-gap: 4rem;
+  // align-items: center;
+
+  @media only screen and (max-width: $bp-large) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: max-content 15rem;
+    grid-column-gap: 6rem;
+    grid-row-gap: 0rem;
+  }
+
+
+  h2 {
+    text-align: center;
+    grid-column: 1 / -1;
+    color: $orange;
+  }
+
+  > p {
+    align-self: center;
 
     @media only screen and (max-width: $bp-large) {
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: max-content 15rem;
-      grid-column-gap: 6rem;
-      grid-row-gap: 0rem;
-    }
-
-
-    h2 {
-      text-align: center;
       grid-column: 1 / -1;
+    }
+  }
+
+  .comp-card {
+    background-image: linear-gradient(180deg, #ffffff 0%, rgba(252, 253, 253, 0.68) 20%, rgba(241, 247, 253, 0.36) 55%, rgba(241, 247, 253, 0.12) 100%);
+    border-radius: 12px;
+    box-shadow: 1px 1px 39px 8px rgba(196, 221, 255, 0.23);
+    border: 4px solid rgba(233, 247, 253, 0.59);
+    text-align: center;
+    // padding: 5rem 0;
+
+    display: grid;
+    grid-template-rows: max-content min-content min-content;
+    grid-template-columns: 1fr;
+    align-content: center;
+    padding: 0 3rem;
+
+    @media only screen and (max-width: $bp-large) {
+      padding: 7rem;
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      padding: 3rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      grid-column: 1 / -1;
+      margin: 3rem auto;
+    }
+
+    h3 {
       color: $orange;
+      font-size: 2rem;
     }
 
-    > p {
-      align-self: center;
+    img {
+      width: 30%;
+      margin: 0 auto;
+      display: block;
+      padding: 2rem 0;
 
       @media only screen and (max-width: $bp-large) {
-        grid-column: 1 / -1;
-      }
-    }
-
-    .comp-card {
-      background-image: linear-gradient(180deg, #ffffff 0%, rgba(252, 253, 253, 0.68) 20%, rgba(241, 247, 253, 0.36) 55%, rgba(241, 247, 253, 0.12) 100%);
-      border-radius: 12px;
-      box-shadow: 1px 1px 39px 8px rgba(196, 221, 255, 0.23);
-      border: 4px solid rgba(233, 247, 253, 0.59);
-      text-align: center;
-      // padding: 5rem 0;
-
-      display: grid;
-      grid-template-rows: max-content min-content min-content;
-      grid-template-columns: 1fr;
-      align-content: center;
-      padding: 0 3rem;
-
-      @media only screen and (max-width: $bp-large) {
-        padding: 7rem;
-      }
-
-      @media only screen and (max-width: $bp-medium) {
-        padding: 3rem;
+        width: 45%;
       }
 
       @media only screen and (max-width: $bp-small) {
-        grid-column: 1 / -1;
-        margin: 3rem auto;
-      }
-
-      h3 {
-        color: $orange;
-        font-size: 2rem;
-      }
-
-      img {
         width: 30%;
-        margin: 0 auto;
-        display: block;
-        padding: 2rem 0;
-
-        @media only screen and (max-width: $bp-large) {
-          width: 45%;
-        }
-
-        @media only screen and (max-width: $bp-small) {
-          width: 30%;
-        }
       }
     }
-
   }
 
-  .ourteam {
-    background-image: url(/assets/images/landing-middle.jpg);
-    background-size: 120%;
-    background-position-y: 60%;
-    transform: skewY(-5deg);
-    color: #fff;
-    grid-column: full-start / full-end;
-
-    display: grid;
-    grid-template-columns: minmax(6rem, 1fr) minmax(25rem, 120rem) minmax(6rem, 1fr);
-    // padding: 3rem 15%;
-
-    // Jagged edges fix for chrome when transforming skew
-    padding: 1px;
-    -webkit-backface-visibility:hidden;
-    backface-visibility:hidden;
-    -webkit-background-clip:content-box;
-    background-clip:content-box;
-
-    @media only screen and (max-width: $bp-large) {
-      background-image: url(/assets/images/landing-middle-mobile.jpg);
-      background-size: cover;
-    }
-
-    .lft-rht-contain{
-      transform: skewY(5deg);
-      margin: 6rem auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(41rem, 1fr));
-      grid-column-gap: 2rem;
-      padding: 2rem 0;
-
-      grid-column: 2 / 3;
+}
 
 
-      .left {
-
-        @media only screen and (max-width: $bp-medium) {
-          margin-bottom: 5rem;
-        }
-
-        h2 {
-          text-align: center;
-          color: $orange;
-        }
-      }
+.customers {
+  grid-column: center-start / center-end;
   
-      .right {
-        margin-top: 2rem;
-        display: grid;
 
-        @media only screen and (max-width: 48em) {
-          order: -1;
-        }
+  h2{
+    text-align: center;
+    color: $orange;
+    grid-column: 1 / -1;
+    line-height: 1.2;
 
-        @media only screen and (max-width: 31em) {
-          display: none;
-        }
-
-        img {
-          width: 72%;
-          margin: auto;
-
-          @media only screen and (max-width: 48em) {
-            width: 40%;
-          }
-        }
-      }
-
+    @media only screen and (max-width: $bp-medium) {
+      font-size: 3rem;
     }
 
-
+    @media only screen and (max-width: 31em) {
+      font-size: 2.5rem;
+    }
   }
 
-  .customers {
-    grid-column: center-start / center-end;
-    
+  .logos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
+    align-items: center;
 
-    h2{
-      text-align: center;
-      color: $orange;
-      grid-column: 1 / -1;
-      line-height: 1.2;
+
+    img {
+      width: 40%;
+      margin: 0 auto;
+      display: block;
 
       @media only screen and (max-width: $bp-medium) {
-        font-size: 3rem;
-      }
-
-      @media only screen and (max-width: 31em) {
-        font-size: 2.5rem;
+        margin: 10px auto;
       }
     }
 
-    .logos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
-      align-items: center;
-
-
-      img {
-        width: 40%;
-        margin: 0 auto;
-        display: block;
-
-        @media only screen and (max-width: $bp-medium) {
-          margin: 10px auto;
-        }
-      }
-  
-      .apple {
-        width: 20%;
-      }
+    .apple {
+      width: 20%;
     }
-
-
   }
 
-  .footer {
-    grid-column: full-start / full-end;
-  }
+
+}
+
+.footer {
+  grid-column: full-start / full-end;
 }

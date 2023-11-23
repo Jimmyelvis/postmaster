@@ -1,37 +1,26 @@
 .footer {
-  background-image: url(/assets/images/footer-bg.jpg);
-  padding: 5rem 0;
-
+  background-image: url(/assets/images/footer-bg-blue.svg);
+  background-repeat: no-repeat;
+    background-size: cover;
+  height: auto;
   display: grid;
   grid-template-rows: 11rem max-content 15rem min-content;
   grid-template-columns: 1fr 2fr 2fr 1fr;
   align-items: center;
+  padding-top: 17rem;
 
-  h2 {
+  .heading-2 {
     text-align: center;
     grid-column: 2 / 4;
-    color: #fff;
-    font-size: 6rem;
-    font-family: $font-primary;
+    color: $midnightblue;
+    font-size: 4.7rem;
     font-weight: 400;
-
-    @media only screen and (max-width: $bp-medium) {
-      font-size: 5rem;
-    }
-
-    @media only screen and (max-width: $bp-small) {
-      font-size: 4rem;
-    }
   }
 
-  .span-orange {
-    color: $orange;
-  }
 
   .btn--signup-header {
     grid-column: 1 / 5;
     margin: 0 auto;
-    padding: 1rem 6rem;
     align-self: center;
     justify-self: center;
   }
@@ -78,6 +67,12 @@
   .copyright {
     grid-column: 2 / 4;
     text-align: center;
-    color: #fff;
+    color: $white;
+    font-weight: bold;
+
+    p {
+      font-size: 1.9rem;
+      letter-spacing: 2px;
+    }
   }
 }

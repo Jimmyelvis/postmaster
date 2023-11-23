@@ -1,0 +1,46 @@
+
+  .site-heading {
+    margin-bottom: 4rem;
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+
+    @include respond(bp-smallest) {
+     justify-content: center;
+    }
+
+    .polygon {
+      width: 6.6rem;
+      height: 6.4rem;
+      align-self: flex-start;
+    }
+
+    .headings {
+      align-self: center;
+      margin-right: 3rem;
+
+      .heading-2 {
+        font-size: 5.5rem;
+        line-height: 1;
+        color: $midnightblue;
+      }
+
+      .heading-3 {
+        font-size: 2.6rem;
+        color: $alternateblue;
+      }
+    }
+
+    .line {
+      flex: 1;
+      align-self: center;
+      border-color: rgb(99 186 255 / 24%);
+      border-style: solid;
+
+      @include respond(bp-smallest) {
+       display: none;
+      }
+    }
+
+
+  }

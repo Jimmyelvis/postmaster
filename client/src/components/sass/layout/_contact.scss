@@ -1,58 +1,49 @@
 .contact {
-  padding-top: 20rem;
+  padding: 27rem 0;
   display: grid;
   grid-template-rows: max-content;
   grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 15rem) [col-end] ) [center-end] minmax(6rem, 1fr) [full-end];
   align-items: center;
+  padding: 27rem 0;
 
   .content {
-    grid-column: center-start / center-end;
-    display: grid;
-    justify-items: center;
-    grid-template-rows: 5rem 4rem 1fr;
-    grid-template-columns: repeat(2, 1fr);
+    grid-column: col-start 2 / col-end 7;
+
+    @include respond(bp-large) {
+      grid-column: col-start 1/col-end 8;
+    }
 
     h2{
       text-align: center;
-      color: $orange;
-      grid-column: 1 / -1;
+      color: $midnightblue;
     }
 
     p {
       text-align: center;
-      grid-column: 1 / -1;
+      color: $alternateblue;
+      font-weight: bold;
     }
 
     .contact-form {
       display: grid;
-      grid-column: 1 / -1;
-
-      grid-template-rows: repeat(3, max-content);
-      grid-template-columns: repeat(auto-fit, minmax(44.1rem, 1fr));
-      align-content: center;
-      justify-items: center;
-      width: 100%;
-      grid-row-gap: 3rem;
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: 5rem;
+      justify-items: stretch;
+      column-gap: 2rem;
+      row-gap: 3rem;
 
       .form__group {
-        width: 60%;
 
-        @media only screen and (max-width: $bp-medium) {
-          width: 100%;
+        @include respond(bp-small) {
+          grid-column: 1/-1;
         }
       }
 
       .textarea {
         grid-column: 1 / -1;
-        width: 80% !important;
-
-        @media only screen and (max-width: $bp-medium) {
-          width: 100% !important;
-        }
       }
 
       .input {
-        // background-color: yellowgreen;
         width: 100%;
         font-size: 1.5rem;
         font-family: inherit;
@@ -84,6 +75,11 @@
         // &:focus:invalid {
         //   border-bottom: 3px solid #ccc;
         // }
+      }
+
+      .btn--submit-contact {
+        grid-column: 2 / -1;
+        justify-self: end;
       }
 
     }

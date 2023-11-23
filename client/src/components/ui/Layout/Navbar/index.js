@@ -4,6 +4,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { loginUser } from "ReduxStore";
 import { Modal } from "components/Modal";
 import classnames from "classnames";
+import Logo from "assets/images/Single-logo.svg";
 
 export const Navbar = () => {
 
@@ -45,7 +46,7 @@ export const Navbar = () => {
   const setNavBarClass = () => { 
 
 
-    if ( location.pathname === "/" ) {
+    if ( location.pathname === "/" || location.pathname === "/about" ) {
       return scrolled ? "landingnav landingnav--scrolled" : "landingnav"
     } else {
       return scrolled ? "sitenav sitenav--scrolled " : "sitenav"
@@ -131,129 +132,89 @@ export const Navbar = () => {
         </div>
       </Modal>
 
-      <nav
-        className={setNavBarClass()}
-      >
-        {auth?.user ? (
-          <div className="container">
-            <div className="brand-logo">
-              <img src="images/new-logo.png" alt="" />
-            </div>
+      <nav className={setNavBarClass()}>
+        <div className="brand-logo">
+          <img src={Logo} alt="" />
+        </div>
 
-            <div
-              className={classnames("header", {
-                hidden: width < 800,
-              })}
-            >
-              <ul>
+        <ul
+          className={classnames("header", {
+            hidden: width <= 800,
+          })}
+        >
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact</Link>
+          </li>
+
+          {auth?.user !== "" ? (
+            <li>
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
+          ) : (
+            ""
+          )}
+          <li className="log">
+            {auth?.user !== "" ? (
+              <a href="/api/logout">Log Out</a>
+            ) : (
+              <a href="#" onClick={(e) => openModalHandler(e)}>
+                Log In
+              </a>
+            )}
+          </li>
+        </ul>
+
+        <div
+          className={classnames("mobilemenu", {
+            hidden: width > 800,
+          })}
+        >
+          <input type="checkbox" className="mobilemenu__checkbox" id="navi-toggle" />
+
+          <label htmlFor="navi-toggle" className="mobilemenu__button">
+            <span className="mobilemenu__icon">&nbsp;</span>
+          </label>
+
+          <div class="mobilemenu__background">&nbsp;</div>
+
+          <nav className="mobilemenu__nav">
+            <ul className="mobilemenu__list">
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/about">About</Link>
+              </li>
+              <li>
+                <Link to="/contact">Contact</Link>
+              </li>
+
+              {auth?.user !== "" ? (
                 <li>
-                  <Link to="/">HOME</Link>
+                  <Link to="/dashboard">Dashboard</Link>
                 </li>
-                <li>
-                  <Link to="/about">ABOUT</Link>
-                </li>
-                <li>
-                  <Link to="/contact">CONTACT</Link>
-                </li>
-                <li>
-                  <Link to="/dashboard">DASHBOARD</Link>
-                </li>
-                <li className="log">
-                  <a href="/api/logout">LOGOUT</a>
-                </li>
-              </ul>
-            </div>
+              ) : (
+                ""
+              )}
+              <li className="log">
+                {auth?.user !== "" ? (
+                  <a href="/api/logout">Log Out</a>
+                ) : (
+                  <a href="#" onClick={(e) => openModalHandler(e)}>
+                    Log In
+                  </a>
+                )}
+              </li>
+            </ul>
+          </nav>
+        </div>
 
-            <div
-              className={classnames("mobilemenu", {
-                hidden: width > 800,
-              })}
-            >
-              <input type="checkbox" className="mobilemenu__checkbox" id="navi-toggle" />
-
-              <label htmlFor="navi-toggle" className="mobilemenu__button">
-                <span className="mobilemenu__icon">&nbsp;</span>
-              </label>
-
-              <div class="mobilemenu__background">&nbsp;</div>
-
-              <nav className="mobilemenu__nav">
-                <ul className="mobilemenu__list">
-                  <li>
-                    <Link to="/">HOME</Link>
-                  </li>
-                  <li>
-                    <Link to="/about">ABOUT</Link>
-                  </li>
-                  <li>
-                    <Link to="/contact">CONTACT</Link>
-                  </li>
-                  <li className="log" onClick={(e) => openModalHandler(e)}>
-                    <a href="/api/logout">LOG OUT</a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        ) : (
-          <div className="container">
-            <div className="brand-logo">
-              <img src="images/new-logo.png" alt="" />
-            </div>
-
-            <div
-              className={classnames("header", {
-                hidden: width <= 800,
-              })}
-            >
-              <ul>
-                <li>
-                  <Link to="/">HOME</Link>
-                </li>
-                <li>
-                  <Link to="/about">ABOUT</Link>
-                </li>
-                <li>
-                  <Link to="/contact">CONTACT</Link>
-                </li>
-                <li className="log" onClick={(e) => openModalHandler(e)}>
-                  <a href="#">LOGIN</a>
-                </li>
-              </ul>
-            </div>
-
-            <div
-              className={classnames("mobilemenu", {
-                hidden: width > 800,
-              })}
-            >
-              <input type="checkbox" className="mobilemenu__checkbox" id="navi-toggle" />
-
-              <label htmlFor="navi-toggle" className="mobilemenu__button">
-                <span className="mobilemenu__icon">&nbsp;</span>
-              </label>
-
-              <div className="mobilemenu__background">&nbsp;</div>
-
-              <nav className="mobilemenu__nav">
-                <ul className="mobilemenu__list">
-                  <li>
-                    <Link to="/">HOME</Link>
-                  </li>
-                  <li>
-                    <Link to="/about">ABOUT</Link>
-                  </li>
-                  <li>
-                    <Link to="/contact">CONTACT</Link>
-                  </li>
-                  <li className="log" onClick={(e) => openModalHandler(e)}>
-                    <a href="#">LOGIN</a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        )}
       </nav>
     </React.Fragment>
   );

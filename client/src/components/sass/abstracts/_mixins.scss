@@ -1,0 +1,438 @@
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// @mixin flex($direction: row, $justify: flex-start, $align: flex-start) {
+//   display: flex;
+//   flex-direction: $direction;
+//   justify-content: $justify;
+//   align-items: $align;
+// }
+
+// @mixin flexCenter {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+@mixin imgPreview($height: 18rem, $max-height: 38rem) {
+  .imgPreview {
+      min-height: $height;
+      overflow: hidden;
+      margin: 2rem auto;
+      max-height: $max-height;
+      padding: 0.7rem;
+      transition: border-color 0.15s ease-in-out,
+      box-shadow 0.15s ease-in-out;
+      box-shadow: inset 0px 0px 3px 2px rgba(42, 44, 45, 0.07);
+      flex: 0 0 100%;
+
+      img {
+        object-fit: cover;
+        object-position: center;
+      }
+  }
+}
+
+@mixin textOverFlowEllipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin overlay($bg: rgba(0, 0, 0, 0.4)) {
+  .overlay {
+    background-color: $bg;
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    // @include respond(bp-medium) {
+    //   background-color: rgba(0, 0, 0, 0.57);
+    // }
+  }
+}
+
+@mixin lineClamp($lines: 3) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/*
+  lineClampAlt mixin
+  @param $lines: number of lines to show
+  @param $size: font-size, default is 2.4rem
+  @usage: @include lineClampAlt(1, 2.6rem);
+
+  Use this version for when you need to the line-clamp
+  directly on the element you want to clamp, instead of
+  on a parent element.
+*/
+@mixin lineClampAlt($lines: 3, $size: 2.4rem) {
+  font-size: $size;
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  padding-bottom: $size;
+  line-height: $size;
+  text-overflow: ellipsis;
+}
+
+@mixin customBorderBtm($rgb:rgb(165 185 212 / 25%), $height, $width: 50%, $padding-top: 6px) {
+
+  &::after {
+    content: "";
+    display: block;
+    width: $width;
+    border-bottom: $height solid $rgb;
+    padding-top: $padding-top;
+    margin: 0 auto;
+  }
+}
+
+@mixin createAvatar($units: 20rem) {
+
+  .avatar {
+    position: relative;
+    z-index: 1000;
+    width: $units;
+    height: $units;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      height: 100%;
+      position: absolute;
+      object-fit: cover;
+      top: 0;
+      left: 0;
+    }
+  }
+
+}
+
+@mixin absCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin topbtmpadding {
+  padding: 5rem 0;
+}
+
+@mixin topbtmpadding-small {
+  padding: 3rem 0;
+}
+
+@mixin sneakercardstyles {
+  flex: 0 0 calc(50% - 1rem);
+  height: auto;
+  margin-bottom: 1.4rem;
+  padding-top: 27%;
+  padding-bottom: 6%;
+
+  @include respond(bp-small) {
+    flex: 0 0 calc(95% - 1rem);
+    padding-top: 50%;
+    padding-bottom: 10%;
+  }
+
+  .card-content {
+
+    .heading-3 {
+      font-size: 3.7rem;
+    }
+
+    .heading-4 {
+      font-size: 2.8rem;
+    }
+
+    .heading-5 {
+      font-size: 3rem;
+    }
+
+    @include respond(bp-small) {
+      .heading-3 {
+        font-size: 3.7rem;
+      }
+
+      .heading-4 {
+        font-size: 2.8rem;
+      }
+
+      .heading-5 {
+        font-size: 3rem;
+      }
+    }
+
+    @include respond(bp-smallest) {
+      .heading-3 {
+        font-size: 3.3rem;
+      }
+
+      .heading-4 {
+        font-size: 2.5rem;
+      }
+
+      .heading-5 {
+        font-size: 2.8rem;
+      }
+    }
+
+    @include respond(bp-tiny) {
+      .heading-3 {
+        font-size: 3rem;
+      }
+
+      .heading-4 {
+        font-size: 2.3rem;
+      }
+
+      .heading-5 {
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+}
+
+@mixin cardtraditionalbackcontent {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  opacity: 0;
+  transition: opacity 0.63s 1.5s;
+  padding: 5rem 4rem 0 4rem;
+
+  .btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    position: absolute !important;
+    z-index: 1000;
+    top: 1rem;
+    right: 2rem;
+  }
+
+  .avatar {
+    width: 12.7rem;
+    padding-bottom: 12.7rem;
+    overflow: hidden;
+    border-radius: 50%;
+    position: relative;
+    z-index: 20;
+    opacity: 0;
+    transition: opacity 0.63s;
+
+
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      object-fit: cover;
+    }
+  }
+
+  // .text {
+  //   z-index: 20;
+  //   position: relative;
+  //   color: $white;
+  //   // min-height: 22rem;
+  //   font-size: 1.8rem;
+  //   opacity: 0;
+  //   transition: opacity 0.63s .5s;
+
+  // }
+
+  .text {
+    opacity: 0;
+    transition: opacity 0.63s .5s;
+    z-index: 20;
+    position: relative;
+    color: $white;
+    font-size: 1.8rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+
+
+  .btn-lightblue {
+    position: relative;
+    z-index: 20;
+    opacity: 0;
+    transition: opacity 0.63s 1s;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    // background: linear-gradient(to bottom, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.5) 100%);
+    background: rgba(0, 0, 0, 0.4);
+    transition: opacity 0.63s;
+    opacity: 1;
+    z-index: 10;
+  }
+
+  .backgroundimg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    img {
+      object-fit: cover;
+      height: 100%;
+    }
+  }
+
+}
+
+
+@mixin respond($breakpoint) {
+
+  @if $breakpoint==bp-tiny {
+    @media only screen and (max-width: 27em) {
+      @content
+    }
+
+    ; //400px
+  }
+
+  @if $breakpoint==bp-smallest {
+    @media only screen and (max-width: 31.25em) {
+      @content
+    }
+
+    ; //500px
+  }
+
+  @if $breakpoint==bp-small {
+    @media only screen and (max-width: 37.5em) {
+      @content
+    }
+
+    ; //600px
+  }
+
+  @if $breakpoint==bp-medium {
+    @media only screen and (max-width: 50em) {
+      @content
+    }
+
+    ; //800px
+  }
+
+  @if $breakpoint==bp-large {
+    @media only screen and (max-width: 62.5em) {
+      @content
+    }
+
+    ; //1000px
+  }
+
+  @if $breakpoint==bp-largest {
+    @media only screen and (max-width: 75em) {
+      @content
+    }
+
+    ; //1200px
+  }
+
+  @if $breakpoint == big-desktop {
+      @media only screen and (min-width: 131.25em) { @content };    
+      
+      //2100px | 16px base font size = 131.25em
+  }
+
+
+}
+
+/**
+  If the header is not a direct child of a parent with a display of grid or
+  flexbox, then you would need to set a with on the header for this to 
+  display properly
+*/
+@mixin headerBetweenDashes($bg-color: $midnightblue, 
+$pos: -14rem, $height: 0.4rem, $width: 12rem ) {
+  &::before {
+    content: "";
+    display: block;
+    height: $height;
+    width: $width;
+    background-color: $bg-color;
+    position: absolute;
+    left: $pos;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    height: $height;
+    width: $width;
+    background-color: $bg-color;
+    position: absolute;
+    right: $pos;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+
+@mixin gridTempColumn {
+  grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(12, [col-start] minmax(min-content, 13rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
+
+  @include respond (big-desktop) {
+    grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(12, [col-start] minmax(min-content, 14.5rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
+  }
+
+  @include respond(bp-large) {
+    grid-template-columns: [full-start] minmax(4.5rem, 1fr) [center-start] repeat(12, [col-start] minmax(min-content, 13rem) [col-end]) [center-end] minmax(4.5rem, 1fr) [full-end];
+  }
+
+  @include respond(bp-small) {
+    grid-template-columns: [full-start] minmax(1rem, 1fr) [center-start] repeat(12, [col-start] minmax(min-content, 13rem) [col-end]) [center-end] minmax(1rem, 1fr) [full-end];
+  }
+}
+
+@mixin cardshadowlrgBlur {
+  box-shadow: 0px 0px 18px 14px rgb(0 0 0 / 10%);
+}
+
+
+/*
+  Gradient Styles
+*/
+
+@mixin altBluegradient {
+  background: linear-gradient(0deg, darken($alternateblue, 25%), $alternateblue);
+}

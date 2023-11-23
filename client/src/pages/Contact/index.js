@@ -36,9 +36,7 @@ const Contact = () => {
                 className="input"
               />
 
-              {/* <label htmlFor="name" className="form__label">
-                Full Name
-              </label> */}
+            
             </div>
 
             <div className="form__group">
@@ -51,9 +49,7 @@ const Contact = () => {
                 className="input"
               />
 
-              {/* <label htmlFor="email" className="form__label">
-                Email
-              </label> */}
+          
             </div>
 
             <div className="form__group">
@@ -66,9 +62,6 @@ const Contact = () => {
                 className="input"
               />
 
-              {/* <label htmlFor="subject" className="form__label">
-                Subject
-              </label> */}
             </div>
 
             <div className="form__group">
@@ -80,10 +73,6 @@ const Contact = () => {
                 required
                 className="input"
               />
-
-              {/* <label htmlFor="phone" className="form__label">
-                Phone
-              </label> */}
             </div>
 
             <div className="form__group textarea">
@@ -98,11 +87,16 @@ const Contact = () => {
                 cols="50"
               />
 
-              {/* <label htmlFor="commnets" className="form__label">
-                Comments
-              </label> */}
             </div>
+
+          <div className="btn btn--submit-contact">
+            <h5>
+              Submit
+            </h5>
+          </div>
+          
           </form>
+
         </div>
 
       </div>

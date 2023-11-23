@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Welcomemsg  from "./components/Welcomemsg"
 import { Jumbotron } from "./components/Jumbotron";
+import { Sellingpoints } from "./components/Sellingpoints";
+import { Carousel } from "./components/Carousel";
 import { OurComp } from "./components/Ourcomp";
-import { OurTeam }  from "./components/Ourteam";
+import { OurTeam }  from "../About/components/Ourteam";
 import { Customers } from "./components/Customers";
 
 const Landing = () => {
@@ -19,14 +21,10 @@ const Landing = () => {
 
   return (
     <React.Fragment>
-      {/* <Navbar /> */}
-      <div className="landing">
         <Jumbotron />
-        <Welcomemsg />
-        <OurComp />
-        <OurTeam />
-        <Customers />
-      </div>
+        <Sellingpoints />
+        <Carousel />
+      
     </React.Fragment>
   );
 };
