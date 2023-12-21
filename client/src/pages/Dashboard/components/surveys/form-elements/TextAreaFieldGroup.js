@@ -5,6 +5,8 @@
 import React from "react";
 import classnames from "classnames";
 import PropTypes from "prop-types";
+import { useSelector, useDispatch } from 'react-redux';
+
 
 const TextAreaFieldGroup = ({
   name,
@@ -16,10 +18,16 @@ const TextAreaFieldGroup = ({
   rows,
   required,
 }) => {
+
+  const uiMode = useSelector((state) => state.dashBoardUi.uiMode);
+
   return (
     <div className="field-group">
       <textarea
-        className={classnames("form-control form-control-lg", {
+        className={
+          classnames(
+            `form-control ${uiMode === "dark" ? "form-control-dark" : ""}`, 
+            {
           "is-invalid": error
         })}
         placeholder={placeholder}
@@ -29,8 +37,12 @@ const TextAreaFieldGroup = ({
         rows={rows}
         required={required}
       />
-      {info && <small className="form-text text-muted">{info}</small>}
-      {error && <div className="invalid-feedback">{error}</div>}
+      
+      {
+          error && (
+            <h4 className="heading-4 error">{error}</h4>
+          )
+        }
     </div>
   );
 };

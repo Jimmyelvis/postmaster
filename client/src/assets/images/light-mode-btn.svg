@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="66" height="66" viewBox="0 0 66 66">
+  <defs>
+    <filter id="Base" x="0" y="0" width="66" height="66" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood flood-color="#0a1b2a"/>
+      <feComposite operator="in" in2="blur"/>
+    </filter>
+    <filter id="Base-2" x="0" y="0" width="66" height="66" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-color="#666" flood-opacity="0.161" result="color"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-2"/>
+      <feComposite operator="in" in="color"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <radialGradient id="radial-gradient" cx="0.5" cy="0.5" r="0.611" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffc9a0"/>
+      <stop offset="1" stop-color="#ff872d"/>
+    </radialGradient>
+    <filter id="Path_3055" x="14.998" y="15.998" width="36" height="36" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-3"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="light-mode-btn" transform="translate(7.5 6)">
+    <g id="Add">
+      <g data-type="innerShadowGroup">
+        <g transform="matrix(1, 0, 0, 1, -7.5, -6)" filter="url(#Base)">
+          <rect id="Base-3" data-name="Base" width="50" height="50" rx="25" transform="translate(8 6)" fill="#003363" stroke="#002c56" stroke-width="1"/>
+        </g>
+        <rect id="Base-4" data-name="Base" width="50" height="50" rx="25" transform="translate(0.5)" fill="#003363"/>
+        <g transform="matrix(1, 0, 0, 1, -7.5, -6)" filter="url(#Base-2)">
+          <rect id="Base-5" data-name="Base" width="50" height="50" rx="25" transform="translate(8 6)" fill="#fff"/>
+        </g>
+        <rect id="Base-6" data-name="Base" width="50" height="50" rx="25" transform="translate(0.5)" fill="none" stroke="#002c56" stroke-width="1"/>
+      </g>
+    </g>
+    <g id="Icon_feather-sun" data-name="Icon feather-sun" transform="translate(10.713 10.222)">
+      <g transform="matrix(1, 0, 0, 1, -18.21, -16.22)" filter="url(#Path_3055)">
+        <path id="Path_3055-2" data-name="Path 3055" d="M25.5,18A7.5,7.5,0,1,1,18,10.5,7.5,7.5,0,0,1,25.5,18Z" transform="translate(15 13)" stroke="#ff984b" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" fill="url(#radial-gradient)"/>
+      </g>
+      <path id="Path_3056" data-name="Path 3056" d="M18,1.5v3" transform="translate(-3.215 -1.5)" stroke="#ff984b" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" fill="url(#radial-gradient)"/>
+      <path id="Path_3057" data-name="Path 3057" d="M18,31.5v3" transform="translate(-3.215 -4.948)" stroke="#ff984b" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" fill="url(#radial-gradient)"/>
+      <path id="Path_3058" data-name="Path 3058" d="M6.33,6.33,8.46,8.46" transform="translate(-1.5 -1.5)" stroke="#ff984b" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" fill="url(#radial-gradient)"/>
+      <path id="Path_3059" data-name="Path 3059" d="M27.54,27.54l2.13,2.13" transform="translate(-4.394 -4.408)" stroke="#ff984b" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" fill="url(#radial-gradient)"/>
+      <path id="Path_3060" data-name="Path 3060" d="M1.5,18h3" transform="translate(-1.5 -3.224)" stroke="#ff984b" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" fill="url(#radial-gradient)"/>
+      <path id="Path_3061" data-name="Path 3061" d="M31.5,18h3" transform="translate(-4.93 -3.224)" stroke="#ff984b" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" fill="url(#radial-gradient)"/>
+      <path id="Path_3062" data-name="Path 3062" d="M6.33,29.67l2.13-2.13" transform="translate(-1.5 -4.408)" stroke="#ff984b" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" fill="url(#radial-gradient)"/>
+      <path id="Path_3063" data-name="Path 3063" d="M27.54,8.46l2.13-2.13" transform="translate(-4.394 -1.5)" stroke="#ff984b" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" fill="url(#radial-gradient)"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="55" height="55" viewBox="0 0 55 55">
+  <defs>
+    <filter id="Base" x="0" y="0" width="55" height="55" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood flood-color="#26334d" flood-opacity="0.031"/>
+      <feComposite operator="in" in2="blur"/>
+    </filter>
+    <filter id="Base-2" x="0" y="0" width="55" height="55" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1.5" result="blur-2"/>
+      <feFlood flood-color="#8590a4" result="color"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-2"/>
+      <feComposite operator="in" in="color"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient" x1="0.5" y1="1" x2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#99acd3"/>
+      <stop offset="1" stop-color="#b7cbf3"/>
+    </linearGradient>
+  </defs>
+  <g id="btn-Surveys" transform="translate(8 6)">
+    <g id="Icon-Home">
+      <g data-type="innerShadowGroup">
+        <g transform="matrix(1, 0, 0, 1, -8, -6)" filter="url(#Base)">
+          <rect id="Base-3" data-name="Base" width="39" height="39" rx="19.5" transform="translate(8 6)" fill="#fff" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+        </g>
+        <rect id="Base-4" data-name="Base" width="39" height="39" rx="19.5" fill="#fff"/>
+        <g transform="matrix(1, 0, 0, 1, -8, -6)" filter="url(#Base-2)">
+          <rect id="Base-5" data-name="Base" width="39" height="39" rx="19.5" transform="translate(8 6)" fill="#fff"/>
+        </g>
+        <rect id="Base-6" data-name="Base" width="39" height="39" rx="19.5" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+      </g>
+      <path id="Icon_awesome-plus-circle" data-name="Icon awesome-plus-circle" d="M13.083.563A12.521,12.521,0,1,0,25.6,13.083,12.519,12.519,0,0,0,13.083.563ZM20.354,14.5a.608.608,0,0,1-.606.606H15.1v4.645a.608.608,0,0,1-.606.606H11.67a.608.608,0,0,1-.606-.606V15.1H6.419a.608.608,0,0,1-.606-.606V11.67a.608.608,0,0,1,.606-.606h4.645V6.419a.608.608,0,0,1,.606-.606H14.5a.608.608,0,0,1,.606.606v4.645h4.645a.608.608,0,0,1,.606.606Z" transform="translate(6.417 6.417)" fill="url(#linear-gradient)"/>
+    </g>
+  </g>
+</svg>

@@ -1,25 +1,37 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { Fragment} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
 import StripeCheckout from 'react-stripe-checkout';
 // import * as actions from '../../../../actions';
+import Btn_Add_Credits from "assets/images/btn-Add-Credits.svg";
+import Drk_Btn_Add_Credits from "assets/images/btn-Add-Credits-drk.svg";
+
+import Logo from "assets/images/Single-logo.svg";
 import './Stripe.css';
 
 const Payments = ({ handleToken }) => {
+
+  const uiMode = useSelector((state) => state.dashBoardUi.uiMode);
+
+
   return (
-    <div className="stripeModal newsurvey-btn mb-md">
       <StripeCheckout
-        name="ThePostMaster"
+        name="The PostMaster"
         description="$5 for 5 email credits"
-        // image="images/logo-postmaster-med.png"
+        image={Logo}
+        // ComponentClass="div"
         amount={500}
         token={token => handleToken(token)}
         stripeKey={process.env.REACT_APP_STRIPE_KEY}
       >
-        <a href="#">
-          <h3>Add Credits</h3>
-        </a>
+          <img 
+            src={uiMode === 'light' ? Btn_Add_Credits : Drk_Btn_Add_Credits}
+            alt="Add Credits" 
+            className='icon' 
+          />
+        
       </StripeCheckout>
-    </div>
+    
   );
 };
 

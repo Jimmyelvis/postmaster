@@ -1,0 +1,130 @@
+.survey-detail {
+  grid-column: col-start 1/col-end 10;
+  padding: 8rem;
+
+  .survey-detail__heading {
+    display: grid;
+    grid-template-columns: repeat(2, -webkit-max-content);
+    grid-template-columns: repeat(2, max-content);
+    grid-template-rows: repeat(2, -webkit-max-content);
+    grid-template-rows: repeat(2, max-content);
+    width: 108rem;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    row-gap: 1rem;
+
+    .heading-2 {
+      align-self: center;
+      height: 2rem;
+    }
+
+    .survey-list-icon {
+      width: 9.1rem;
+      grid-column: 1 / 1;
+      justify-self: center;
+    }
+
+    p {
+      grid-row: 2 / -1;
+      grid-column: 1 / -1;
+      font-size: 1.9rem;
+      font-weight: bold;
+    }
+
+
+  }
+
+  .survey-content {
+    margin: 0 auto;
+    margin-top: 6rem;
+    display: flex;
+    justify-content: space-between;
+    max-width: 133rem;
+    gap: 8rem;
+
+    .info-details {
+      display: grid;
+      row-gap: 5rem;
+      flex-basis: 50%;
+
+      .info-details__title,.info-details__body,
+      .info-details__subject {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .heading-3 {
+          font-size: 2.9rem;
+        }
+
+        p {
+          font-size: 2rem;
+        }
+      }
+
+      .btn--primary {
+        width: 14rem;
+        justify-self: end;
+        align-self: center;
+        padding: 0.7rem 2rem;
+
+        a {
+          font-size: 2rem;
+        }
+      }
+
+    }
+
+    .results {
+      flex-basis: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .heading-3 {
+        font-size: 2.9rem;
+      }
+
+      .yesnodata {
+        margin-top: 6rem;
+        display: flex;
+        gap: 4rem;
+        margin-bottom: 8rem;
+
+        .yesnodata-label {
+          font-size: 2rem;
+          font-weight: bold;
+
+          .badge {
+            padding: 1rem 2rem;
+            margin-left: 2rem;
+            color: $white;
+          }
+
+
+          .badge-yes {
+            background: $alternateblue;
+            background: linear-gradient(179deg, lighten($alternateblue, 20%) 0%, darken($alternateblue, 20%) 100%);
+          }
+
+          .badge-no {
+            background: $orange;
+            background: linear-gradient(179deg, lighten($orange, 15%) 0%, darken($orange, 20%) 100%);
+          }
+
+        }
+
+        .chart-container {
+          width: 50%; 
+          margin: auto;
+        }
+        
+      }
+
+    }
+
+  }
+
+
+}

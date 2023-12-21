@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Panel } from 'components/ui/Layout/Panel';
+import { dashBoardPath } from 'pages/Dashboard/utils/constants';
 import Payments from '../components/Payments';
-import { fetchSurveys } from 'ReduxStore';
+import { fetchSurveys, deleteSurvey } from 'ReduxStore';
 import asc from 'images/arrow-up.svg';
 import desc from 'images/arrow-down.svg';
+import SurveyIcon from "assets/images/survey-icon.svg";
+import SortableTable from 'components/ui/Table/SortableTable';
+import { getFormattedDate } from 'utils/formatDate';
+
 
 export const SurveyList = () => {
   const [isSortedAscTitle, setIsSortedAscTitle] = useState(false);
@@ -33,10 +39,6 @@ export const SurveyList = () => {
   }, [dispatch, surveys]);
 
 
-  /*
-    TODO: Figure a better way to show the sorting arrows
-  */
-  
 
   const sortTitle = (e) => {
     e.preventDefault();
@@ -71,108 +73,85 @@ export const SurveyList = () => {
 
   const renderSurveys = () => {
 
+    const config = [
+      {
+        label: 'Title',
+        render: (surveyrecord) => surveyrecord.title,
+        sortValue: (surveyrecord) => surveyrecord.title,
+      },
+      {
+        label: 'Date Sent',
+        render: (surveyrecord) => getFormattedDate(surveyrecord.dateSent),
+        sortValue: (surveyrecord) => surveyrecord.dateSent,
+      },
+      {
+        label: 'Details',
+        render: (surveyrecord) => (
+          <button className="btn btn--primary">
+            <Link to={`${dashBoardPath}/surveydetail/${surveyrecord._id}`}>Details</Link>
+          </button>
+        ),
+      },
+      {
+        label: 'Delete',
+        render: (surveyrecord) => (
+          <a
+            href="#"
+            onClick={() => dispatch(deleteSurvey(surveyrecord._id))}
+            className="right"
+          >
+            <i className="fas fa-trash"></i>
+          </a>
+        ),
+      },
+    ];
   
+    const keyFn = (surveyrecord) => {
+      return surveyrecord.name;
+    };
 
-     if (list && list.length) {
-      return list
-      .map((survey) => (
-        <div className="surveyRecord" key={survey._id}>
-          <li>{survey.title}</li>
-          <li>{new Date(survey.dateSent).toLocaleDateString()}</li>
-          <li>
-            <button className="btn btn--ghostWhite">
-              <Link to={`/surveydetail/${survey._id}`}>Details</Link>
-            </button>
-          </li>
-          <li>
-            <a
-              href="#"
-              onClick={() => dispatch(deleteSurvey(survey._id))}
-              className="right"
-            >
-              <i className="fas fa-trash"></i>
-            </a>
-          </li>
-        </div>
-      ));
-    } else {
+    if (list && list.length) {
+
       return (
-        <React.Fragment>
-          <br />
-          <h3>No Surveys Found</h3>
-        </React.Fragment>
-      );
+        <SortableTable
+          data={list}
+          config={config}
+          keyFn={keyFn}
+        />
+      )
     }
+
   };
 
-  let sideContent;
 
-  if (auth === null) {
-    sideContent = 'loading......';
-  } else {
-    sideContent = (
-      <React.Fragment>
-        <div className="newsurvey-btn mb-md">
-          <span>
-            <Link to="/surveys/new">
-              <h3>New Survey</h3>
-            </Link>
-          </span>
-        </div>
-
-        <Payments />
-      </React.Fragment>
-    );
-  }
 
   return (
-    <div>
-      <div className="dashboard">
-        <div className="dashInfo">
-          <div className="sidebar">{sideContent}</div>
+    
+      <Panel className="panel-dashboard survey-list">
 
-          <div className="mainarea">
-            <div className="mainarea__heading mb-lg">
+          <div className="survey-list__heading mb-lg">
+
+            <div className="icon-heading">
+              <img src={SurveyIcon} alt="" className='icon survey-list-icon' />
               <h2 className="heading-2 mb-md">Your Surveys</h2>
-
-              <p style={{ textAlign: 'center' }}>
-                These are your surveys that you have sent out. Starting from the
-                most recent one.
-              </p>
             </div>
 
-            <div className="mainarea__surveys">
-              <ul className="mb-sm">
-                <li>
-                  TITLE
-                  <Link to="#" onClick={sortTitle} className="toggle">
-                    {sortOrder === "desc" ? (
-                      <img src={desc} className="arrow" alt="" />
-                    ) : (
-                      <img src={asc} className="arrow" alt="" />
-                    )}
-                  </Link>
-                </li>
-                <li>
-                  DATE SENT
-                  <Link to="#" onClick={sortDate} className="toggle">
-                    {sortOrder === "desc" ? (
-                      <img src={desc} className="arrow" alt="" />
-                    ) : (
-                      <img src={asc} className="arrow" alt="" />
-                    )}
-                  </Link>
-                </li>
-                <li>DETAILS</li>
-                <li>DELETE</li>
-              </ul>
+            <p>
+              These are your surveys that you have sent out. Starting from the
+              most recent one.
+            </p>
 
-              {renderSurveys()}
-            </div>
           </div>
-        </div>
-      </div>
-    </div>
+
+
+          <div className="survey-list__surveys">
+
+            {renderSurveys()}
+          </div>
+         
+        
+      </Panel>
+    
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { dashBoardPath } from 'pages/Dashboard/utils/constants';
 
 const RecentSurveyList = () => {
   const { surveyList } = useSelector((store) => store.surveys);
@@ -19,27 +20,32 @@ const RecentSurveyList = () => {
       return surveys
       .sort((a, b) => new Date(b.dateSent) - new Date(a.dateSent))
       .slice(0, 3).map((survey) => (
-        <div className="surveyRecord" key={survey._id}>
-          <li>{survey.title}</li>
-          <li>{new Date(survey.dateSent).toLocaleDateString()}</li>
-          <li>
-            <button className="btn btn--ghostWhite">
-              <Link to={`/surveydetail/${survey._id}`}>Details</Link>
-            </button>
-          </li>
-          <li>
-            {/* <a href="#" onClick={() => deleteSurvey(survey._id)} className="right">
-              <i className="fas fa-trash"></i>
-            </a> */}
-          </li>
+
+        <div className="recent-survey" key={survey._id}>
+
+          <h3 className="heading-3 recent-survey__title">
+            {survey.title}
+          </h3>  
+
+          <p className="recent-survey__date">
+            {new Date(survey.dateSent).toLocaleDateString()}
+          </p>
+        
+          <button className="btn btn--primary">
+            <Link to={`${dashBoardPath}/surveydetail/${survey._id}`}>Details</Link>
+          </button>
+
         </div>
+
       ));
     } else {
       return null;
     }
   };
 
-  return <React.Fragment>{renderSurveys()}</React.Fragment>;
+  return (
+    <div className='recent-surveys'>  {renderSurveys()} </div>
+    )
 };
 
 export default RecentSurveyList;

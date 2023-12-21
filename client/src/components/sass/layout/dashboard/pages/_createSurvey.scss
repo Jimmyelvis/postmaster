@@ -1,0 +1,108 @@
+.survey-creation {
+  grid-column: col-start 1/col-end 8;
+
+  @include respond(bp-large) {
+    grid-column: col-start 1/col-end 16;
+   }
+
+   .survey-list__heading {
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 7rem;
+    flex-direction: column;
+    width: 71rem;
+    align-items: center;
+
+    @include respond(bp-medium) {
+     width: 100%;   
+    }
+
+    .icon-heading {
+      display: flex;
+      gap: 2rem;
+      
+      .heading-2 {
+        align-self: center;
+        height: 2rem;
+
+        @include respond(bp-smallest) {
+         font-size: 3rem;
+        }
+      }
+  
+      .survey-list-icon {
+        width: 9.1rem;
+        grid-column: 1 / 1;
+        justify-self: center;
+
+        @include respond(bp-smallest) {
+         width: 7.1rem; 
+        }
+      }
+
+    }
+
+
+    p {
+      font-size: 1.8rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+
+  }
+
+  form {
+    margin: 0 auto;
+    width: 70%;
+    min-width: 50rem;
+    display: grid;
+
+    .field-group {
+      margin-bottom: 2rem;
+    }
+
+    .submitButtons {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-self: flex-end;
+    }
+
+  }
+
+  .form-review {
+    display: grid;
+    width: 80rem;
+    margin: 0 auto;
+
+    .review-fields {
+      // background: rgb(240 248 255 / 25%);
+      padding: 8rem;
+      border-radius: 1.3rem;
+      // box-shadow: 4px 1px 9px 4px rgb(183 200 214 / 8%) inset;
+      margin-bottom: 5rem;
+
+      .review-field {
+        display: grid;
+        grid-template-columns: 17ch auto;
+        font-size: 2.1rem;
+        color: $midnightblue;
+
+        .value {
+          color: $alternateblue;
+        }
+      }
+    }
+
+    .submitButtons {
+      justify-self: end;
+      display: flex;
+      gap: 2rem;
+    }
+
+  }
+
+
+ 
+}

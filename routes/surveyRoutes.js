@@ -120,6 +120,7 @@ module.exports = app => {
       recipients
     } = req.body;
 
+
     const survey = new Survey({
       title: title,
       subject: subject,
@@ -150,6 +151,12 @@ module.exports = app => {
 
   app.delete('/api/surveys/delete/:id', async (req, res) => {
     await Survey.deleteOne({ _id: req.params.id });
+
+    console.log('====================================');
+    console.log("id: ", req.params.id);
+    console.log('====================================');
+
+
     const surveys = await Survey.find({ _user: req.user.id }).sort({dateSent: -1}).select({
       recipients: false
     });

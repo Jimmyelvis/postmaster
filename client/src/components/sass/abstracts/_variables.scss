@@ -1,13 +1,23 @@
 // Color Variables
 $babyblue: #76a8f4;
-$alternateblue: #4ea8e6;
+$alternateblue: #6dc4fe;
 $midnightblue: #144885;
-$maintext: #8bacd0;
-$orange: #ff9f65;
+$orange: #ff761b;
 $dashboard-bg: #d8e1ed;
 $dashboard: #eff0f4;
 $dashboard-text: #6398d1;
 $white: rgb(255, 255, 255);
+$maintext: #8bacd0;
+
+// Light Theme Colors
+$light-dashboard-text: #6398d1;
+
+// Dark Theme Colors
+$dark-dashboard-text: $white;
+
+// Set default
+$dashboard-text: $light-dashboard-text;
+
 
 // RESPONSIVE BREAKPOINTS
 $bp-largest: 75em; // 1200px 1200/16 = 75

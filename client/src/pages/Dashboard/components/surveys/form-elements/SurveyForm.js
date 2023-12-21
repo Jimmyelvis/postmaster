@@ -7,6 +7,8 @@ import SurveyTextarea from './SurveyTextarea';
 import { invalidEmails } from 'utils/validateEmails';
 import { getFormValues, clearFormValues } from 'ReduxStore/slices/surveysSlice';
 
+import { getFormattedDate } from 'utils/formatDate';
+
 
 /*
   todo: We most likely need to cut the useState and it's value from Surveynew.js and paste it here. And then see if we can set the values in useSate to the values in the redux store.
@@ -19,12 +21,40 @@ const SurveyForm = ({ review }) => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch()
 
+  // const [values, setValues] = useState({
+  //   title : `${state.surveys.title}`,
+  //   subject: `${state.surveys.subject}`,
+  //   body: `${state.surveys.body}`,
+  //   recipients: `${state.surveys.recipients}`,
+  // });
+
+
+  /*
+  Testing only
+  */
+
+  let currentTime = new Date();
+
+let hours = currentTime.getHours();
+let minutes = currentTime.getMinutes();
+let seconds = currentTime.getSeconds();
+let milliseconds = currentTime.getMilliseconds();
+
+let formattedTime =  seconds.toString().padStart(2, '0') + '.' + 
+                    milliseconds.toString().padStart(3, '0');
+
+console.log(formattedTime);
+
   const [values, setValues] = useState({
-    title : `${state.surveys.title}`,
-    subject: `${state.surveys.subject}`,
-    body: `${state.surveys.body}`,
-    recipients: `${state.surveys.recipients}`,
+    title : `${formattedTime} Brand New test 2023`,
+    subject: `Testing 2023`,
+    body: `I'm baby street art humblebrag bicycle rights yuccie, kombucha af hella occupy pinterest kale chips bushwick. Retro la croix keffiyeh etsy DSA. Man bun raw denim quinoa meditation, waistcoat schlitz disrupt shaman. Echo park drinking vinegar paleo aesthetic, street art cred letterpress 90's hammock live-edge mixtape vinyl ethical affogato scenester. Poke flannel williamsburg bodega boys celiac pork belly locavore semiotics. Wayfarers gentrify chartreuse crucifix tote bag small batch raw denim cornhole ennui.
+
+    Sus gatekeep cardigan roof party skateboard microdosing messenger bag health goth leggings. Ennui swag authentic, fashion axe iceland vice mumblecore. Ugh brunch selvage hexagon raw denim swag. Put a bird on it gatekeep activated charcoal shoreditch occupy cornhole. Succulents wayfarers keffiyeh austin gorpcore etsy gluten-free letterpress pour-over franzen hot chicken hella.`,
+    recipients: `dylancougar@yahoo.com,jinjoe@zoho.com`,
   });
+
+  /* testing only */
 
   const {
     title,
@@ -139,7 +169,7 @@ const SurveyForm = ({ review }) => {
   
 
   const renderFields = () => (
-    <div className="surveyfields">
+    <>
 
         <TextFieldGroup
           label="Survey Title"
@@ -149,11 +179,9 @@ const SurveyForm = ({ review }) => {
           onChange={onChange}
           value={title || state.surveys.title}
           required
+          error={errors.title && errors.title}
         />
         
-        <h3>
-          { errors.title && errors.title}
-        </h3>
 
         <TextFieldGroup
           label="Subject"
@@ -162,12 +190,10 @@ const SurveyForm = ({ review }) => {
           placeholder="Enter a subject for your survey"
           onChange={onChange}
           value={subject  || state.surveys.subject}
+          error={errors.subject && errors.subject}
           required
         />
 
-      <h3>
-          { errors.subject && errors.subject}
-        </h3>
 
         <TextAreaFieldGroup
           label="Email Body"
@@ -176,13 +202,10 @@ const SurveyForm = ({ review }) => {
           placeholder="Enter some text that describes your survey"
           onChange={onChange}
           value={body  || state.surveys.body}
+          error={errors.body && errors.body}
           required
         />
 
-      <h3>
-          { errors.body && errors.body}
-        </h3>
-     
         <TextAreaFieldGroup
           label="Recipient List"
           type="textarea"
@@ -190,14 +213,11 @@ const SurveyForm = ({ review }) => {
           placeholder="Enter a list of recipients that will receive your survey. Separate your emails by using a comma"
           onChange={onChange}
           value={recipients  || state.surveys.recipients}
+          error={errors.recipients && errors.recipients}
           required
         />
 
-      <h3>
-          { errors.recipients && errors.recipients}
-        </h3>
-
-      </div>
+      </>
   );
 
   return (
@@ -205,19 +225,19 @@ const SurveyForm = ({ review }) => {
       <form>
         {renderFields()}
         <div className="submitButtons">
-          <Link to="/dashboard" className="btn btn-cancel">
+          <Link to="/dashboard" className="btn btn--danger">
             Cancel
           </Link>
 
           <button
-            className='btn btn-next'
+            className='btn btn--danger'
             onClick={(e) => clearForm(e)}
           >
             Reset
           </button>
 
           <button 
-              className="btn btn-next"
+              className="btn btn--primary"
               onClick={(e) => onSurveySubmit(e)}
           >
             Next

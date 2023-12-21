@@ -1,73 +1,68 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import SurveyForm from '../components/surveys/form-elements/SurveyForm';
-import SurveyFormReview from '../components/surveys/form-elements/SurveyFormReview';
-import Payments from '../components/Payments';
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { Panel } from "components/ui/Layout/Panel";
+import { dashBoardPath } from "pages/Dashboard/utils/constants";
+import SurveyForm from "../components/surveys/form-elements/SurveyForm";
+import SurveyFormReview from "../components/surveys/form-elements/SurveyFormReview";
+import SurveyIcon from "assets/images/survey-icon.svg";
+import Payments from "../components/Payments";
 
 export const SurveyNew = () => {
   const [showFormReview, setShowFormReview] = useState(false);
-
 
   const { auth, surveys } = useSelector((state) => ({
     auth: state.auth,
     surveys: state.surveys,
   }));
 
-
-
   const renderContent = () => {
     if (showFormReview) {
       return (
-        <SurveyFormReview onCancel={() => {
-          setShowFormReview(false)
-        }} />
+        <SurveyFormReview
+          onCancel={() => {
+            setShowFormReview(false);
+          }}
+        />
       );
     }
 
-    return (
-      <SurveyForm 
-          review={() => setShowFormReview(true)} 
-      />
-    );
+    return <SurveyForm review={() => setShowFormReview(true)} />;
   };
 
-  let sideContent;
+  const getHeading = () => {
+    
+    if (showFormReview) {
+      return (
+        <>
+          <div className="icon-heading">
+            <img src={SurveyIcon} alt="" className="icon survey-list-icon" />
+            <h2 className="heading-2 mb-md">Survey Review</h2>
+          </div>
+          <p>Review your entries and make sure everything is correct</p>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <div className="icon-heading">
+            <img src={SurveyIcon} alt="" className="icon survey-list-icon" />
+            <h2 className="heading-2 mb-md">Survey Creation</h2>
+          </div>
 
-  if (auth === null) {
-    sideContent = 'loading......';
-  } else {
-    sideContent = (
-      <React.Fragment>
-        <div className="newsurvey-btn mb-md">
-          <span>
-            <Link to="/surveys/new">
-              <h3>New Survey</h3>
-            </Link>
-          </span>
-        </div>
-
-        <Payments />
-      </React.Fragment>
-    );
+          <p>Create A New Survey to send to your customers</p>
+        </>
+      );
+    }
   }
 
-
-
   return (
-    <div>
-      <div className="dashboard">
-        <div className="dashInfo">
-          <div className="sidebar">{sideContent}</div>
-          <div className="mainarea">
-            <div className="mainarea__heading mb-lg">
-              <h2 className="heading-2 mb-md">Create Your Survey</h2>
-            </div>
-            <div className="survey">{renderContent()}</div>
-          </div>
-        </div>
+    <Panel className="panel-dashboard survey-creation">
+      <div className="survey-list__heading mb-lg">
+        {getHeading()}
       </div>
-    </div>
+
+      {renderContent()}
+    </Panel>
   );
 };
-

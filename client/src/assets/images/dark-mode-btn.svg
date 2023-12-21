@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="66" height="66" viewBox="0 0 66 66">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="0.511" stop-color="#f7fcff"/>
+      <stop offset="1" stop-color="#dfe9ef"/>
+    </linearGradient>
+    <filter id="Base" x="0" y="0" width="66" height="66" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood flood-color="#8ab9dc"/>
+      <feComposite operator="in" in2="blur"/>
+    </filter>
+    <filter id="Base-2" x="0" y="0" width="66" height="66" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-color="#d4ddef" result="color"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-2"/>
+      <feComposite operator="in" in="color"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient-3" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#0577d9"/>
+      <stop offset="1" stop-color="#034d8c"/>
+    </linearGradient>
+    <filter id="Icon_awesome-moon" x="16.461" y="13.636" width="32.497" height="35.507" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-3"/>
+      <feFlood flood-opacity="0.122"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="dark-mode-btn" transform="translate(7 5.5)">
+    <g id="Add">
+      <g data-type="innerShadowGroup">
+        <g transform="matrix(1, 0, 0, 1, -7, -5.5)" filter="url(#Base)">
+          <rect id="Base-3" data-name="Base" width="50" height="50" rx="25" transform="translate(8 6)" stroke="#b9d4e9" stroke-width="1" fill="url(#linear-gradient)"/>
+        </g>
+        <rect id="Base-4" data-name="Base" width="50" height="50" rx="25" transform="translate(1 0.5)" fill="url(#linear-gradient)"/>
+        <g transform="matrix(1, 0, 0, 1, -7, -5.5)" filter="url(#Base-2)">
+          <rect id="Base-5" data-name="Base" width="50" height="50" rx="25" transform="translate(8 6)" fill="#fff"/>
+        </g>
+        <rect id="Base-6" data-name="Base" width="50" height="50" rx="25" transform="translate(1 0.5)" fill="none" stroke="#b9d4e9" stroke-width="1"/>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, -7, -5.5)" filter="url(#Icon_awesome-moon)">
+        <path id="Icon_awesome-moon-2" data-name="Icon awesome-moon" d="M16.167,28.507a14.226,14.226,0,0,0,11.072-5.278.669.669,0,0,0-.644-1.077A11.166,11.166,0,0,1,18.98,1.476.669.669,0,0,0,18.771.238a14.254,14.254,0,1,0-2.6,28.269Z" transform="translate(18.05 16.14)" stroke="#dce7fd" stroke-width="1" fill="url(#linear-gradient-3)"/>
+      </g>
+    </g>
+  </g>
+</svg>

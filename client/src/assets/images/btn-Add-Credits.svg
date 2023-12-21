@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="55" height="55" viewBox="0 0 55 55">
+  <defs>
+    <filter id="Base" x="0" y="0" width="55" height="55" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood flood-color="#26334d" flood-opacity="0.031"/>
+      <feComposite operator="in" in2="blur"/>
+    </filter>
+    <filter id="Base-2" x="0" y="0" width="55" height="55" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1.5" result="blur-2"/>
+      <feFlood flood-color="#8590a4" result="color"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-2"/>
+      <feComposite operator="in" in="color"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#99acd3"/>
+      <stop offset="1" stop-color="#798298"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#dae2f3"/>
+      <stop offset="1" stop-color="#7b859d"/>
+    </linearGradient>
+  </defs>
+  <g id="btn-Add-Credits" transform="translate(8 6)">
+    <g id="Icon-Home">
+      <g data-type="innerShadowGroup">
+        <g transform="matrix(1, 0, 0, 1, -8, -6)" filter="url(#Base)">
+          <rect id="Base-3" data-name="Base" width="39" height="39" rx="19.5" transform="translate(8 6)" fill="#fff" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+        </g>
+        <rect id="Base-4" data-name="Base" width="39" height="39" rx="19.5" fill="#fff"/>
+        <g transform="matrix(1, 0, 0, 1, -8, -6)" filter="url(#Base-2)">
+          <rect id="Base-5" data-name="Base" width="39" height="39" rx="19.5" transform="translate(8 6)" fill="#fff"/>
+        </g>
+        <rect id="Base-6" data-name="Base" width="39" height="39" rx="19.5" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+      </g>
+      <path id="Icon_awesome-dollar-sign" data-name="Icon awesome-dollar-sign" d="M6.283,8.205,3.04,7.095A1.032,1.032,0,0,1,2.4,6.1a.97.97,0,0,1,.886-1.037H5.28a1.651,1.651,0,0,1,1.027.369.418.418,0,0,0,.586-.07l1.045-1.2A.635.635,0,0,0,7.884,3.3a3.872,3.872,0,0,0-2.6-1.055V.563A.528.528,0,0,0,4.806,0H3.845a.528.528,0,0,0-.48.563V2.25H3.289c-1.913,0-3.45,1.923-3.273,4.2a3.889,3.889,0,0,0,2.516,3.4L5.61,10.905a1.035,1.035,0,0,1,.637.995.97.97,0,0,1-.886,1.037H3.37a1.651,1.651,0,0,1-1.027-.369.418.418,0,0,0-.586.07l-1.045,1.2a.635.635,0,0,0,.054.861,3.872,3.872,0,0,0,2.6,1.055v1.688a.528.528,0,0,0,.48.563h.961a.528.528,0,0,0,.48-.562V15.743A3.454,3.454,0,0,0,8.46,13.187,4.017,4.017,0,0,0,6.283,8.205Z" transform="translate(15.175 10.5)" fill="url(#linear-gradient)"/>
+      <path id="Icon_metro-plus" data-name="Icon metro-plus" d="M9.521,4.618H7.054V2.152a.224.224,0,0,0-.224-.224H5.485a.224.224,0,0,0-.224.224V4.618H2.795a.224.224,0,0,0-.224.224V6.188a.224.224,0,0,0,.224.224H5.261V8.878a.224.224,0,0,0,.224.224H6.83a.224.224,0,0,0,.224-.224V6.412H9.521a.224.224,0,0,0,.224-.224V4.842A.224.224,0,0,0,9.521,4.618Z" transform="translate(20.238 4.985)" fill="url(#linear-gradient-2)"/>
+    </g>
+  </g>
+</svg>

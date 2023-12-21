@@ -3,6 +3,7 @@
 */
 
 import className from "classnames";
+import { useSelector, useDispatch } from 'react-redux';
 
 const TextFieldGroup = ({
   name,
@@ -21,8 +22,10 @@ const TextFieldGroup = ({
   ...rest
 }) => {
 
+  const uiMode = useSelector((state) => state.dashBoardUi.uiMode);
+
   const formClasses = className(
-    'form-control',
+    `form-control ${uiMode === "dark" ? "form-control-dark" : ""}`,
     {},
   )
 

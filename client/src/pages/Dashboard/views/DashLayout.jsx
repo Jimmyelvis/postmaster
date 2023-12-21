@@ -1,11 +1,15 @@
 import { Outlet } from 'react-router-dom';
 import { DashNav } from '../components/DashNav';
 import { Sidebar } from '../components/Sidebar';
+import { useSelector, useDispatch } from 'react-redux';
 
 
-const DashLayout = () => {
+export const DashLayout = () => {
+
+  const uiMode = useSelector((state) => state.dashBoardUi.uiMode);
+
   return (
-    <main className='dashboard'>
+    <main className={`dashboard ${uiMode === "dark" ? "dashboard-dark" : ""}`}>
       <DashNav />
       <Sidebar />
       <div className='dashboard-page'>
@@ -15,4 +19,3 @@ const DashLayout = () => {
   )
 }
 
-export default DashLayout

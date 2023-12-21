@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="55" height="55" viewBox="0 0 55 55">
+  <defs>
+    <filter id="Base" x="0" y="0" width="55" height="55" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood flood-color="#26334d" flood-opacity="0.031"/>
+      <feComposite operator="in" in2="blur"/>
+    </filter>
+    <filter id="Base-2" x="0" y="0" width="55" height="55" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1.5" result="blur-2"/>
+      <feFlood flood-color="#8590a4" result="color"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-2"/>
+      <feComposite operator="in" in="color"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#b4bed5"/>
+      <stop offset="1" stop-color="#829cd1"/>
+    </linearGradient>
+  </defs>
+  <g id="btn-Surveys" transform="translate(8 6)">
+    <g id="Icon-Home">
+      <g data-type="innerShadowGroup">
+        <g transform="matrix(1, 0, 0, 1, -8, -6)" filter="url(#Base)">
+          <rect id="Base-3" data-name="Base" width="39" height="39" rx="19.5" transform="translate(8 6)" fill="#fff" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+        </g>
+        <rect id="Base-4" data-name="Base" width="39" height="39" rx="19.5" fill="#fff"/>
+        <g transform="matrix(1, 0, 0, 1, -8, -6)" filter="url(#Base-2)">
+          <rect id="Base-5" data-name="Base" width="39" height="39" rx="19.5" transform="translate(8 6)" fill="#fff"/>
+        </g>
+        <rect id="Base-6" data-name="Base" width="39" height="39" rx="19.5" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+      </g>
+      <path id="Icon_ionic-ios-paper" data-name="Icon ionic-ios-paper" d="M6.76,4.8V19.143a.625.625,0,0,1-.624.624h0a.625.625,0,0,1-.624-.624V6.226H4.8A1.424,1.424,0,0,0,3.375,7.651V20.479A1.424,1.424,0,0,0,4.8,21.9H20.528A1.377,1.377,0,0,0,21.9,20.528V4.8a1.424,1.424,0,0,0-1.425-1.425L8.1,3.464A1.277,1.277,0,0,0,6.76,4.8ZM9.7,6.226h3.741a.625.625,0,0,1,.624.624h0a.625.625,0,0,1-.624.624H9.7a.625.625,0,0,1-.624-.624h0A.625.625,0,0,1,9.7,6.226Zm0,7.127h6.592a.625.625,0,0,1,.624.624h0a.625.625,0,0,1-.624.624H9.7a.625.625,0,0,1-.624-.624h0A.625.625,0,0,1,9.7,13.352Zm8.73,4.81H9.7a.625.625,0,0,1-.624-.624h0a.625.625,0,0,1,.624-.624h8.73a.625.625,0,0,1,.624.624h0A.625.625,0,0,1,18.43,18.163Zm0-7.127H9.7a.625.625,0,0,1-.624-.624h0A.625.625,0,0,1,9.7,9.789h8.73a.625.625,0,0,1,.624.624h0A.625.625,0,0,1,18.43,11.036Z" transform="translate(5.86 6.86)" fill="url(#linear-gradient)"/>
+    </g>
+  </g>
+</svg>

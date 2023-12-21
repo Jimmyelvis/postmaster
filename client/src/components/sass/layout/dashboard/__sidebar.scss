@@ -1,0 +1,134 @@
+.dashboard-sidebar {
+  // background: yellow;
+  grid-column: col-start 1/col-end 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  position: fixed;
+  top: 10rem;
+  left: 3.4rem;
+
+  @include respond(bp-large) {
+   display: none;
+  }
+
+  .bg {
+    background: rgb(186, 225, 255);
+    width: 10rem;
+    border-radius: 3.4rem;
+    border: $white solid 0.3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.5s 1.5s linear;
+    height: 90vh;
+    z-index: 1000;
+
+    &-dark {
+      background: rgb(2, 44, 84);
+      border: rgba(0, 57, 110, 0.384) solid 0.3rem;
+      box-shadow: 2px 1px 6px 5px rgb(6 18 43 / 22%) inset;
+    }
+    
+    // position: fixed;
+    // top: 10.5rem;
+    // left: 6.4rem;
+
+    &.active {
+      width: 42rem;
+      transition: all 0.5s 0.5s linear;
+      background: rgb(186 225 255 / 71%);
+      backdrop-filter: blur(4px);
+
+      &-dark {
+        width: 42rem;
+        transition: all 0.5s 0.5s linear;
+        backdrop-filter: blur(4px);
+        background: rgb(2 44 84 / 71%); 
+      }
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      margin-top: 8rem;
+      align-items: center;
+      width: 75%;
+      color: $white;
+      text-shadow: 2px 2px 6px rgb(88 127 159 / 71%);
+
+      a {
+        color: inherit;
+        width: 100%;
+      }
+
+      .nav-link {
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        gap: 2rem;
+        width: 100%;
+        align-items: center;
+        color: inherit;
+        margin-bottom: 2.8vh;
+
+
+        //   &.active {
+        //     position: relative;
+        //     display: flex;
+        //     align-items: center;
+        //     justify-content: flex-start;
+        //     width: 30rem;
+        //     gap: 3rem;
+        //   } 
+        
+        > div {
+
+          .icon {
+            width: 7.3rem;
+            cursor: pointer;
+          }
+        }
+
+        .pill {
+          background: $orange;
+          border-radius: 50%;
+          width: 3rem;
+          height: 3rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: $white;
+          font-size: 80%;
+          font-weight: bold;
+          position: absolute;
+          left: 4.5rem;
+          top: 0;
+          z-index: 100;
+        }
+
+        .icon {
+          width: 7.3rem;
+        }
+
+        .link-heading {
+          font-size: 2.6rem;
+          font-family: $font-primary;
+        }
+
+      }
+    }
+
+    .icon-settings {
+      margin-bottom: 3rem;
+      width: 7.3rem;
+      position: absolute;
+      bottom: 0;
+      left: 13%;
+    }
+
+  }
+}

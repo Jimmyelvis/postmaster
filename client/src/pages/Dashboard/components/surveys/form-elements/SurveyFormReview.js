@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'; // Updated import for React Router 6
 import formFields from './formFields';
+import { submitSurvey, clearErrors } from 'ReduxStore';
 
 
 const SurveyFormReview = ({ onCancel }) => {
@@ -20,52 +21,42 @@ const SurveyFormReview = ({ onCancel }) => {
     recipients: `${state.surveys.recipients}`,
   });
 
-  // useEffect(() => {
-  //   if (errors) {
-  //     setErrors(errors);
+  const handleSurveySubmit = (surveyData) => {
 
-  //     setTimeout(() => {
-  //       dispatch(clearErrors()); // Dispatch the clearErrors action
-  //     }, 3000);
-  //   }
-  // }, [errors, dispatch]);
-
- 
-
+    /**
+     * The thunk will need the object with both the values and the 
+     * navigate function. So we can navigate to the surveylist page
+     */
+    dispatch(submitSurvey({ values: surveyData, navigate }));
+  };
+  
 
 
   return (
-    <React.Fragment>
-      <h3 className="heading-3 mb-md">Please confirm your entries</h3>
-
-      <h3 className="heading-3 mb-md">{
-        title
-      }</h3>
-
-      <h3 className="heading-3 mb-md">{
-        subject
-      }</h3>
-
-      <h3 className="heading-3 mb-md">{
-        body
-      }</h3>
-
-      <h3 className="heading-3 mb-md">{
-        recipients
-      }</h3>
+    <div className='form-review'>
       
+      <div className="review-fields">
 
+        <h3 className="heading-3 review-field mb-md">
+         Title:  <span className="value">{title }</span>
+        </h3>
 
-      
+        <h3 className="heading-3 review-field mb-md">
+          Subject: <span className="value">{ subject }</span>
+        </h3>
 
-      <div className="errormsg">
-        <h2>{errors.msg}</h2>
+        <h3 className="heading-3 review-field mb-md">
+          Body: <span className="value">{body }</span>
+        </h3>
+
+        <h3 className="heading-3 review-field mb-md">
+          Recipients: <span className="value">{ recipients }</span>
+        </h3>
+        
       </div>
 
-      {/* {reviewFields} */}
-
       <div className="submitButtons">
-        <button className="btn btn-cancel" onClick={(e) => {
+        <button className="btn btn--danger" onClick={(e) => {
           e.preventDefault();
           onCancel();
           }}>
@@ -76,18 +67,21 @@ const SurveyFormReview = ({ onCancel }) => {
           onClick={(e) => {
             e.preventDefault();
             console.log("Survey Results:", values);
+            handleSurveySubmit(values);
 
-            // dispatch(submitSurvey(values, navigate));
+            // dispatch(submitSurvey(values));
+
 
             // onSurveySubmit(e);
             // navigate('/surveys');
           } }
-          className="btn btn-next"
+          className="btn btn--primary"
         >
           Send Survey
         </button>
       </div>
-    </React.Fragment>
+
+    </div>
   );
 };
 

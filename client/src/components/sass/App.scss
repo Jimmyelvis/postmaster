@@ -7,26 +7,30 @@
 
 @import './components/_buttons.scss';
 @import './components/_carousel.scss';
-@import './components/login.scss';
+@import './components/_forms.scss';
+@import './components/_login.scss';
 @import './components/_modal.scss';
 @import './components/_notification.scss';
+@import './components/_panel.scss';
+@import './components/_select.scss';
 @import './components/_siteheading.scss';
 @import './components/_stripe.scss';
 @import './components/_surveyRecord.scss';
+@import './components/_table.scss';
 
 
 @import './layout/_about.scss';
 @import './layout/_contact.scss';
-@import './layout/_dashboard.scss';
+@import './layout/dashboard/_dashboard.scss';
+@import './layout/dashboard/_navbar.scss';
+@import './layout/dashboard/_sidebar.scss';
+@import './layout/dashboard/pages/_createSurvey.scss';
+@import './layout/dashboard/pages/_surveyList.scss';
+@import './layout/dashboard/pages/_surveyDetail.scss';
+@import './layout/dashboard/pages/_surveyReview.scss';
+@import './layout/dashboard/pages/_index';
 @import './layout/_footer.scss';
 @import './layout/_header.scss';
 @import './layout/_landingheader.scss';
 @import './layout/_landing.scss';
 
-
-
-
-
-body {
-  // background-color: $secondary-color;
-}

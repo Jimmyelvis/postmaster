@@ -1,0 +1,113 @@
+:root {
+  --username-color: #{$midnightblue}; // Default light theme color
+  --scrolledBg-color: rgb(239 240 244 / 67%);
+  --scrolledBorder-color: rgba(255, 255, 255, 0.46);
+  --searchInputBg: #{$white};
+  --searchInputBorder: rgba(211, 215, 233, 0.59);
+  --searchInputShadow: 0px 0px 6px 4px rgb(146 152 176 / 12%) inset;
+  --searchBoxColor: #{maintext};
+}
+
+[data-theme="dark"] {
+  --username-color: #{$white}; // Default light theme color
+  --scrolledBg-color: rgb(11 33 56 / 87%);
+  --scrolledBorder-color: rgb(255 255 255 / 11%);
+  --scrolledBorder-color: rgba(255, 255, 255, 0.46);
+  --searchInputBg: rgb(2, 44, 84);
+  --searchInputBorder: rgba(0, 57, 110, 0.384);
+  --searchInputShadow: 0px 0px 6px 4px rgb(16 18 29 / 35%) inset;
+  --searchBoxColor: #{white};
+}
+
+
+.dashboard-navbar {
+  grid-column: full-start/full-end;
+  display: grid;
+  grid-template-columns: [full-start] 7rem [center-start] repeat(16, [col-start] minmax(min-content, 1fr) [col-end]) [center-end] 7rem [full-end];
+  align-items: center;
+  height: 10rem;
+  position: fixed;
+  width: 100%;
+  z-index: 3000;
+  background-color: rgb(239 240 244 / 0%);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.00);
+  transition: all 600ms ease-in-out;
+
+
+  .blue-menu-icon {
+    width: 6.5rem;
+    height: 6.5rem;
+    cursor: pointer;
+    position: fixed;
+    left: 5.4rem;
+  }
+
+
+
+  &.scrolled {
+    padding: 1rem 0;
+    background-color: var(--scrolledBg-color);
+    border-bottom: 2px solid var(--scrolledBorder-color);
+    transition: all 600ms ease-in-out;
+    backdrop-filter: blur(5px);
+  }
+
+
+  .search-input {
+    background: var(--searchInputBg);
+    grid-column: col-start 3/col-end 5;
+    position: relative;
+    border-radius: 2.7rem;
+    display: flex;
+    gap: 3rem;
+    height: 5.4rem;
+    padding: 1rem 3rem;
+    box-shadow: var(--searchInputShadow);
+    border: 3px solid var(--searchInputBorder);
+    transition: all 600ms ease-in-out;
+    
+    ::placeholder {
+      font-size: 1.6rem;
+      color: lighten($dashboard-text, 20%);
+      font-weight: bold;
+    }
+    
+    .search-icon {
+      width: 1.75rem;
+    }
+    
+    input {
+      color: var(--searchBoxColor);
+      border: none;
+      outline: none;
+      font-size: 1.6rem;
+      width: 100%;
+      background-color: transparent;
+    }
+
+  }
+
+  .user {
+    grid-column: col-start 15 / -1;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    .heading-3 {
+      font-size: 1.8rem;
+      color: $alternateblue;
+
+      .username {
+        color: var(--username-color);
+        margin-left: 1rem;
+      }
+    }
+
+    .logout-btn {
+      width: 6.5rem;
+      height: 6.5rem;
+    }
+  }
+
+
+}

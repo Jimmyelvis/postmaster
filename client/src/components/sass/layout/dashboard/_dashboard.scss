@@ -1,0 +1,78 @@
+:root {
+  --text-color: #{$light-dashboard-text}; // Default light theme color
+  --headings-color: #{$midnightblue}; // Default light theme color
+}
+
+[data-theme="dark"] {
+  --text-color: #{$dark-dashboard-text}; // Dark theme color
+  --headings-color: #{$alternateblue};
+}
+
+.dashboard {
+
+
+  // background: rgb(239, 240, 244);
+  // min-height: 100vh;
+  // padding: 0.1px;
+  // transition: background 2s ease-in-out;
+
+  // &.dashboard-dark {
+  //   background: linear-gradient(180deg,#002040 0%, #001224 80%);
+  //   // transition: all 2s ease-in-out;
+  // }
+
+
+
+
+  background: rgb(239, 240, 244); 
+  min-height: 100vh;
+  padding: 0.1px;
+  transition: background 1s ease-in-out; 
+  color: var(--text-color);
+
+  &-dark {
+    background: rgb(0, 32, 64); 
+  }
+
+  %heading {
+    color: var(--headings-color);
+  }
+
+
+
+
+  
+
+  .dashboard-page {
+    grid-column: col-start 2/col-end 12;
+    margin-top: 10.5rem;
+
+    display: grid;
+    grid-template-columns: [full-start] 7rem [center-start] repeat(16, [col-start] minmax(min-content, 174.4rem) [col-end]) [center-end] 7rem [full-end];
+    grid-template-rows: repeat(2, 1fr);
+    grid-auto-rows: 1fr;
+    column-gap: 1rem;
+    row-gap: 2rem;
+    margin-bottom: 4rem;
+
+    margin-left: 15.4rem;
+    margin-top: 11.6rem;
+
+    @include respond(bp-large) {
+      grid-column: col-start 1/col-end 16;
+      margin-left: 0;
+    }
+
+    @include respond(bp-medium) {
+      grid-template-columns: [full-start] 4.5rem [center-start] repeat(16, [col-start] minmax(min-content, 174.4rem) [col-end]) [center-end] 4.5rem [full-end];
+    }
+
+    @include respond(bp-smallest) {
+      grid-template-columns: [full-start] 2rem [center-start] repeat(16, [col-start] minmax(min-content, 174.4rem) [col-end]) [center-end] 2rem [full-end];
+    }
+  }
+
+
+
+}
+
