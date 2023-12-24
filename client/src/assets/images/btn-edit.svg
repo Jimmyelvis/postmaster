@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="34" height="34" viewBox="0 0 34 34">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#b9dfff"/>
+      <stop offset="1" stop-color="#80c1ff"/>
+    </linearGradient>
+  </defs>
+  <g id="btn-edit" transform="translate(-0.184)">
+    <g id="Ellipse_30" data-name="Ellipse 30" transform="translate(0.184)" stroke="#c3e4f8" stroke-width="2" fill="url(#linear-gradient)">
+      <circle cx="17" cy="17" r="17" stroke="none"/>
+      <circle cx="17" cy="17" r="16" fill="none"/>
+    </g>
+    <path id="Icon_awesome-pencil-alt" data-name="Icon awesome-pencil-alt" d="M15.86,4.529,14.392,6a.383.383,0,0,1-.541,0L10.315,2.462a.383.383,0,0,1,0-.541L11.783.452a1.532,1.532,0,0,1,2.163,0L15.86,2.366A1.526,1.526,0,0,1,15.86,4.529ZM9.053,3.182.689,11.546l-.675,3.87A.765.765,0,0,0,.9,16.3l3.87-.678,8.364-8.364a.383.383,0,0,0,0-.541L9.6,3.182a.386.386,0,0,0-.545,0Zm-5.1,7.648a.444.444,0,0,1,0-.631L8.859,5.293a.446.446,0,0,1,.631.631L4.584,10.829a.444.444,0,0,1-.631,0ZM2.8,13.508H4.333v1.156l-2.054.36-.991-.991.36-2.054H2.8Z" transform="translate(9.246 9.204)" fill="#f7f7f8"/>
+  </g>
+</svg>

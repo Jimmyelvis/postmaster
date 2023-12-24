@@ -134,16 +134,21 @@ module.exports = app => {
     });
 
     // Great place to send an email!
-    const mailer = new Mailer(survey, surveyTemplate(survey));
+
+    /*
+     TODO: Uncomment this code to send an email, after we figure out why Sendgrid is not working
+    */
+    // const mailer = new Mailer(survey, surveyTemplate(survey));
 
     try {
-      await mailer.send();
+      // await mailer.send();  <--- this as well
       await survey.save();
       req.user.credits -= 1;
       const user = await req.user.save();
 
       res.send(user);
     } catch (err) {
+      console.log("error: ", err);
       res.status(422).send(err);
     }
 
@@ -152,9 +157,7 @@ module.exports = app => {
   app.delete('/api/surveys/delete/:id', async (req, res) => {
     await Survey.deleteOne({ _id: req.params.id });
 
-    console.log('====================================');
-    console.log("id: ", req.params.id);
-    console.log('====================================');
+
 
 
     const surveys = await Survey.find({ _user: req.user.id }).sort({dateSent: -1}).select({
@@ -162,6 +165,32 @@ module.exports = app => {
     });
     res.send(surveys);
   });
+
+
+  app.get('/api/getsurveys/search', requireLogin, async (req, res) => {
+    const searchTerm = req.query.term;
+  
+    if (!searchTerm) {
+      return res.status(400).send({ error: 'Search term is required' });
+    }
+  
+    try {
+      const regex = new RegExp(searchTerm, 'i'); // 'i' for case-insensitive
+      const surveys = await Survey.find({
+        title: { $regex: regex },
+        _user: req.user.id // find surveys belonging to the logged-in user
+      })
+      .select({ recipients: false })
+      .populate('_user', ['username'])
+      .sort({ dateSent: -1 });
+  
+      res.send(surveys);
+    } catch (err) {
+      res.status(500).send({ error: 'Error searching for surveys' });
+    }
+  });
+  
+
 };
 
 

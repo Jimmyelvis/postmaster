@@ -1,3 +1,14 @@
+:root {
+  --text-color: #{$dashboard-text}; // Default light theme color
+  --headings-color: #{$midnightblue}; // Default light theme color
+}
+
+[data-theme="dark"] {
+  --text-color: #{$dark-dashboard-text}; // Dark theme color
+  --headings-color: #{$alternateblue};
+}
+
+
 .survey-creation {
   grid-column: col-start 1/col-end 8;
 
@@ -10,7 +21,7 @@
     margin: 0 auto;
     margin-bottom: 7rem;
     flex-direction: column;
-    width: 71rem;
+    width: 100%;
     align-items: center;
 
     @include respond(bp-medium) {
@@ -73,24 +84,23 @@
 
   .form-review {
     display: grid;
-    width: 80rem;
-    margin: 0 auto;
+    width: 100%;
 
     .review-fields {
-      // background: rgb(240 248 255 / 25%);
-      padding: 8rem;
       border-radius: 1.3rem;
-      // box-shadow: 4px 1px 9px 4px rgb(183 200 214 / 8%) inset;
       margin-bottom: 5rem;
 
       .review-field {
         display: grid;
         grid-template-columns: 17ch auto;
         font-size: 2.1rem;
-        color: $midnightblue;
+        color: var(--headings-color);
 
         .value {
-          color: $alternateblue;
+          color: var(--text-color);
+          font-family: $font-primary;
+          font-size: 1.8rem;
+          font-weight: normal;
         }
       }
     }

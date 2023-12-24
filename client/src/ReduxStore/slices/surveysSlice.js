@@ -2,9 +2,11 @@ import { createSlice, current } from '@reduxjs/toolkit';
 import { fetchSurveys, fetchSurvey } from '../thunks/fetchSurveys';
 import { submitSurvey } from '../thunks/createSurvey';
 import { deleteSurvey } from '../thunks/deleteSurvey';
+import { searchSurveys } from '../thunks/searchSurveys';
 
 const initialState = {
   surveyList: [],
+  searchResults: [],
   survey: {},
   loading: false,
   title: '',
@@ -75,7 +77,17 @@ const surveysSlice = createSlice({
     .addCase(deleteSurvey.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error;
-    });
+    })
+    .addCase(searchSurveys.pending, (state, action) => {
+      state.loading = true;
+    })
+    .addCase(searchSurveys.fulfilled, (state, action) => {
+      state.searchResults = action.payload;
+    })
+    .addCase(searchSurveys.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error;
+    })  
   }
 });
 

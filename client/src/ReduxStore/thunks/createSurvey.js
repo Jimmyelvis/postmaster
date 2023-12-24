@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchUser } from './getUser';
+import { setAlertWithTimeout } from './setAlertWithTimeout';
 import axios from 'axios';
 
 
@@ -20,6 +21,7 @@ async ({ values, navigate }, { dispatch }) => {
       information. Such as the users credits.
     */
     dispatch(fetchUser());
+    dispatch(setAlertWithTimeout({ msg: 'Survey Sent!', alertType: 'success' }));
     navigate('/dashboard/surveylist');
 
     return response.data;

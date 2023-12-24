@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import BlueMenuIcon from "assets/images/Lt-Blue-Menu-Icon.svg";
 import DrkBlueMenuIcon from "assets/images/Drk-Blue-Menu-Icon.svg";
-import SearchIcon from "assets/images/Icon-search.svg";
 import LogOutBtn from "assets/images/log-out-btn.svg";
 import DrkLogOutBtn from "assets/images/drk-log-out-btn.svg";
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleSideBar } from 'ReduxStore/slices/dashboardUISlice';
+import { Search } from "../Search";
 
 
 export const DashNav = () => {
@@ -15,6 +15,7 @@ export const DashNav = () => {
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(true);
   const limit = 75;
+
 
   const auth = useSelector((store) => {
     return store.auth
@@ -27,17 +28,13 @@ export const DashNav = () => {
 
   window.addEventListener("scroll", handleScroll);
 
-
+  /*
+      Todo: Make this into a separate component. Then use the serach component from Social Sole as guide.
+      */
 
   return (
     <>
-     {/* <img 
-        src={BlueMenuIcon} 
-        alt="" 
-        className='icon blue-menu-icon' 
-        onClick={() => dispatch(toggleSideBar())}
-      /> */}
-    
+
       <div className={
         visible ? "dashboard-navbar" : "dashboard-navbar scrolled"
       }>
@@ -49,11 +46,8 @@ export const DashNav = () => {
           onClick={() => dispatch(toggleSideBar())}
         />
       
-
-        <div className="search-input">
-          <img src={SearchIcon} alt="" className='icon search-icon' />
-          <input type="text" placeholder='Search For Surveys' className='search-box' />
-        </div>
+    
+        <Search />
 
         <div className="user">
           <h3 className="heading-3">

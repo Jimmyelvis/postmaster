@@ -1,0 +1,13 @@
+<svg id="btn-delete" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="34" height="34" viewBox="0 0 34 34">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fdb57f"/>
+      <stop offset="1" stop-color="#ff872d"/>
+    </linearGradient>
+  </defs>
+  <g id="Ellipse_30" data-name="Ellipse 30" stroke="#ffbb87" stroke-width="2" fill="url(#linear-gradient)">
+    <circle cx="17" cy="17" r="17" stroke="none"/>
+    <circle cx="17" cy="17" r="16" fill="none"/>
+  </g>
+  <path id="Icon_awesome-trash-alt" data-name="Icon awesome-trash-alt" d="M.979,14.195a1.468,1.468,0,0,0,1.468,1.468h8.811a1.468,1.468,0,0,0,1.468-1.468V3.916H.979ZM9.3,6.363a.489.489,0,0,1,.979,0v6.853a.489.489,0,0,1-.979,0Zm-2.937,0a.489.489,0,0,1,.979,0v6.853a.489.489,0,1,1-.979,0Zm-2.937,0a.489.489,0,0,1,.979,0v6.853a.489.489,0,1,1-.979,0ZM13.216.979H9.545L9.257.407A.734.734,0,0,0,8.6,0H5.1a.726.726,0,0,0-.655.407L4.161.979H.489A.489.489,0,0,0,0,1.468v.979a.489.489,0,0,0,.489.489H13.216a.489.489,0,0,0,.489-.489V1.468A.489.489,0,0,0,13.216.979Z" transform="translate(10.482 9.531)" fill="#fff"/>
+</svg>

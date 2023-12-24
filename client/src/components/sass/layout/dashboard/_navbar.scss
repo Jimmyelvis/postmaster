@@ -6,17 +6,19 @@
   --searchInputBorder: rgba(211, 215, 233, 0.59);
   --searchInputShadow: 0px 0px 6px 4px rgb(146 152 176 / 12%) inset;
   --searchBoxColor: #{maintext};
+  --searchBoxOuterShadow: 0px 2px 5px 0px rgb(160 164 179 / 45%);
 }
 
 [data-theme="dark"] {
   --username-color: #{$white}; // Default light theme color
   --scrolledBg-color: rgb(11 33 56 / 87%);
   --scrolledBorder-color: rgb(255 255 255 / 11%);
-  --scrolledBorder-color: rgba(255, 255, 255, 0.46);
+  --scrolledBorder-color: rgba(255, 255, 255, 0.09);
   --searchInputBg: rgb(2, 44, 84);
   --searchInputBorder: rgba(0, 57, 110, 0.384);
   --searchInputShadow: 0px 0px 6px 4px rgb(16 18 29 / 35%) inset;
   --searchBoxColor: #{white};
+  --searchBoxOuterShadow: 0px 2px 10px 0px rgb(11 20 53 / 40%);
 }
 
 
@@ -84,6 +86,78 @@
       width: 100%;
       background-color: transparent;
     }
+
+    // .search-dropdown {
+    //   width: 200%;
+    //   height: 0;
+    //   position: absolute;
+    //   left: 0;
+    //   top: 100%;
+    //   padding: 3rem;
+    //   box-shadow: 0px 2px 5px 0px rgba(160, 164, 179, 0.69);
+    //   display: none;
+    //   transition: all 600ms ease-in-out;
+
+    //   &.show {
+    //     display: flex;
+    //     height: auto;
+    //   }
+    // }
+
+    .search-dropdown {
+      width: 200%;
+      height: auto;
+      position: absolute;
+      left: 0;
+      top: 100%;
+      padding: 3rem;
+      box-shadow: var(--searchBoxOuterShadow);
+      opacity: 0;
+      transform: translateY(-20px);
+      visibility: hidden;
+      transition: opacity 600ms ease-in-out, transform 600ms ease-in-out, visibility 0s linear 1000ms; // Add delay to visibility
+      display: flex;
+  
+      &.show {
+          opacity: 1;
+          transform: translateY(0);
+          visibility: visible;
+          transition: opacity 600ms ease-in-out, transform 600ms ease-in-out; // No delay when showing
+      }
+
+      .panel-content {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding-bottom: 5rem;
+
+        a {
+          color: var(--searchBoxColor);
+          text-decoration: none;
+        }
+      }
+
+      .results {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5.3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-end-start-radius: 8px;
+        border-end-end-radius: 8px;
+        text-align: center;
+        background: linear-gradient(179deg, #a4cff1 0%, #4e9ae7 80%);
+        color: #fff;
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
+  }
+  
+  
 
   }
 

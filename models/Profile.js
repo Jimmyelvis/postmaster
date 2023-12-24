@@ -12,6 +12,16 @@ const profileSchema = new Schema({
   logo: String,
   phone: String,
   dateCreated: Date,
+  emailList: {
+    type: [String],
+    validate: {
+      validator: function(emailArray) {
+        // Check for uniqueness
+        return emailArray.length === new Set(emailArray).size;
+      },
+      message: 'Emails in the email list must be unique.'
+    }
+  },
 });
 
 module.exports = mongoose.model("profile", profileSchema);

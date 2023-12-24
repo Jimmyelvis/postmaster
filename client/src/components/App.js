@@ -14,6 +14,7 @@ import {
   Dashboard_Home, SurveyList, 
   SurveyDetail, DashLayout,
   SurveyNew } from "pages/Dashboard";
+import { Alert } from "components/ui/Alert";
 
 import "./sass/App.scss";
 
@@ -59,6 +60,7 @@ const App = () => {
   return (
     <>
       <Scrolltop />
+      <Alert />
 
       
   {/* Render the appropriate NavBar component based on the current route */}

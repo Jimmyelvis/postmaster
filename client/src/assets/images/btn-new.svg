@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="73.984" height="73.984" viewBox="0 0 73.984 73.984">
+  <defs>
+    <filter id="Path_3064" x="0" y="0" width="73.984" height="73.984" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <radialGradient id="radial-gradient" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#bbdafa"/>
+      <stop offset="1" stop-color="#85c2ff"/>
+    </radialGradient>
+    <filter id="Path_3065" x="11.482" y="8.482" width="51.021" height="51.021" filterUnits="userSpaceOnUse">
+      <feOffset dx="3" dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-opacity="0.161" result="color"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-2"/>
+      <feComposite operator="in" in="color"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="add-btn" transform="translate(-1062 -1019)">
+    <g transform="matrix(1, 0, 0, 1, 1062, 1019)" filter="url(#Path_3064)">
+      <path id="Path_3064-2" data-name="Path 3064" d="M27.992,0A27.992,27.992,0,1,1,0,27.992,27.992,27.992,0,0,1,27.992,0Z" transform="translate(9 6)" fill="#bbdafa"/>
+    </g>
+    <g data-type="innerShadowGroup">
+      <path id="Path_3065-2" data-name="Path 3065" d="M25.511,0A25.511,25.511,0,1,1,0,25.511,25.511,25.511,0,0,1,25.511,0Z" transform="translate(1073.482 1027.482)" fill="url(#radial-gradient)"/>
+      <g transform="matrix(1, 0, 0, 1, 1062, 1019)" filter="url(#Path_3065)">
+        <path id="Path_3065-3" data-name="Path 3065" d="M25.511,0A25.511,25.511,0,1,1,0,25.511,25.511,25.511,0,0,1,25.511,0Z" transform="translate(11.48 8.48)" fill="#fff"/>
+      </g>
+    </g>
+    <path id="Icon_awesome-plus" data-name="Icon awesome-plus" d="M28.616,14.357H18.71V4.451a2.2,2.2,0,0,0-2.2-2.2h-2.2a2.2,2.2,0,0,0-2.2,2.2v9.906H2.2a2.2,2.2,0,0,0-2.2,2.2v2.2a2.2,2.2,0,0,0,2.2,2.2h9.906v9.906a2.2,2.2,0,0,0,2.2,2.2h2.2a2.2,2.2,0,0,0,2.2-2.2V20.96h9.906a2.2,2.2,0,0,0,2.2-2.2v-2.2A2.2,2.2,0,0,0,28.616,14.357Z" transform="translate(1083.584 1035.334)" fill="#b8cbd7" stroke="rgba(184,203,215,0.51)" stroke-width="4"/>
+    <path id="Icon_awesome-plus-2" data-name="Icon awesome-plus" d="M28.616,14.357H18.71V4.451a2.2,2.2,0,0,0-2.2-2.2h-2.2a2.2,2.2,0,0,0-2.2,2.2v9.906H2.2a2.2,2.2,0,0,0-2.2,2.2v2.2a2.2,2.2,0,0,0,2.2,2.2h9.906v9.906a2.2,2.2,0,0,0,2.2,2.2h2.2a2.2,2.2,0,0,0,2.2-2.2V20.96h9.906a2.2,2.2,0,0,0,2.2-2.2v-2.2A2.2,2.2,0,0,0,28.616,14.357Z" transform="translate(1083.584 1035.334)" fill="#fff"/>
+  </g>
+</svg>
