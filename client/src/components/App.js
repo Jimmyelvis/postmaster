@@ -13,7 +13,7 @@ import { Footer } from "components/ui/Layout/Footer";
 import { 
   Dashboard_Home, SurveyList, 
   SurveyDetail, DashLayout,
-  SurveyNew } from "pages/Dashboard";
+  SurveyNew, Email_List } from "pages/Dashboard";
 import { Alert } from "components/ui/Alert";
 
 import "./sass/App.scss";
@@ -81,6 +81,7 @@ const App = () => {
           <Route path="surveylist" element={<SurveyList />} />
           <Route path="surveydetail/:surveyId" element={<SurveyDetail />} />
           <Route path="surveys/new" element={<SurveyNew />} />
+          <Route path="email-list" element={<Email_List />} />
         </Route>
    
       </Routes>

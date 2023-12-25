@@ -4,12 +4,53 @@ const requireLogin = require("../middlewares/requireLogin");
 const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
 module.exports = (app) => {
-  app.get("/api/profile", requireLogin, async (req, res, next) => {
+
+  /*
+  * Original code which returned the entire profile object, including the emailList field
+  */
+  app.get("/api/profile-orig", requireLogin, async (req, res, next) => {
     const profile = await Profile.find({
       user: req.user.id,
     });
     res.send(profile);
   });
+
+
+   /*
+  * Alternatge code which returns the entire profile object, excluding the emailList field
+  */
+  app.get("/api/profile", requireLogin, async (req, res) => {
+    try {
+      const profile = await Profile.findOne({ user: req.user.id })
+        .select('-emailList'); // Excluding the emailList field
+  
+      if (!profile) {
+        return res.status(404).send({ error: "Profile not found." });
+      }
+  
+      res.send(profile);
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  });
+  
+ /*
+  * Returns the emailList field of the profile object
+  */
+  app.get("/api/profile/emails", requireLogin, async (req, res) => {
+    try {
+      const profile = await Profile.findOne({ user: req.user.id }, 'emailList');
+  
+      if (!profile) {
+        return res.status(404).send({ error: "Profile not found." });
+      }
+  
+      res.send(profile.emailList);
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  });
+  
 
   app.post("/api/profile", requireLogin, async (req, res) => {
     const { bio, email, companyname, logo, phone } = req.body;

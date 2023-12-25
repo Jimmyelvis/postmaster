@@ -1,0 +1,157 @@
+:root {
+  --edit-text-color: #{$alternateblue}; // Default light theme color
+}
+
+[data-theme="dark"] {
+  --edit-text-color: #{$white}; // Dark theme color
+}
+
+
+.email-list {
+  grid-column: col-start 1/col-end 10;
+  position: relative;
+
+  @include respond(bp-large) {
+   grid-column: col-start 1/col-end 16;
+  }
+
+  .email-list__heading {
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 7rem;
+    flex-direction: column;
+    width: 71rem;
+    align-items: center;
+
+    @include respond(bp-medium) {
+     width: 100%;   
+    }
+
+    .icon-heading {
+      display: flex;
+      gap: 2rem;
+      
+      .heading-2 {
+        align-self: center;
+        height: 2rem;
+       
+
+        @include respond(bp-smallest) {
+         font-size: 3rem;
+        }
+      }
+  
+      .email-list-icon {
+        width: 9.1rem;
+        grid-column: 1 / 1;
+        justify-self: center;
+
+        @include respond(bp-smallest) {
+         width: 7.1rem; 
+        }
+      }
+
+    }
+
+
+    p {
+      font-size: 1.8rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+
+  }
+
+
+  .email-list__labels {
+    display: flex;
+    margin: 5rem auto;
+    justify-content: space-between;
+    list-style: none;
+  }
+
+  
+  .email-list__emails{
+
+    .email {
+      display: flex;
+      align-items: baseline;
+      gap: 2rem;
+      position: relative;
+      @include createLetterAvatar(
+        3.4rem, $white, linear-gradient(179deg, 
+        lighten($alternateblue, 15%) 0%, $alternateblue 80%)
+      );
+
+      .heading-3 {
+        transition: all 400ms ease;
+        width: 40%;
+        @include customBorderBtm(rgba(107, 131, 225, 0), 2px, 175%);
+
+        .editable-input {
+          width: 100% !important;
+          border: none;
+          color: inherit !important;
+          background: transparent;
+
+          &:focus {
+            outline: none;
+          }
+        }
+
+          &::after {
+            content: '';
+            margin: 0;
+        }
+    
+        &.edit-bg {
+          transform: translateX(25%);
+          color: var(--edit-text-color) !important;
+          @include customBorderBtm(rgba(107, 131, 225, 0.142), 2px, 100%);
+
+          &::after {
+            content: '';
+            margin: 0;
+          }
+        }
+      }
+
+      .checkmark-cancel {
+        position: absolute;
+        right: 28%;
+        display: flex;
+        width: auto;
+        gap: 2rem;
+
+        .icon-checkmark,.icon-cancel {
+          width: 2.4rem;
+        }
+      }
+    }
+
+    // extra bit of padding for each email row
+    td {
+      padding: 2rem 0 !important;
+    }
+
+    .icon {
+      width: 3.4rem;
+      height: 3.4rem;
+    }
+
+    .checkbox-wrapper {
+      width: 100%;
+      padding-left: 10%;
+    }
+  
+  }
+
+  .icon-add {
+    position: sticky;
+    left: 100%;
+    width: 8rem;
+    bottom: 3rem;
+  }
+
+}

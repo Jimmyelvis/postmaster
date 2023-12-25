@@ -121,6 +121,28 @@
 
 }
 
+@mixin createLetterAvatar(
+  $units: 20rem, 
+  $font-color: $white,
+  $background: #ccc
+) {
+
+  .avatar {
+    position: relative;
+    z-index: 1000;
+    width: $units;
+    height: $units;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $background;
+    color: $font-color;
+  }
+
+}
+
 @mixin absCenter {
   position: absolute;
   top: 50%;

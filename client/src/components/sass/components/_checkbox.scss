@@ -1,0 +1,48 @@
+:root {
+  --border-color: #dcdcdc; // Default light theme color
+  --background-color: #f0f0f0;
+}
+
+[data-theme="dark"] {
+  --background-color: #144885;
+  --border-color:#1b3658;
+}
+
+
+/* Hide the default checkbox */
+.custom-checkbox input[type="checkbox"] {
+  visibility: hidden;
+  position: absolute;
+}
+
+/* Create a custom checkbox appearance */
+.custom-checkbox .checkmark {
+  display: inline-block;
+  width: 2.3rem;
+  height: 2.3rem;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: inset 3px 1px 8px 0px rgb(87 139 169 / 26%);
+  border-radius: 0.4rem;
+}
+
+/* Style for when the checkbox is checked */
+.custom-checkbox input[type="checkbox"]:checked + .checkmark {
+  background-color: $alternateblue; /* Background color when checked */
+}
+
+/* Add a checkmark symbol when checked */
+.custom-checkbox input[type="checkbox"]:checked + .checkmark::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 3px;
+  width: 6px;
+  height: 12px;
+  border: solid $white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}

@@ -21,6 +21,17 @@
       background-color: rgb(184 203 255 / 8%);
     }
 
+    .select-all, {
+      cursor: pointer;
+    }
+
+    .sorting-wraper {
+      display: flex;
+      justify-content: flex-start;
+      cursor: pointer;
+      gap: 1%;
+    }
+
     @include respond(bp-medium) {
      
       th {

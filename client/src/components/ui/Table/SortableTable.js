@@ -9,9 +9,6 @@ function SortableTable(props) {
 
   const handleClick = (label) => { 
 
-    console.log('====================================');
-    console.log("called man", label);
-    console.log('====================================');
 
       // Check if the selected value is 'default'
     if (label === "default") {
@@ -39,16 +36,10 @@ function SortableTable(props) {
 
     label = "default";
 
-    
-    console.log('====================================');
-    console.log("called again man", label);
-    console.log('====================================');
 
   };
 
-  const testfunc = (label) => {
-    console.log("Yeah man damn", label);
-  }
+
 
   const updatedConfig = config.map((column) => {
     if (!column.sortValue) {
@@ -61,8 +52,10 @@ function SortableTable(props) {
         <th
           onClick={() => handleClick(column.label)}
         >
-            {getIcons(column.label, sortBy, sortOrder)}
-            {column.label}
+            <span class="sorting-wraper">
+              {/* {column.label} */}
+              {getIcons(column.label, sortBy, sortOrder)}
+            </span>
         </th>
       ),
     };
@@ -146,6 +139,7 @@ function getIcons(label, sortBy, sortOrder) {
     return (
       <>
         <GoArrowUp />
+        { label }
         <GoArrowDown />
       </>
     );
@@ -155,6 +149,7 @@ function getIcons(label, sortBy, sortOrder) {
     return (
       <>
         <GoArrowUp />
+        { label}
         <GoArrowDown />
       </>
     );
@@ -162,12 +157,14 @@ function getIcons(label, sortBy, sortOrder) {
     return (
       <>
         <GoArrowUp />
+        { label}
       </>
     );
   } else if (sortOrder === 'desc') {
     return (
       <>
         <GoArrowDown />
+      { label }
       </>
     );
   }
