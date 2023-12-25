@@ -154,4 +154,26 @@
     bottom: 3rem;
   }
 
+  .total-emails, .checked-emails {
+    margin: 2rem auto;
+    display: flex;
+    gap: 1rem;
+    font-size: 2rem;
+    color: var(--edit-text-color);
+  }
+
+  .total-emails-number, .checked-emails-number {
+    color: $alternateblue
+  }
+  
+
+  .delete-all-button {
+    background: linear-gradient(179deg, lighten($orange, 25%) 0%, $orange 80%);
+    padding: 1rem 3.5rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+  }
 }

@@ -5,6 +5,8 @@ const initialState = {
   isSideBarOpen: false,
   // uiMode: 'light',
   uiMode: localStorage.getItem('uiMode') || 'light',
+  isModalOpen: false,
+  origin: null
 }
 
 export const dashBoardUiSlice = createSlice({

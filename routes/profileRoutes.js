@@ -101,7 +101,7 @@ module.exports = (app) => {
       profile.emailList.push(newEmail);
 
       await profile.save();
-      res.send(profile);
+      res.send(profile.emailList);
     } catch (err) {
       res.status(422).send(err);
     }
@@ -137,7 +137,7 @@ module.exports = (app) => {
       profile.emailList.push(...newEmails);
 
       await profile.save();
-      res.send(profile);
+      res.send(profile.emailList);
     } catch (err) {
       res.status(422).send(err);
     }
@@ -155,7 +155,7 @@ module.exports = (app) => {
     }
 
     if (!emailRegex.test(newEmail)) {
-      return res.status(400).send({ error: "Invalid new email format." });
+      return res.status(400).send("Invalid new email format.");
     }
 
     try {
@@ -187,7 +187,7 @@ module.exports = (app) => {
         "profile-after save before send": profile,
       })
 
-      res.send(profile);
+      res.send(profile.emailList);
     } catch (err) {
       console.log({
         "error": err,
@@ -202,8 +202,10 @@ module.exports = (app) => {
   app.delete("/api/profile/delete-email", requireLogin, async (req, res) => {
     const { emailToDelete } = req.body;
 
+    console.log("req.body", req.body);
+
     if (!emailToDelete) {
-      return res.status(400).send({ error: "Email to delete is required." });
+      return res.status(400).send("Email to delete is required.");
     }
 
     try {
@@ -215,14 +217,14 @@ module.exports = (app) => {
 
       const emailIndex = profile.emailList.indexOf(emailToDelete);
       if (emailIndex === -1) {
-        return res.status(404).send({ error: "Email not found in the list." });
+        return res.status(404).send("Email not found in the list." );
       }
 
       // Remove the email from the list
       profile.emailList.splice(emailIndex, 1);
 
       await profile.save();
-      res.send(profile);
+      res.send(profile.emailList);
     } catch (err) {
       res.status(422).send(err);
     }
@@ -252,7 +254,7 @@ module.exports = (app) => {
       }
 
       await profile.save();
-      res.send(profile);
+      res.send(profile.emailList);
     } catch (err) {
       res.status(422).send(err);
     }

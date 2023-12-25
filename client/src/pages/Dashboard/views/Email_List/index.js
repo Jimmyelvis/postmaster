@@ -12,12 +12,11 @@ import Cancel from 'assets/images/cancel.svg';
 import { getFormattedDate } from 'utils/formatDate';
 import { faker } from '@faker-js/faker';
 import { Avatar } from 'pages/Dashboard/components/Avatar';
-import { fetchEmails } from 'ReduxStore';
+import { fetchEmails, editEmail, deleteEmail, multiDeleteEmails } from 'ReduxStore';
 
 
 export const Email_List = () => {
   const [list, setList] = useState([])
-  const [sortOrder, setsortOrder] = useState("desc")
   const [edit, setedit] = useState(false)
   const [activeEmail, setActiveEmail] = useState("")
 
@@ -46,9 +45,22 @@ export const Email_List = () => {
   
   }, [dispatch, emails]);
 
-  const editemail = () => {
-    setedit(!edit)
+  const editemail = (oldEmail, newEmail) => {
+    dispatch(editEmail({
+      oldEmail,
+      newEmail
+    }));
   }
+
+  const deleteemail = (emailToDelete) => {
+
+    if (checkedEmails.length > 1) {
+      dispatch(multiDeleteEmails(checkedEmails));
+    } else {
+      dispatch(deleteEmail(emailToDelete));
+    }
+  }
+
 
   const handleEmailChange = (e) => {
     setActiveEmail(e.target.value); // Update the activeEmail for the input field
@@ -74,47 +86,14 @@ export const Email_List = () => {
 
     /*
       Compare the length of the checkedEmails array to the length of the emails array. If they are equal, then all emails are checked. If they are not equal, then not all emails are checked.
-      Todo: I will need to change "data" to whatever I'm going to use when I add the action creator to get the emails from the database.
     */
     if (checkedEmails.length === emails.length) {
       setCheckedEmails([]); // Uncheck all if all were checked
     } else {
-      setCheckedEmails(emails.map(item => item.email)); // Check all
+      setCheckedEmails(emails.map(item => item)); // Check all
     }
   };
 
-  const data = [
-    // /* generate random email objects */
-    // ...Array(80).fill().map((_, i) => ({
-    //   email: faker.internet.email(),
-    // })),
-
-    {
-      email: 'Rosalinda75@yahoo.com'
-    },
-    {
-      email: 'Gene.Lubowitz79@hotmail.com'
-    },
-    {
-      email: 'Rosalinda4545455@yahoo.com'
-    },
-    {
-      email: 'Jessy.Beatty73@gmail.com'
-    },
-    {
-      email: 'Tyshawn66@gmail.com'
-    },
-    {
-      email: 'Deion.Windler@hotmail.com'
-    },
-    {
-      email: 'Elsa.Becker47@gmail.com'
-    },
-    {
-      email: 'Chester_Hamill@gmail.com'
-    },
-    
-  ];
 
   const renderEmails = () => { 
 
@@ -127,8 +106,8 @@ export const Email_List = () => {
             <label class="custom-checkbox">
             <input 
                 type="checkbox" 
-                checked={checkedEmails.includes(email.email)}
-                onChange={() => handleCheckboxChange(email.email)}
+                checked={checkedEmails.includes(email)}
+                onChange={() => handleCheckboxChange(email)}
               />
               <span class="checkmark"></span>
             </label>
@@ -139,11 +118,11 @@ export const Email_List = () => {
         label: <p className="sort">Email</p>,
         render: (email, index) => (
           <div className="email" key={index}>
-              <Avatar  email={email.email}  />
-              {email.email === editingEmail && edit ? (
+              <Avatar  email={email}  />
+              {email === editingEmail && edit ? (
                 // Render an input field when in edit mode
                 <h3 
-                  className={`heading-3 ${email.email === editingEmail ? 'edit-bg' : ''}`}>
+                  className={`heading-3 ${email === editingEmail ? 'edit-bg' : ''}`}>
                    <input 
                       type="text"
                       value={activeEmail}
@@ -153,17 +132,21 @@ export const Email_List = () => {
                 </h3>
               ) : (
                 // Render the h3 element when not in edit mode
-                <h3 className={`heading-3 ${email.email === editingEmail ? 'edit-bg' : ''}`}>
-                  {email.email}
+                <h3 className={`heading-3 ${email === editingEmail ? 'edit-bg' : ''}`}>
+                  {email}
                 </h3>
               )}
 
-              {email.email === editingEmail && (
+              {email === editingEmail && (
                 <div className="checkmark-cancel">
                   <img src={CheckMark} alt="" 
                     className='icon icon-checkmark'
                     onClick={() => {
-                      console.log("fire off action createor to update email"); 
+                      console.log({
+                        "current email": email,
+                        "new email": activeEmail,
+                      }); 
+                      editemail(email, activeEmail)
                       setedit(false)
                       setEditingEmail("")
                     }}
@@ -180,7 +163,7 @@ export const Email_List = () => {
               )}
           </div>
         ),
-        sortValue: (email) => email.email,
+        sortValue: (email) => email,
       },
       {
         label: 'Edit',
@@ -190,11 +173,11 @@ export const Email_List = () => {
             className='icon icon-edit'
             onClick={() => {
               console.log({
-                email: email.email,
+                email: email,
               })
               setedit(true)
-              setEditingEmail(email.email)
-              setActiveEmail(email.email)
+              setEditingEmail(email)
+              setActiveEmail(email)
             }} 
           />
         ),
@@ -202,13 +185,19 @@ export const Email_List = () => {
       {
         label: 'Delete',
         render: (email) => (
-          <img src={DeleteBtn} alt="" className='icon icon-delete' />
+          <img 
+            src={DeleteBtn} alt="" 
+            className='icon icon-delete'
+            onClick={() => {
+              deleteemail(email);
+            }}
+          />
         ),
       },
     ];
 
     const keyFn = (email) => {
-      return email.email;
+      return email;
     };
 
     if (list && list.length) {
@@ -234,11 +223,37 @@ export const Email_List = () => {
         </div>
 
         <p>These are your saved emails. Click on the plus sign to add more</p>
+
+        <h3 className="heading-3 total-emails">
+          Total Emails:
+          <span className="total-emails-number">
+          {emails.length}
+          </span> 
+        </h3>
+
+        {checkedEmails.length > 0 ? (
+          <h3 className="heading-3 checked-emails">
+            Emails Selected:
+            <span className="checked-emails-number">
+              {checkedEmails.length}
+            </span> 
+          </h3>
+        ) : (
+          ""
+        )}
+
+        {checkedEmails.length === emails.length && emails.length > 0 ? (
+          <h3 className="heading-3 delete-all-button" onClick={() => deleteemail()}>
+            Delete All
+          </h3>
+        ) : (
+          ""
+        )}
       </div>
 
-      {/* <div className="email-list__emails">{renderEmails()}</div> */}
+      <div className="email-list__emails">{renderEmails()}</div>
 
-      <img src={AddBtn} alt="" className='icon icon-add' />
+      <img src={AddBtn} alt="" className="icon icon-add" />
     </Panel>
   );
 }

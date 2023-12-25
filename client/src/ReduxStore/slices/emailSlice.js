@@ -1,5 +1,5 @@
 import { createSlice, current } from '@reduxjs/toolkit';
-import { fetchEmails, addEmail, deleteEmail, multiDeleteEmails } from '../thunks/emailThunk';
+import { fetchEmails, addEmail, editEmail, deleteEmail, multiDeleteEmails } from '../thunks/emailThunk';
 
 const initialState = {
   email: '',
@@ -49,6 +49,16 @@ const emailSlice = createSlice({
     })
     .addCase(deleteEmail.pending, (state, action) => {
       state.loading = true;
+    })
+    .addCase(editEmail.pending, (state, action) => {
+      state.loading = true;
+    })
+    .addCase(editEmail.fulfilled, (state, action) => {
+      state.emailList = action.payload;
+    })
+    .addCase(editEmail.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error;
     })
     .addCase(deleteEmail.fulfilled, (state, action) => {
       state.emailList = action.payload;
