@@ -80,11 +80,11 @@ module.exports = (app) => {
     const { newEmail } = req.body;
 
     if (!newEmail) {
-      return res.status(400).send({ error: "Email is required." });
+      return res.status(400).send("Email is required");
     }
 
     if (!emailRegex.test(newEmail)) {
-      return res.status(400).send({ error: "Invalid email format." });
+      return res.status(400).send("Invalid email format.");
     }
 
     try {
@@ -95,7 +95,7 @@ module.exports = (app) => {
       }
 
       if (profile.emailList.includes(newEmail)) {
-        return res.status(400).send({ error: "Email already exists in the list." });
+        return res.status(400).send("Email already exists in the list.");
       }
 
       profile.emailList.push(newEmail);

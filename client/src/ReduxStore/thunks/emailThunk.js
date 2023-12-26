@@ -13,16 +13,29 @@ const fetchEmails = createAsyncThunk('emails/fetchEmails', async () => {
   }
 });
 
-const addEmail = createAsyncThunk('emails/addEmail', async (email) => {
+const addEmail = createAsyncThunk('emails/addEmail', async (newEmail, { dispatch }) => {
+
+
   try {
-    const response = await axios.post('/api/profile/add-email', { email });
+    const response = await axios.patch('/api/profile/email', { newEmail });
+    dispatch(setAlertWithTimeout({ msg: 'Email Added', alertType: 'success' }));
     return response.data;
   }
 
   catch (error) {
     console.error(error);
+
+     // Extracting the message from the server response
+     const errorMessage = error.response && error.response.data ? error.response.data : 'An unexpected error occurred';
+  
+     dispatch(setAlertWithTimeout({ msg: errorMessage, alertType: 'danger' }));
+
+     return rejectWithValue(error.response.data);
+   
   }
 });
+
+
 
 const editEmail = createAsyncThunk('emails/editEmail', async ({
   oldEmail,
@@ -51,6 +64,8 @@ const editEmail = createAsyncThunk('emails/editEmail', async ({
     const errorMessage = error.response && error.response.data ? error.response.data : 'An unexpected error occurred';
   
     dispatch(setAlertWithTimeout({ msg: errorMessage, alertType: 'danger' }));
+
+    return rejectWithValue(error.response.data);
   }
   
 });

@@ -73,11 +73,16 @@
       margin-bottom: 2rem;
     }
 
+    .btn-open-list {
+      justify-self: end;
+    }
+
     .submitButtons {
       display: flex;
       gap: 1rem;
       align-items: center;
       justify-self: flex-end;
+      margin-top: 6rem;
     }
 
   }

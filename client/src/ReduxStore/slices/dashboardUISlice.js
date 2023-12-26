@@ -18,10 +18,26 @@ export const dashBoardUiSlice = createSlice({
     },
     toggleUiMode: (state) => {
       state.uiMode = state.uiMode === 'light' ? 'dark' : 'light';
-    }
+    },
+    toggleModal: (state, action) => {
+      state.isModalOpen = !state.isModalOpen;
+      state.origin = action.payload;
+    },
+    openModal: (state, action) => {
+      state.isModalOpen = true;
+      state.origin = action.payload;
+    },
+    closeModal: (state) => {
+      state.isModalOpen = false;
+      state.origin = null;
+    },
+    setOrigin: (state, action) => {
+      state.origin = action.payload;
+    },
   },
 });
 
-export const { toggleSideBar, toggleUiMode } = dashBoardUiSlice.actions;
+export const { toggleSideBar, toggleUiMode, openModal, closeModal, setOrigin,
+toggleModal } = dashBoardUiSlice.actions;
 
 export const dashBoardUiReducer = dashBoardUiSlice.reducer;

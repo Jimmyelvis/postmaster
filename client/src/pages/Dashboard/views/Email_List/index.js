@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { Panel } from 'components/ui/Layout/Panel';
 import SurveyIcon from "assets/images/survey-icon.svg";
 import SortableTable from 'components/ui/Table/SortableTable';
@@ -12,8 +11,13 @@ import Cancel from 'assets/images/cancel.svg';
 import { getFormattedDate } from 'utils/formatDate';
 import { faker } from '@faker-js/faker';
 import { Avatar } from 'pages/Dashboard/components/Avatar';
-import { fetchEmails, editEmail, deleteEmail, multiDeleteEmails } from 'ReduxStore';
-
+import { 
+    fetchEmails, editEmail, deleteEmail, 
+    multiDeleteEmails
+} from 'ReduxStore';
+import { openModal, closeModal, setOrigin } from "ReduxStore/slices/dashboardUISlice";
+import Modal from 'pages/Dashboard/components/Modal';
+import { AddEmails } from 'pages/Dashboard/views/Email_List/components/AddEmails';
 
 export const Email_List = () => {
   const [list, setList] = useState([])
@@ -31,6 +35,21 @@ export const Email_List = () => {
     auth: store.auth,
     emails: store.emails.emailList,
   }));
+
+    /**
+ * Piece of state that will be used to determine, what component
+ * that wil be rendered in the modal
+ */
+  const [modalTarget, setModalTarget] = useState(null);
+
+
+  /*
+    This will be used to determine what component called the modal
+    this will be passed as a prop to the modal component, and the 
+    modal context 
+  */
+  const [compOrigin, setCompOrigin] = useState(null);
+
 
   useEffect(() => {
     dispatch(fetchEmails());
@@ -59,6 +78,8 @@ export const Email_List = () => {
     } else {
       dispatch(deleteEmail(emailToDelete));
     }
+
+    setCheckedEmails([]);
   }
 
 
@@ -92,6 +113,16 @@ export const Email_List = () => {
     } else {
       setCheckedEmails(emails.map(item => item)); // Check all
     }
+  };
+
+/**
+   * Check what is the target state, then determine
+   * what component should be rendered in the modal.
+   */
+  const checkTarget = () => {
+    return (
+      <AddEmails />
+    );
   };
 
 
@@ -253,7 +284,26 @@ export const Email_List = () => {
 
       <div className="email-list__emails">{renderEmails()}</div>
 
-      <img src={AddBtn} alt="" className="icon icon-add" />
+      <img 
+        src={AddBtn} alt="" 
+        className="icon icon-add"
+        onClick={() => {
+          const origin = "add emails";
+          setModalTarget("add emails modal");
+          setCompOrigin(origin);
+          dispatch(openModal(origin));
+        }}
+      />
+
+      <Modal
+        selector={"#modal"}
+        // overlayColor={`
+        //   ${modalTarget === "search_overlay" ? "rgba(255, 255, 255, 0.95)" : "rgba(0,0,0,0.7)"}`}
+        modalTarget={modalTarget}
+        modalOrigin={compOrigin}
+      >
+        {checkTarget()}
+      </Modal>
     </Panel>
   );
 }

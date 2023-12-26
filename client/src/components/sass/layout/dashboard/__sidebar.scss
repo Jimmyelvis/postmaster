@@ -9,6 +9,7 @@
   position: fixed;
   top: 10rem;
   left: 3.4rem;
+  z-index: 3000;
 
   @include respond(bp-large) {
    display: none;

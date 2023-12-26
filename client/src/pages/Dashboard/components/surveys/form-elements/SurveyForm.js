@@ -6,13 +6,11 @@ import TextAreaFieldGroup from './TextAreaFieldGroup';
 import SurveyTextarea from './SurveyTextarea';
 import { invalidEmails } from 'utils/validateEmails';
 import { getFormValues, clearFormValues } from 'ReduxStore/slices/surveysSlice';
+import { openModal, closeModal, setOrigin } from "ReduxStore/slices/dashboardUISlice";
+import Modal from 'pages/Dashboard/components/Modal';
+import { EmailList } from 'pages/Dashboard/views/SurveyNew/components/EmailList';
 
-import { getFormattedDate } from 'utils/formatDate';
 
-
-/*
-  todo: We most likely need to cut the useState and it's value from Surveynew.js and paste it here. And then see if we can set the values in useSate to the values in the redux store.
-*/
 
 
 const SurveyForm = ({ review }) => {
@@ -27,6 +25,32 @@ const SurveyForm = ({ review }) => {
     body: `${state.surveys.body}`,
     recipients: `${state.surveys.recipients}`,
   });
+
+    /**
+   * Piece of state that will be used to determine, what component
+   * that wil be rendered in the modal
+   */
+    const [modalTarget, setModalTarget] = useState(null);
+
+
+    /*
+      This will be used to determine what component called the modal
+      this will be passed as a prop to the modal component, and the 
+      modal context 
+    */
+    const [compOrigin, setCompOrigin] = useState(null);
+
+    /**
+     * Check what is the target state, then determine
+     * what component should be rendered in the modal.
+     * Useful for when a file may have multiple components
+     * that can call the modal
+     */
+    const checkTarget = () => {
+      return (
+        <EmailList/>
+      );
+    };
 
 
   /*
@@ -223,6 +247,18 @@ const SurveyForm = ({ review }) => {
     <React.Fragment>
       <form>
         {renderFields()}
+        <button 
+            className="btn btn--primary btn-open-list"
+            onClick={(e) => {
+              e.preventDefault();
+              const origin = "open email list";
+              setModalTarget("email list modal");
+              setCompOrigin(origin);
+              dispatch(openModal(origin));
+            }}
+        >
+          Open Email List
+        </button>
         <div className="submitButtons">
           <Link to="/dashboard" className="btn btn--danger">
             Cancel
@@ -243,6 +279,14 @@ const SurveyForm = ({ review }) => {
           </button>
         </div>
       </form>
+
+      <Modal
+        selector={"#modal"}
+        modalTarget={modalTarget}
+        modalOrigin={compOrigin}
+      >
+        {checkTarget()}
+      </Modal>
     </React.Fragment>
   );
 };

@@ -1,0 +1,59 @@
+.add-mails-wrapper {
+  grid-column: col-start 1/ col-end 12;
+  padding: 8rem;
+  min-height: 50rem;
+  height: auto;
+
+  .email-list__heading {
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 7rem;
+    flex-direction: column;
+    width: 71rem;
+    align-items: center;
+
+    @include respond(bp-medium) {
+     width: 100%;   
+    }
+
+    .icon-heading {
+      display: flex;
+      gap: 2rem;
+      
+      .heading-2 {
+        align-self: center;
+        height: 2rem;
+       
+
+        @include respond(bp-smallest) {
+         font-size: 3rem;
+        }
+      }
+  
+      .email-list-icon {
+        width: 9.1rem;
+        grid-column: 1 / 1;
+        justify-self: center;
+
+        @include respond(bp-smallest) {
+         width: 7.1rem; 
+        }
+      }
+
+      .survey-list-icon {
+        width: 7rem;
+      }
+
+    }
+
+
+    p {
+      font-size: 1.8rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+
+  }
+
+}

@@ -3,10 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Panel } from "components/ui/Layout/Panel";
 import { dashBoardPath } from "pages/Dashboard/utils/constants";
-import SurveyForm from "../components/surveys/form-elements/SurveyForm";
-import SurveyFormReview from "../components/surveys/form-elements/SurveyFormReview";
+import SurveyForm from "../../components/surveys/form-elements/SurveyForm";
+import SurveyFormReview from "../../components/surveys/form-elements/SurveyFormReview";
 import SurveyIcon from "assets/images/survey-icon.svg";
-import Payments from "../components/Payments";
+import Payments from "../../components/Payments";
 
 export const SurveyNew = () => {
   const [showFormReview, setShowFormReview] = useState(false);
