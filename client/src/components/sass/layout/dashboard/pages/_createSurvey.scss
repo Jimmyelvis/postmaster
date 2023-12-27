@@ -106,6 +106,9 @@
           font-family: $font-primary;
           font-size: 1.8rem;
           font-weight: normal;
+          display: block;
+          width: 60rem;
+          word-wrap: break-word;
         }
       }
     }

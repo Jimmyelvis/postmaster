@@ -12,11 +12,13 @@ import Btn_Credits from "assets/images/btn-Credits.svg";
 import Btn_Home from "assets/images/btn-Home.svg";
 import Btn_Add_Survey from "assets/images/btn-add-survey.svg";
 import Btn_Surveys from "assets/images/btn-Surveys.svg";
+import Btn_Email_List from "assets/images/btn-Email-list.svg";
 
 import Drk_Btn_Credits from "assets/images/btn-Credits-drk.svg";
 import Drk_Btn_Home from "assets/images/btn-Home-drk.svg";
 import Drk_Btn_Add_Survey from "assets/images/btn-Add-Survey-drk.svg";
 import Drk_Btn_Surveys from "assets/images/btn-Surveys-drk.svg";
+import Drk_Btn_Email_List from "assets/images/btn-Email-list-drk.svg";
 
 
 import Btn_Light_Mode from "assets/images/light-mode-btn.svg";
@@ -68,6 +70,12 @@ export const Sidebar = () => {
       pill: true,
       alt: 'Your Credits',
       pillvalue: user?.credits
+    },
+    {
+      icon: `${uiMode === 'light' ? Btn_Email_List : Drk_Btn_Email_List}`,
+      heading: 'Email List',
+      address: `${dashBoardPath}/email-list`,
+      alt: 'Email List'
     },
     {
       heading: 'Add Credits',

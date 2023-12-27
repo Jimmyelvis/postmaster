@@ -6,8 +6,11 @@ import SortableTable from 'components/ui/Table/SortableTable';
 import AddBtn from 'assets/images/btn-new.svg';
 import { Avatar } from 'pages/Dashboard/components/Avatar';
 import { fetchEmails } from "ReduxStore";
+import { closeModal } from "ReduxStore/slices/dashboardUISlice";
 
-export const EmailList = () => {
+export const EmailList = ({
+  setAddedEmails
+}) => {
 
   const [list, setList] = useState([])
   const [checkedEmails, setCheckedEmails] = useState([]); // State to track checked emails
@@ -120,7 +123,7 @@ export const EmailList = () => {
       <h3 className="heading-3 total-emails">
         Total Emails:
         <span className="total-emails-number">
-        {emails.length}
+        {emails?.length}
         </span> 
       </h3>
 
@@ -128,7 +131,7 @@ export const EmailList = () => {
         <h3 className="heading-3 checked-emails">
           Emails Selected:
           <span className="checked-emails-number">
-            {checkedEmails.length}
+            {checkedEmails?.length}
           </span> 
         </h3>
       ) : (
@@ -142,12 +145,10 @@ export const EmailList = () => {
     <img 
       src={AddBtn} alt="" 
       className="icon icon-add"
-      // onClick={() => {
-      //   const origin = "add emails";
-      //   setModalTarget("add emails modal");
-      //   setCompOrigin(origin);
-      //   dispatch(openModal(origin));
-      // }}
+      onClick={() => {
+        setAddedEmails(checkedEmails)
+        dispatch(closeModal())
+      }}
     />
 
   
