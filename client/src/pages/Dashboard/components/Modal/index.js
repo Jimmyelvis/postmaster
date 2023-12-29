@@ -95,9 +95,9 @@ const Modal = ({ children, selector, overlayColor, modalTarget, modalOrigin, del
    * that the modal is only rendered when the component that called
    * the modal is the one that is currently open.
    */
-  return isModalOpen ? createPortal(modalContent, document.querySelector(selector)) : null;
 
-  // return  createPortal(modalContent, document.querySelector(selector));
+  return isModalOpen && origin === modalOrigin ? createPortal(modalContent, document.querySelector(selector)) : null;
+
 };
 
 export default Modal;

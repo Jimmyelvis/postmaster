@@ -5,6 +5,14 @@
    grid-column: col-start 1/col-end 16;
   }
 
+  @include respond(bp-medium) {
+   padding: 4rem;
+  }
+
+  @include respond(bp-tiny) {
+    padding: 6rem 2rem;
+  }
+
   .survey-list__heading {
     display: flex;
     margin: 0 auto;
@@ -17,9 +25,14 @@
      width: 100%;   
     }
 
+    @include respond(bp-tiny) {
+     width: 85%;
+    }
+
     .icon-heading {
       display: flex;
       gap: 2rem;
+      margin-bottom: 2rem;
       
       .heading-2 {
         align-self: center;
@@ -64,7 +77,32 @@
 
   .survey-list__surveys {
 
+
+    td {
+
+      @include respond(bp-medium) {
+
+        .btn--primary {
+          position: absolute;
+          bottom: 3rem;
+          right: 3rem;
+          padding: 0.7rem 1.7rem;
+        }
+
+        .fas.fa-trash {
+          position: absolute;
+          top: 3rem;
+          right: 3rem;
+        }
+
+      }
+
+
+    }
+
+
   }
+
 
 
 }

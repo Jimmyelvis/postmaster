@@ -55,7 +55,10 @@
     row-gap: 2rem;
     margin-bottom: 4rem;
 
-    margin-left: 15.4rem;
+    /*
+      To keep the left edge lined up with the left edge of the search bar
+    */
+    margin-left: 5.3%; 
     margin-top: 11.6rem;
 
     @include respond(bp-large) {
@@ -63,11 +66,16 @@
       margin-left: 0;
     }
 
+    @media screen and (max-width: 56.25rem) {
+      grid-template-rows: repeat(2, max-content);
+      grid-auto-rows: max-content;
+    }
+
     @include respond(bp-medium) {
       grid-template-columns: [full-start] 4.5rem [center-start] repeat(16, [col-start] minmax(min-content, 174.4rem) [col-end]) [center-end] 4.5rem [full-end];
     }
 
-    @include respond(bp-smallest) {
+    @include respond(bp-small) {
       grid-template-columns: [full-start] 2rem [center-start] repeat(16, [col-start] minmax(min-content, 174.4rem) [col-end]) [center-end] 2rem [full-end];
     }
   }

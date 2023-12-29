@@ -21,9 +21,9 @@ const Landing = () => {
 
   return (
     <React.Fragment>
-        <Jumbotron />
+        {/* <Jumbotron />
         <Sellingpoints />
-        <Carousel />
+        <Carousel /> */}
       
     </React.Fragment>
   );

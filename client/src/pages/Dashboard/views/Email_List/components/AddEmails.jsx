@@ -36,7 +36,7 @@ export const AddEmails = () => {
             label="Survey Title"
             type="text"
             name="title"
-            placeholder="Enter A Title For Your Survey"
+            placeholder="Add a new email"
             onChange={onChange}
             value={newEmail}
             required
@@ -46,9 +46,6 @@ export const AddEmails = () => {
               className="btn btn--primary"
               onClick={(e) => {
                 e.preventDefault();
-                console.log('====================================');
-                console.log('email', newEmail);
-                console.log('====================================');
                 submitEmail();
               }}
           >

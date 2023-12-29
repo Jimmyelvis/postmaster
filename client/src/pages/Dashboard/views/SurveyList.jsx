@@ -75,16 +75,19 @@ export const SurveyList = () => {
 
     const config = [
       {
+        mobile_label: 'Title',
         label: 'Title',
         render: (surveyrecord) => surveyrecord.title,
         sortValue: (surveyrecord) => surveyrecord.title,
       },
       {
+        mobile_label: 'Date Sent',
         label: 'Date Sent',
         render: (surveyrecord) => getFormattedDate(surveyrecord.dateSent),
         sortValue: (surveyrecord) => surveyrecord.dateSent,
       },
       {
+        // mobile_label: 'Details',
         label: 'Details',
         render: (surveyrecord) => (
           <button className="btn btn--primary">
@@ -93,6 +96,7 @@ export const SurveyList = () => {
         ),
       },
       {
+        // mobile_label: 'Delete',
         label: 'Delete',
         render: (surveyrecord) => (
           <a

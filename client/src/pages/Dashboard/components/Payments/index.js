@@ -19,7 +19,6 @@ const Payments = ({ handleToken }) => {
         name="The PostMaster"
         description="$5 for 5 email credits"
         image={Logo}
-        // ComponentClass="div"
         amount={500}
         token={token => handleToken(token)}
         stripeKey={process.env.REACT_APP_STRIPE_KEY}
@@ -29,7 +28,6 @@ const Payments = ({ handleToken }) => {
             alt="Add Credits" 
             className='icon' 
           />
-        
       </StripeCheckout>
     
   );

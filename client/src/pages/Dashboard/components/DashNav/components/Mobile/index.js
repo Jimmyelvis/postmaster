@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { motion } from "framer-motion";
-import { dashBoardPath } from "../../utils/constants";
-import Payments from "../Payments";
+import { dashBoardPath } from "pages/Dashboard/utils/constants";
+import Payments from "pages/Dashboard/components/Payments";
 
 // Buttons
 import Btn_Add from "assets/images/btn-add.svg";
@@ -19,21 +18,24 @@ import Drk_Btn_Home from "assets/images/btn-Home-drk.svg";
 import Drk_Btn_Add_Survey from "assets/images/btn-Add-Survey-drk.svg";
 import Drk_Btn_Surveys from "assets/images/btn-Surveys-drk.svg";
 import Drk_Btn_Email_List from "assets/images/btn-Email-list-drk.svg";
+import LogOutBtn from "assets/images/log-out-btn.svg";
+import DrkLogOutBtn from "assets/images/drk-log-out-btn.svg";
 
 
 import Btn_Light_Mode from "assets/images/light-mode-btn.svg";
 import Btn_Dark_Mode from "assets/images/dark-mode-btn.svg";
-import { toggleUiMode } from "ReduxStore/slices/dashboardUISlice";
+import { toggleUiMode, closeModal } from "ReduxStore/slices/dashboardUISlice";
 
-export const Sidebar = () => {
+export const Mobile = () => {
 
-  const isSideBarOpen = useSelector((state) => state.dashBoardUi.isSideBarOpen);
   const uiMode = useSelector((state) => state.dashBoardUi.uiMode);
   const dispatch = useDispatch();
   const { surveyList } = useSelector((state) => state.surveys);
   const { user } = useSelector((state) => state.auth);
 
-
+  /**
+   * useState and other variables
+   */
 
   const Links = [
     {
@@ -76,107 +78,79 @@ export const Sidebar = () => {
     },
   ]
 
-  const getDesktopLinks = () => {
+
+  /**
+   * Functions
+   */
+  const getMobileLinks = () => {
 
     return Links.map((link, index) => {
       // Check if the link has an address
       const linkContent = (
-        <motion.div 
-          className="nav-link"
-          key={index}
-        >
+        <>
+          {link.icon && <img src={link.icon} alt={link.alt} className="icon" />}
 
-          {
-          
-            link.icon && <img src={link.icon} alt={link.alt} className="icon" />
-          }
+          {link.component && link.component}
 
-          {
-            link.component && link.component
-          }
-
-          <motion.h3
+          <h3 
             className="heading-3 link-heading"
-            initial={{
-              opacity: 0,
-              display: 'none',
-            }}
-            animate={
-              isSideBarOpen ? {
-                opacity: 1,
-                display: 'block',
-              } : {
-                opacity: 0,
-                display: 'none',
-              }
-            }
-            transition={{
-              duration: 1,
-              linear: true,
-              opacity: {
-                delay: 1,
-              },
-              display: {
-                delay: 1.5,
-              }
+            onClick={() => {
+              link.heading !== 'Add Credits' && link.heading !== 'Your Credits' ? dispatch(closeModal()) :
+              console.log('come on man', link.heading);
             }}
           >
-            {link.heading}
-          </motion.h3>
-       
+              {link.heading}
+          </h3>
 
-          {link.pill && <div className="pill">
-              {link.pillvalue}
-            </div>}
-        </motion.div>
+          {link.pill && <div className="pill">{link.pillvalue}</div>}
+        </>
       );
   
       // If it has an address, wrap it with a Link component
       if (link.address) {
         return (
-          <Link to={link.address} key={index}>
+          <Link to={link.address} key={index} className="nav-link">
             {linkContent}
           </Link>
         );
       }
   
       // If no address, return the content as is
-      return linkContent;
+      return (
+        <div 
+          className="nav-link"
+          key={index}
+        >
+          {linkContent}
+        </div>
+      );
     });
   }
 
-  const getBgclass = () => {
-    let classes = "bg";
-    if (uiMode === "dark") {
-      classes += " bg-dark";
-    }
-    if (isSideBarOpen) {
-      classes += uiMode === "dark" ? " active-dark" : " active";
-    }
-    return classes;
-  };
-  
-
-
   return (
-    <div className='dashboard-sidebar'>
-      
-      <div 
-        className={getBgclass()}
-      >
+    <div className="mobile-menu mobile-menu-dashboard">
+      <div className="user">
+        <a
+          href="/api/logout"
+          onClick={() => {
+            dispatch(closeModal);
+          }}
+        >
+          <img src={uiMode === "dark" ? DrkLogOutBtn : LogOutBtn} alt="" className="icon logout-btn" />
+        </a>
+        <h3 className="heading-3">
+           {user?.username}
+        </h3>
+      </div>
 
-        <div className="nav-links">
-          {getDesktopLinks()}
-        </div>
+      <div className="nav-links">{getMobileLinks()}</div>
 
-        <img 
+      <img 
           src={`${uiMode === 'light' ? Btn_Dark_Mode : Btn_Light_Mode}`} 
           alt="" 
           className="icon icon-settings" 
           onClick={() => dispatch(toggleUiMode())}
         />
-        
-      </div>
     </div>
-  )
+  );
 }

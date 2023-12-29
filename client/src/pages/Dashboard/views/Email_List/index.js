@@ -120,9 +120,13 @@ export const Email_List = () => {
    * what component should be rendered in the modal.
    */
   const checkTarget = () => {
-    return (
-      <AddEmails />
-    );
+
+      if (modalTarget === 'add emails modal') {
+
+        console.log('add emails modal')
+       return  <AddEmails />
+      }
+    
   };
 
 
@@ -146,7 +150,7 @@ export const Email_List = () => {
         )
       },
       {
-        label: <p className="sort">Email</p>,
+        label: 'Email',
         render: (email, index) => (
           <div className="email" key={index}>
               <Avatar  email={email}  />
@@ -249,7 +253,7 @@ export const Email_List = () => {
     <Panel className="panel-dashboard email-list">
       <div className="email-list__heading mb-lg">
         <div className="icon-heading">
-          <img src={SurveyIcon} alt="" className="icon survey-list-icon" />
+          <img src={SurveyIcon} alt="" className="icon email-list-icon" />
           <h2 className="heading-2 mb-md">Email List</h2>
         </div>
 

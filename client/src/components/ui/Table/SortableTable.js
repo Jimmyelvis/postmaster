@@ -61,6 +61,11 @@ function SortableTable(props) {
     };
   });
 
+
+  /*
+   This is the select dropdown that appears at the the top, to replace the header row
+   on the table in mobile view. The sorting options comes from the labels in the component that is using this table. If label is anything other than a string it won't display properly ie.. [object Object].
+  */
   const renderSelectDropdown = config.map((column) => {
 
     if (!column.sortValue) {

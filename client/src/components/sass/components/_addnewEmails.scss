@@ -56,4 +56,11 @@
 
   }
 
+  form {
+    display: grid;
+    grid-template-columns: 53rem 11rem;
+    justify-content: center;
+    column-gap: 2rem;
+  }
+
 }

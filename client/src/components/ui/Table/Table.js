@@ -32,9 +32,12 @@ const Table = ({
       return (
         <td  
           key={column.label} 
-          data-label={column.label}
+          data-label={column.mobile_label ? column.mobile_label + ":" : ""}
+          className="mobile-label"
         >
-          {column.render(rowData)}
+          <span className="value">
+            {column.render(rowData)}
+          </span>
         </td>
       );
     });

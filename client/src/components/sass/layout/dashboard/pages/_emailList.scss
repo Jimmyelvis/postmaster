@@ -27,9 +27,14 @@
      width: 100%;   
     }
 
+    @include respond(bp-tiny) {
+      width: 85%;
+    }
+
     .icon-heading {
       display: flex;
       gap: 2rem;
+      margin-bottom: 2rem;
       
       .heading-2 {
         align-self: center;
@@ -84,10 +89,24 @@
         lighten($alternateblue, 15%) 0%, $alternateblue 80%)
       );
 
+      @include respond(bp-small) {
+        flex-direction: column;
+        align-items: center;
+      }
+
       .heading-3 {
         transition: all 400ms ease;
         width: 40%;
         @include customBorderBtm(rgba(107, 131, 225, 0), 2px, 175%);
+
+        @include respond(bp-medium) {
+          font-size: 2.4rem;
+          width: 60%;
+        }
+
+        // @include respond(bp-smallest) {
+        //   font-size: 1.4rem;
+        // }
 
         .editable-input {
           width: 100% !important;
@@ -110,6 +129,11 @@
           color: var(--edit-text-color) !important;
           @include customBorderBtm(rgba(107, 131, 225, 0.142), 2px, 100%);
 
+          @include respond(bp-medium) {
+            transform: translateX(10%);
+            @include customBorderBtm(rgba(107, 131, 225, 0.142), 2px, 115%);
+          }
+
           &::after {
             content: '';
             margin: 0;
@@ -124,8 +148,20 @@
         width: auto;
         gap: 2rem;
 
+        @include respond(bp-medium) {
+         right: 15%;
+        }
+
         .icon-checkmark,.icon-cancel {
           width: 2.4rem;
+        }
+      }
+
+      .avatar {
+
+        @include respond(bp-medium) {
+          width: 5.4rem;
+          height: 5.4rem;
         }
       }
     }
@@ -133,6 +169,12 @@
     // extra bit of padding for each email row
     td {
       padding: 2rem 0 !important;
+
+      @include respond(bp-medium) {
+        grid-template-columns: 1fr;
+        row-gap: 1rem;
+        padding: 0.8rem 0 !important;
+      }
     }
 
     .icon {
@@ -143,6 +185,31 @@
     .checkbox-wrapper {
       width: 100%;
       padding-left: 10%;
+
+      @include respond(bp-medium) {
+        position: absolute;
+        left: 93%;
+        padding: 0;
+        width: auto;
+      }
+    }
+
+    .icon-delete, .icon-edit {
+     
+      @include respond(bp-medium) {
+        position: absolute;
+        bottom: 3rem;
+        width: 4.4rem;
+        height: 4.4rem;
+      }
+    }
+
+    .icon-edit {
+      left: 70%;
+    }
+
+    .icon-delete {
+      left: 90%;
     }
   
   }
@@ -152,6 +219,11 @@
     left: 100%;
     width: 8rem;
     bottom: 3rem;
+    transform: translateX(100%);
+
+    @include respond(bp-smallest) {
+      transform: translateX(60%);    
+    }
   }
 
   .total-emails, .checked-emails {

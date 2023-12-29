@@ -2,12 +2,27 @@
   grid-column: col-start 1/ col-end 11;
   // height: max-content;
 
+  @media screen and (max-width: 56.25rem) {
+    grid-column: col-start 1/ col-end 16;
+  }
+
+  .mainarea {
+    max-width: 90%;
+
+    @include respond(big-desktop) {
+      max-width: 80%;
+    }
+  }
  
 }
 
 .recent-surveys-list{
   grid-column: col-start 1/ col-end 11;
   // height: max-content;
+
+  @media screen and (max-width: 56.25rem) {
+    grid-column: col-start 1/ col-end 16;
+  }
 
   .recent-surveys-heading {
     display: flex;
@@ -26,6 +41,13 @@
   .recent-surveys {
     display: flex;
     gap: 7rem;
+
+    @include respond(bp-medium) {
+      flex-direction: column;
+      padding: 5rem 0;
+      max-width: 50rem;
+      margin: 0 auto;
+    }
 
     .recent-survey{
       display: grid;
@@ -62,6 +84,15 @@
   padding: 0;
   overflow: hidden;
 
+  @media only screen and (max-width: 100rem) {
+    grid-column: col-start 12/col-end 16;
+  }
+
+  @media screen and (max-width: 56.25rem) {
+    grid-column: col-start 1/ col-end 16;
+    grid-row: 3 / -1;
+  }
+
   .survey-stats-heading{
     height: 27.5rem;
     display: grid;
@@ -73,13 +104,24 @@
       justify-content: center;
       gap: 2rem;
 
+      // 1400px
+      @media screen and (max-width: 87.5rem) {
+        flex-direction: column;
+        gap: 0;
+      }
+
       .heading-3 {
-        font-size: 3.3rem;
+        font-size: 3rem;
         color: $white;
       }
 
       .survey-icon {
-        width: 10.4rem;
+        width: 7rem;
+
+        // 1400px
+        @media screen and (max-width: 87.5rem) {
+          width: 5.1rem;
+        }
       }
 
     }
@@ -92,7 +134,7 @@
 
       li {
         display: grid;
-        grid-template-columns: 80% 1fr;
+        grid-template-columns: 76% 1fr;
         gap: 5rem;
         width: 90%;
         font-size: 2rem;

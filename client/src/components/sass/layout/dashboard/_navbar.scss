@@ -5,7 +5,7 @@
   --searchInputBg: #{$white};
   --searchInputBorder: rgba(211, 215, 233, 0.59);
   --searchInputShadow: 0px 0px 6px 4px rgb(146 152 176 / 12%) inset;
-  --searchBoxColor: #{maintext};
+  --searchBoxColor: #{$maintext};
   --searchBoxOuterShadow: 0px 2px 5px 0px rgb(160 164 179 / 45%);
 }
 
@@ -42,6 +42,10 @@
     cursor: pointer;
     position: fixed;
     left: 5.4rem;
+
+    @include respond(bp-tiny) {
+     left: 1.7rem;
+    }
   }
 
 
@@ -57,7 +61,7 @@
 
   .search-input {
     background: var(--searchInputBg);
-    grid-column: col-start 3/col-end 5;
+    grid-column: col-start 2/col-end 5;
     position: relative;
     border-radius: 2.7rem;
     display: flex;
@@ -67,6 +71,37 @@
     box-shadow: var(--searchInputShadow);
     border: 3px solid var(--searchInputBorder);
     transition: all 600ms ease-in-out;
+
+    // 1600px / 16px = 100rem
+    @media (max-width: 100rem) {
+      grid-column: col-start 2/col-end 6;
+    }
+
+    @include respond(bp-large) {
+      grid-column: col-start 2/col-end 7;
+    }
+
+    @include respond(bp-medium) {
+      grid-column: col-start 4/col-end 13;
+    }
+
+    @include respond(bp-small) {
+      grid-column: col-start 4/col-end 16;
+    }
+
+    @include respond(bp-tiny) {
+      grid-column: col-start 2/col-end 16;
+    }
+
+    &:hover {
+      border: 3px solid rgb(254 254 254 / 15%);
+      box-shadow: var(--searchInputShadow);
+    }
+
+    &:focus-within {
+      border: 3px solid rgb(254 254 254 / 15%);
+      box-shadow: var(--searchInputShadow);
+    }
     
     ::placeholder {
       font-size: 1.6rem;
@@ -87,22 +122,6 @@
       background-color: transparent;
     }
 
-    // .search-dropdown {
-    //   width: 200%;
-    //   height: 0;
-    //   position: absolute;
-    //   left: 0;
-    //   top: 100%;
-    //   padding: 3rem;
-    //   box-shadow: 0px 2px 5px 0px rgba(160, 164, 179, 0.69);
-    //   display: none;
-    //   transition: all 600ms ease-in-out;
-
-    //   &.show {
-    //     display: flex;
-    //     height: auto;
-    //   }
-    // }
 
     .search-dropdown {
       width: 200%;
@@ -117,6 +136,11 @@
       visibility: hidden;
       transition: opacity 600ms ease-in-out, transform 600ms ease-in-out, visibility 0s linear 1000ms; // Add delay to visibility
       display: flex;
+
+      @include respond(bp-tiny) {
+        width: 140%;
+        left:-23%;
+      }
   
       &.show {
           opacity: 1;
@@ -162,10 +186,18 @@
   }
 
   .user {
-    grid-column: col-start 15 / -1;
+    grid-column: col-start 14 / -1;
     display: flex;
     align-items: center;
     gap: 2rem;
+
+    @include respond(bp-medium) {
+     display: none;
+    }
+
+    @include respond(bp-large) {
+     grid-column: col-start 13 / -1;
+    }
 
     .heading-3 {
       font-size: 1.8rem;
