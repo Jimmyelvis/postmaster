@@ -10,6 +10,7 @@ import desc from 'images/arrow-down.svg';
 import SurveyIcon from "assets/images/survey-icon.svg";
 import SortableTable from 'components/ui/Table/SortableTable';
 import { getFormattedDate } from 'utils/formatDate';
+import { SectionHeading } from '../components/SectionHeading';
 
 
 export const SurveyList = () => {
@@ -133,19 +134,16 @@ export const SurveyList = () => {
     
       <Panel className="panel-dashboard survey-list">
 
-          <div className="survey-list__heading mb-lg">
-
-            <div className="icon-heading">
-              <img src={SurveyIcon} alt="" className='icon survey-list-icon' />
-              <h2 className="heading-2 mb-md">Your Surveys</h2>
-            </div>
+          <SectionHeading
+            title='Your Surveys'
+          >
 
             <p>
               These are your surveys that you have sent out. Starting from the
               most recent one.
             </p>
 
-          </div>
+          </SectionHeading>
 
 
           <div className="survey-list__surveys">

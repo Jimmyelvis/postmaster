@@ -1,5 +1,5 @@
-.login {
-  width: 114.1rem;
+.auth-form {
+  grid-column: col-start 3 / col-end 10;
   height: 71.9rem;
   display: flex;
   background-image: url(/images/Login-bg.svg);
@@ -242,6 +242,10 @@
     .form-control {
       position: relative;
       padding-bottom: 2.6rem;
+      position: relative;
+      padding-bottom: 2.6rem;
+      box-shadow: none;
+      border: none;
 
       @media only screen and (max-width: $bp-large) {
 

@@ -1,0 +1,52 @@
+.section-heading {
+  display: flex;
+  margin: 0 auto;
+  margin-bottom: 7rem;
+  flex-direction: column;
+  width: 71rem;
+  align-items: center;
+
+  @include respond(bp-medium) {
+   width: 100%;   
+  }
+
+  @include respond(bp-tiny) {
+    width: 85%;
+  }
+
+  .icon-heading {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    
+    .heading-2 {
+      align-self: center;
+      height: 2rem;
+     
+
+      @include respond(bp-smallest) {
+       font-size: 3rem;
+      }
+    }
+
+    .survey-icon {
+      width: 9.1rem;
+      grid-column: 1 / 1;
+      justify-self: center;
+
+      @include respond(bp-smallest) {
+       width: 7.1rem; 
+      }
+    }
+
+  }
+
+
+  p {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+  }
+
+
+}

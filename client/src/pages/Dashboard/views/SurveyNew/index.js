@@ -7,6 +7,7 @@ import SurveyForm from "../../components/surveys/form-elements/SurveyForm";
 import SurveyFormReview from "../../components/surveys/form-elements/SurveyFormReview";
 import SurveyIcon from "assets/images/survey-icon.svg";
 import Payments from "../../components/Payments";
+import { SectionHeading } from "pages/Dashboard/components/SectionHeading";
 
 export const SurveyNew = () => {
   const [showFormReview, setShowFormReview] = useState(false);
@@ -36,7 +37,7 @@ export const SurveyNew = () => {
       return (
         <>
           <div className="icon-heading">
-            <img src={SurveyIcon} alt="" className="icon survey-list-icon" />
+            <img src={SurveyIcon} alt="" className="icon survey-icon" />
             <h2 className="heading-2 mb-md">Survey Review</h2>
           </div>
           <p>Review your entries and make sure everything is correct</p>
@@ -46,7 +47,7 @@ export const SurveyNew = () => {
       return (
         <>
           <div className="icon-heading">
-            <img src={SurveyIcon} alt="" className="icon survey-list-icon" />
+            <img src={SurveyIcon} alt="" className="icon survey-icon" />
             <h2 className="heading-2 mb-md">Survey Creation</h2>
           </div>
 
@@ -58,7 +59,7 @@ export const SurveyNew = () => {
 
   return (
     <Panel className="panel-dashboard survey-creation">
-      <div className="survey-list__heading mb-lg">
+      <div className="section-heading mb-lg">
         {getHeading()}
       </div>
 

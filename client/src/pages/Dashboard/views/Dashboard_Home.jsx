@@ -12,6 +12,7 @@ import { PieChart, Pie, Cell, Tooltip,
   BarChart, CartesianGrid, XAxis, YAxis, Bar, Legend,
   LabelList, Text, ResponsiveContainer
 } from "recharts";
+import { SectionHeading } from "../components/SectionHeading";
 
 
 
@@ -41,14 +42,38 @@ export const Dashboard_Home = () => {
 
   const getPieChartData = () => {
 
-    // const yes = survey?.yes;
-    // const no = survey?.no;
-  
+    const getYesNoTotals = () => {
+
+    if (!surveyList || !Array.isArray(surveyList)) return { yes: 0, no: 0 };
+    
+      let newtotal = surveyList.reduce((total, currentSurvey) => {
+        total.yes += currentSurvey.yes || 0;
+        total.no += currentSurvey.no || 0;
+    
+        return total;
+      }, { yes: 0, no: 0 });
+
+      // let subTotal = total.yes + total.no;
+
+      console.log("newtotal: ", newtotal.yes + newtotal.no);
+
+      console.log({
+        yes: newtotal.yes / (newtotal.yes + newtotal.no) * 100,
+        
+      });
+
+      return {
+        yes: newtotal.yes / (newtotal.yes + newtotal.no) * 100,
+        no: newtotal.no / (newtotal.yes + newtotal.no) * 100,
+      }
+    };
+
+   const totals = getYesNoTotals();
 
   
     const data01 = [
-      { name: "No", value: 19 },
-      { name: "Yes", value: 78 },
+      { name: "No", value: totals.no },
+      { name: "Yes", value: totals.yes },
     ];
 
         // Calculate the total value
@@ -60,7 +85,7 @@ export const Dashboard_Home = () => {
       percentage: ((item.value / total) * 100).toFixed(2) + '%' // Keeping two decimal places
     }));
 
-    console.log(dataWithPercentage);
+    // console.log(dataWithPercentage);
     
     
     // Custom label component
@@ -133,15 +158,29 @@ export const Dashboard_Home = () => {
 
   const getBarChartData = () => { 
 
+    const getYesNoTotals = () => {
+      if (!surveyList || !Array.isArray(surveyList)) return { yes: 0, no: 0 };
+    
+      return surveyList.reduce((total, currentSurvey) => {
+        total.yes += currentSurvey.yes || 0;
+        total.no += currentSurvey.no || 0;
+    
+        return total;
+      }, { yes: 0, no: 0 });
+    };
+
+    const totals = getYesNoTotals();
+
+
     const data = [
       {
         name: "Yes",
-        number: 78,
+        number: totals.yes,
         fill: "url(#colorYes)" // Add a fill property to your data objects
       },
       {
         name: "No",
-        number: 19,
+        number: totals.no,
         fill: "url(#colorNo)" // Add a fill property to your data objects
       },
     ];
@@ -210,6 +249,26 @@ export const Dashboard_Home = () => {
     )
    }
 
+
+
+  const getPercentageResponded = () => {
+    if (!surveyList || !Array.isArray(surveyList) || surveyList.length === 0) return "0%";
+  
+    let totalResponses = 0; // Initialize totalResponses to 0
+  
+    surveyList.forEach((survey) => { // Using forEach instead of map as we're not transforming the array
+      if (survey?.totalResponded) {
+        console.log("called here first");
+        totalResponses += survey.totalResponded > 0;
+      }
+    });
+  
+    console.log("totalResponses", totalResponses);
+  
+    return ((totalResponses / surveyList.length) * 100).toFixed(0) + "%";
+  };
+  
+  
 
   return (
     <>
@@ -285,10 +344,10 @@ export const Dashboard_Home = () => {
       </Panel>
 
       <Panel className="panel-dashboard recent-surveys-list">
-        <div className="recent-surveys-heading mb-md">
-          <img src={SurveyIcon} alt="" className="icon survey-icon" />
-          <h3 className="heading-3 mb-sm">Your Most Recent Surveys</h3>
-        </div>
+
+        <SectionHeading 
+          title={"Your Most Recent Surveys"}>
+        </SectionHeading>
 
         <RecentSurveyList />
       </Panel>
@@ -310,12 +369,14 @@ export const Dashboard_Home = () => {
             <ul>
               <li>
                 <h4 className="heading-4 label">Total Surveys Sent</h4>
-                <p className="paragraph">10</p>
+                <p className="paragraph">{surveyList?.length}</p>
               </li>
 
               <li>
                 <h4 className="heading-4 label">Percentage Responded</h4>
-                <p className="paragraph">80%</p>
+                <p className="paragraph">
+                  { getPercentageResponded()}
+                </p>
               </li>
             </ul>
 

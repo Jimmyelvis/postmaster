@@ -1,0 +1,131 @@
+:root {
+  --text-color: #{$dashboard-text}; // Default light theme color
+  --headings-color: #{$midnightblue}; // Default light theme color
+}
+
+[data-theme="dark"] {
+  --text-color: #{$dark-dashboard-text}; // Dark theme color
+  --headings-color: #{$alternateblue};
+}
+
+.profile-page {
+  grid-column: col-start 1/col-end 8;
+
+  @include respond(bp-large) {
+    grid-column: col-start 1/col-end 16;
+   }
+
+   @include respond(bp-tiny) {
+    padding: 3rem;
+   }
+
+  .create-profile {
+    max-width: 80rem;
+    margin: 0 auto;
+
+    form {
+     margin: 0 auto;
+     display: grid;
+  
+     .field-group {
+       margin-bottom: 2rem;
+     }
+  
+     .submitButtons {
+       display: flex;
+       gap: 1rem;
+       align-items: center;
+       justify-self: flex-end;
+       margin-top: 6rem;
+     }
+
+     .btn-group {
+      display: flex;
+      justify-self: end;
+      margin-top: 2rem ;
+      gap: 1rem;
+     }
+  
+   }
+
+  }
+
+  .edit-profile, .view-profile {
+    display: grid;
+    gap: 3rem;
+    max-width: 100rem;
+    margin: 0 auto;
+
+  }
+
+  .view-profile {
+
+    .profile-field {
+      display: grid;
+      grid-template-columns: 20ch 70%;
+      font-size: 2rem;
+      align-items: baseline;
+      column-gap: 2rem;
+
+      .profile-field-label {
+        color: $midnightblue;
+        font-family: 'serenity';
+        font-size: 2.3rem;
+      }
+    }
+
+  }
+
+  .edit-profile {
+
+    .entry {
+      display: grid;
+      grid-template-columns: 20ch 70%;
+      grid-template-columns: 20ch 1fr 3rem 3rem;
+      font-size: 2rem;
+      align-items: baseline;
+      column-gap: 2rem;
+
+      .heading-3 {
+        font-size: 2.2rem;
+      }
+
+    }
+
+    .field-group {
+    }
+
+    .btn--primary {
+      justify-self: end;
+    }
+  }
+
+  .profile-tabs {
+    background: #bae1ff;
+    max-width: 60rem;
+    margin: 6rem auto;
+    display: flex;
+    padding: 2rem;
+    list-style: none;
+    justify-content: center;
+    gap: 3rem;
+    border-radius: 1.2rem;
+    box-shadow: inset 0px 0px 5px 5px rgb(118 159 191 / 43%);
+    border: 5px solid rgb(223 232 242);
+
+    li {
+      font-size: 2.1rem;
+      font-weight: bold;
+      color: #72b1e1;
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .active {
+      color: $white;
+      transition: all .2s;
+    }
+  }
+
+
+}

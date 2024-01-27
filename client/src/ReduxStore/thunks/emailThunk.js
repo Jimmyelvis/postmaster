@@ -26,9 +26,9 @@ const addEmail = createAsyncThunk('emails/addEmail', async (newEmail, { dispatch
     console.error(error);
 
      // Extracting the message from the server response
-     const errorMessage = error.response && error.response.data ? error.response.data : 'An unexpected error occurred';
+    //  const errorMessage = error.response && error.response.data ? error.response.data : 'An unexpected error occurred';
   
-     dispatch(setAlertWithTimeout({ msg: errorMessage, alertType: 'danger' }));
+    dispatch(setAlertWithTimeout({ msg: error.response.data.msg, alertType: 'danger' }));
 
      return rejectWithValue(error.response.data);
    

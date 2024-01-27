@@ -28,7 +28,7 @@ module.exports = app => {
     res.send(surveys);
   });
 
-  app.get('/api/surveys', requireLogin, async (req, res) => {
+  app.get('/api/surveys-orig', requireLogin, async (req, res) => {
     const surveys = await Survey.find({
         _user: req.user.id
       })
@@ -44,6 +44,38 @@ module.exports = app => {
 
     res.send(surveys);
   });
+
+  app.get('/api/surveys', requireLogin, async (req, res) => {
+    const surveys = await Survey.aggregate([
+      { $match: { _user: mongoose.Types.ObjectId(req.user.id) } },
+      {
+        $project: {
+          title: 1,
+          body: 1,
+          subject: 1,
+          company: 1,
+          yes: 1,
+          no: 1,
+          _user: 1,
+          dateSent: 1,
+          lastResponded: 1,
+          totalResponded: {
+            $size: {
+              $filter: {
+                input: "$recipients",
+                as: "recipient",
+                cond: { $eq: ["$$recipient.responded", true] }
+              }
+            }
+          }
+        }
+      },
+      { $sort: { dateSent: -1 } }
+    ]);
+  
+    res.send(surveys);
+  });
+  
 
   // @route  Get /api/:surveyId
   // @desc   Get a specific survey

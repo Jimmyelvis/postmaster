@@ -18,6 +18,7 @@ import {
 import { openModal, closeModal, setOrigin } from "ReduxStore/slices/dashboardUISlice";
 import Modal from 'pages/Dashboard/components/Modal';
 import { AddEmails } from 'pages/Dashboard/views/Email_List/components/AddEmails';
+import { SectionHeading } from 'pages/Dashboard/components/SectionHeading';
 
 export const Email_List = () => {
   const [list, setList] = useState([])
@@ -123,7 +124,6 @@ export const Email_List = () => {
 
       if (modalTarget === 'add emails modal') {
 
-        console.log('add emails modal')
        return  <AddEmails />
       }
     
@@ -251,43 +251,91 @@ export const Email_List = () => {
 
   return (
     <Panel className="panel-dashboard email-list">
-      <div className="email-list__heading mb-lg">
-        <div className="icon-heading">
-          <img src={SurveyIcon} alt="" className="icon email-list-icon" />
-          <h2 className="heading-2 mb-md">Email List</h2>
-        </div>
 
-        <p>These are your saved emails. Click on the plus sign to add more</p>
+      <SectionHeading title="Email List">
+
+        <p>These are your saved emails. Click on the plus sign to add more
+          emails.
+          <br/> <span className='warning'>To add emails you will need to create a profile first</span>
+        </p>
 
         <h3 className="heading-3 total-emails">
           Total Emails:
           <span className="total-emails-number">
-          {emails.length}
+          {emails?.length || 0}
           </span> 
         </h3>
 
-        {checkedEmails.length > 0 ? (
+        {checkedEmails?.length > 0 ? (
           <h3 className="heading-3 checked-emails">
             Emails Selected:
             <span className="checked-emails-number">
-              {checkedEmails.length}
+              {checkedEmails?.length}
             </span> 
           </h3>
         ) : (
           ""
         )}
 
-        {checkedEmails.length === emails.length && emails.length > 0 ? (
+        {checkedEmails?.length === emails?.length && emails?.length > 0 ? (
           <h3 className="heading-3 delete-all-button" onClick={() => deleteemail()}>
             Delete All
           </h3>
         ) : (
           ""
         )}
-      </div>
+
+      </SectionHeading>
+
+      
+      {/* <div className="email-list__heading mb-lg">
+        <div className="icon-heading">
+          <img src={SurveyIcon} alt="" className="icon email-list-icon" />
+          <h2 className="heading-2 mb-md">Email List</h2>
+        </div>
+
+        <p>These are your saved emails. Click on the plus sign to add more
+          emails.
+          <br/> <span className='warning'>To add emails you will need to create a profile first</span>
+        </p>
+
+        <h3 className="heading-3 total-emails">
+          Total Emails:
+          <span className="total-emails-number">
+          {emails?.length || 0}
+          </span> 
+        </h3>
+
+        {checkedEmails?.length > 0 ? (
+          <h3 className="heading-3 checked-emails">
+            Emails Selected:
+            <span className="checked-emails-number">
+              {checkedEmails?.length}
+            </span> 
+          </h3>
+        ) : (
+          ""
+        )}
+
+        {checkedEmails?.length === emails?.length && emails?.length > 0 ? (
+          <h3 className="heading-3 delete-all-button" onClick={() => deleteemail()}>
+            Delete All
+          </h3>
+        ) : (
+          ""
+        )}
+      </div> */}
 
       <div className="email-list__emails">{renderEmails()}</div>
 
+
+  {    /*
+       TODO: If the user has NOT created a profile, we will get a big error here. There are a cuole of ways to fix this. One way is anytime a user refreshes the page make an API call to the back a see if a user has created a profile. If not then disable the add button. Show a message that says "You must create a profile before you can add emails". Another way is to check if the user has created a profile when they first login. If they have not then redirect them to the create profile page.
+
+        I think the first way is better because it will allow the user to create a profile at any time. The second way will force the user to create a profile before they can do anything else.
+
+
+      */}
       <img 
         src={AddBtn} alt="" 
         className="icon icon-add"

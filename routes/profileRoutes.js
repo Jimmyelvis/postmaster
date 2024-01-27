@@ -22,13 +22,20 @@ module.exports = (app) => {
   app.get("/api/profile", requireLogin, async (req, res) => {
     try {
       const profile = await Profile.findOne({ user: req.user.id })
+        .populate("user", ["username"])
         .select('-emailList'); // Excluding the emailList field
   
       if (!profile) {
-        return res.status(404).send({ error: "Profile not found." });
+        return res.status(404).send({ 
+          msg: "Profile not found.",
+          profile: profile,
+        });
       }
   
-      res.send(profile);
+      res.send({
+        msg: "Profile found.",
+        profile: profile,
+      });
     } catch (err) {
       res.status(500).send(err);
     }
@@ -42,7 +49,7 @@ module.exports = (app) => {
       const profile = await Profile.findOne({ user: req.user.id }, 'emailList');
   
       if (!profile) {
-        return res.status(404).send({ error: "Profile not found." });
+        return res.status(404).send({ msg: "Profile not found." });
       }
   
       res.send(profile.emailList);
@@ -73,6 +80,48 @@ module.exports = (app) => {
     }
   });
 
+  app.patch("/api/profile", requireLogin, async (req, res) => {
+
+    const { company_bio, email, 
+      company_name, company_website, company_address,
+      company_city, company_state, company_zip, company_country,
+      logo, phone 
+    } 
+    = req.body;
+  
+    try {
+      // Find the profile by user ID and update it
+      const updatedProfile = await Profile.findOneAndUpdate(
+        { user: req.user.id }, // filter by user ID
+        { 
+          company_bio, 
+          email, 
+          company_name, 
+          logo, 
+          phone,
+          company_website,
+          company_address,
+          company_city,
+          company_state,
+          company_zip,
+          company_country,
+          dateUpdated: Date.now(), // Optionally update the 'dateUpdated' field if it exists
+        },
+        { new: true, runValidators: true, projection: '-emailList' } // options: return the updated object and run validators
+      );
+  
+      // If no profile is found for the user, return an error
+      if (!updatedProfile) {
+        return res.status(404).send({ message: "Profile not found." });
+      }
+  
+      res.send(updatedProfile);
+    } catch (err) {
+      res.status(422).send(err);
+    }
+  });
+  
+
   /*
     Create a new email in the email list
   */
@@ -80,22 +129,22 @@ module.exports = (app) => {
     const { newEmail } = req.body;
 
     if (!newEmail) {
-      return res.status(400).send("Email is required");
+      return res.status(400).send({msg: "Email is required"});
     }
 
     if (!emailRegex.test(newEmail)) {
-      return res.status(400).send("Invalid email format.");
+      return res.status(400).send({msg: "Invalid email format."});
     }
 
     try {
       const profile = await Profile.findOne({ user: req.user.id });
 
       if (!profile) {
-        return res.status(404).send({ error: "Profile not found." });
+        return res.status(404).send({ msg: "You will Need To Create a Profile before you can add emails." });
       }
 
       if (profile.emailList.includes(newEmail)) {
-        return res.status(400).send("Email already exists in the list.");
+        return res.status(400).send({msg: "Email already exists in the list."});
       }
 
       profile.emailList.push(newEmail);
@@ -114,24 +163,24 @@ module.exports = (app) => {
     const { newEmails } = req.body;
 
     if (!newEmails || !Array.isArray(newEmails) || newEmails.length === 0) {
-      return res.status(400).send({ error: "A list of emails is required." });
+      return res.status(400).send({ msg: "A list of emails is required." });
     }
 
     const invalidEmails = newEmails.filter(email => !emailRegex.test(email));
     if (invalidEmails.length > 0) {
-      return res.status(400).send({ error: "Invalid email format in the provided list.", invalidEmails });
+      return res.status(400).send({ msg: "Invalid email format in the provided list.", invalidEmails });
     }
 
     try {
       const profile = await Profile.findOne({ user: req.user.id });
 
       if (!profile) {
-        return res.status(404).send({ error: "Profile not found." });
+        return res.status(404).send({ msg: "Profile not found." });
       }
 
       const existingEmails = newEmails.filter(email => profile.emailList.includes(email));
       if (existingEmails.length > 0) {
-        return res.status(400).send({ error: "Some emails already exist in the list.", existingEmails });
+        return res.status(400).send({ msg: "Some emails already exist in the list.", existingEmails });
       }
 
       profile.emailList.push(...newEmails);

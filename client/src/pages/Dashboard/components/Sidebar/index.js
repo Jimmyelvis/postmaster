@@ -23,6 +23,8 @@ import Drk_Btn_Email_List from "assets/images/btn-Email-list-drk.svg";
 
 import Btn_Light_Mode from "assets/images/light-mode-btn.svg";
 import Btn_Dark_Mode from "assets/images/dark-mode-btn.svg";
+import Btn_Profile from "assets/images/btn-Profile.svg";
+import Btn_Profile_Dark from "assets/images/btn-Profile-drk.svg";
 import { toggleUiMode } from "ReduxStore/slices/dashboardUISlice";
 
 export const Sidebar = () => {
@@ -68,6 +70,12 @@ export const Sidebar = () => {
       heading: 'Email List',
       address: `${dashBoardPath}/email-list`,
       alt: 'Email List'
+    },
+    {
+      icon: `${uiMode === 'light' ? Btn_Profile : Btn_Profile_Dark}`,
+      heading: 'Profile',
+      address: `${dashBoardPath}/profile/${user?._id}`,
+      alt: 'Profile'
     },
     {
       heading: 'Add Credits',

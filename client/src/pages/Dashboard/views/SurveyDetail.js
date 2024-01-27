@@ -31,11 +31,30 @@ export const SurveyDetail = () => {
     //   { name: "No", value: no },
     //   { name: "Yes", value: yes },
     // ];
+
+    const getYesNoTotals = () => {
+
+      if (survey) {
+
+        let yesTotal = survey.yes;
+        let noTotal = survey.no;
   
-    const data01 = [
-      { name: "No", value: 19 },
-      { name: "Yes", value: 78 },
-    ];
+        return {
+          yes: yesTotal / (yesTotal + noTotal) * 100 ,
+          no: noTotal / (yesTotal + noTotal) * 100,
+        }
+      };
+  
+    }
+
+      
+      const totals = getYesNoTotals();
+    
+      const data01 = [
+        { name: "No", value: totals.no },
+        { name: "Yes", value: totals.yes },
+      ];
+  
     
     
     // Custom label component

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="55" height="55" viewBox="0 0 55 55">
+  <defs>
+    <filter id="icon-base-drk" x="0" y="0" width="55" height="55" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood flood-color="#020d18" flood-opacity="0.431"/>
+      <feComposite operator="in" in2="blur"/>
+    </filter>
+    <filter id="icon-base-drk-2" x="0" y="0" width="55" height="55" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1.5" result="blur-2"/>
+      <feFlood flood-color="#001224" result="color"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-2"/>
+      <feComposite operator="in" in="color"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#bae1ff"/>
+      <stop offset="1" stop-color="#85c2ff"/>
+    </linearGradient>
+  </defs>
+  <g id="btn-Profile-drk" transform="translate(-9 -19)">
+    <g id="Icon-Home" transform="translate(0 -1)">
+      <g id="icon-base-drk-3" data-name="icon-base-drk" transform="translate(17 26)">
+        <g data-type="innerShadowGroup">
+          <g transform="matrix(1, 0, 0, 1, -8, -6)" filter="url(#icon-base-drk)">
+            <rect id="icon-base-drk-4" data-name="icon-base-drk" width="39" height="39" rx="19.5" transform="translate(8 6)" fill="#003363" stroke="#002c57" stroke-width="1"/>
+          </g>
+          <rect id="icon-base-drk-5" data-name="icon-base-drk" width="39" height="39" rx="19.5" fill="#003363"/>
+          <g transform="matrix(1, 0, 0, 1, -8, -6)" filter="url(#icon-base-drk-2)">
+            <rect id="icon-base-drk-6" data-name="icon-base-drk" width="39" height="39" rx="19.5" transform="translate(8 6)" fill="#fff"/>
+          </g>
+          <rect id="icon-base-drk-7" data-name="icon-base-drk" width="39" height="39" rx="19.5" fill="none" stroke="#002c57" stroke-width="1"/>
+        </g>
+      </g>
+      <g id="Icon_awesome-user-tie" data-name="Icon awesome-user-tie" transform="translate(27 35)">
+        <path id="Icon_awesome-user-tie-2" data-name="Icon awesome-user-tie" d="M9.857,11.265A5.632,5.632,0,1,0,4.224,5.632,5.632,5.632,0,0,0,9.857,11.265ZM14.072,12.7l-2.1,8.422-1.408-5.984,1.408-2.464H7.744l1.408,2.464L7.744,21.121,5.641,12.7A5.9,5.9,0,0,0,0,18.587v1.831a2.113,2.113,0,0,0,2.112,2.112H17.6a2.113,2.113,0,0,0,2.112-2.112V18.587A5.9,5.9,0,0,0,14.072,12.7Z" fill="url(#linear-gradient)"/>
+      </g>
+    </g>
+  </g>
+</svg>

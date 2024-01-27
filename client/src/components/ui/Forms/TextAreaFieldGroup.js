@@ -3,8 +3,8 @@
 */
 
 import React from "react";
-import classnames from "classnames";
-import PropTypes from "prop-types";
+import className from "classnames";
+import { useSelector, useDispatch } from 'react-redux';
 
 const TextAreaFieldGroup = ({
   name,
@@ -15,12 +15,19 @@ const TextAreaFieldGroup = ({
   onChange,
   rows
 }) => {
+
+  const uiMode = useSelector((state) => state.dashBoardUi.uiMode);
+
+  const formClasses = className(
+    `form-control ${uiMode === "dark" ? "form-control-dark" : ""}`,
+    {},
+  )
+
+
   return (
     <div className="form-group">
       <textarea
-        className={classnames("form-control form-control-lg", {
-          "is-invalid": error
-        })}
+        className={formClasses}
         placeholder={placeholder}
         name={name}
         value={value}
@@ -33,14 +40,6 @@ const TextAreaFieldGroup = ({
   );
 };
 
-TextAreaFieldGroup.propTypes = {
-  name: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
-  value: PropTypes.string.isRequired,
-  info: PropTypes.string,
-  error: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-};
 
 // defualt props
 TextAreaFieldGroup.defaultProps = {

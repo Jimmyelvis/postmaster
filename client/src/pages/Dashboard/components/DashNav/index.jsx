@@ -61,8 +61,6 @@ export const DashNav = () => {
 
     if (modalTarget === "mobile menu modal") {
 
-      console.log("mobile menu modal");
-
       return (
         <Mobile />
       );

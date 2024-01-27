@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginUser, fetchUser } from '../thunks/getUser';
+import { loginUser, fetchUser, handleToken, registerUser } from '../thunks/getUser';
 
 
 const initialState = {
   user: null,
+  error: null,
 };
 
 const authSlice = createSlice({
@@ -21,6 +22,16 @@ const authSlice = createSlice({
     builder.addCase(fetchUser.fulfilled, (state, action) => {
       state.user = action.payload;
     })
+    builder.addCase(handleToken.fulfilled, (state, action) => {
+      state.user = action.payload;
+    })
+    builder.addCase(registerUser.fulfilled, (state, action) => {
+      state.user = action.payload;
+    })
+    builder.addCase(registerUser.rejected, (state, action) => {
+      state.error = action.payload;
+    })
+    
   },  
 });
 

@@ -18,6 +18,11 @@ module.exports = (app) => {
    app.post("/api/register", (req, res, next) => {
      User.findOne({ username: req.body.username }, async (err, doc) => {
        if (err) throw err;
+
+       console.log("doc", doc);
+       console.log("req.body", req.body.username);
+
+
        if (doc) {
          return res.status(400).json({ 
            "msg" : " A user already exists with that username"

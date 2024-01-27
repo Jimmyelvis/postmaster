@@ -8,12 +8,12 @@ import Contact from "../pages/Contact";
 import { Navbar } from "components/ui/Layout/Navbar";
 import DashHeader from "../pages/Dashboard/components/dashheader";
 import Scrolltop from "../utils/ScrollToTop";
-import { fetchUser, fetchSurveys } from "ReduxStore"
+import { fetchUser, fetchSurveys, fetchProfile } from "ReduxStore"
 import { Footer } from "components/ui/Layout/Footer";
 import { 
   Dashboard_Home, SurveyList, 
   SurveyDetail, DashLayout,
-  SurveyNew, Email_List } from "pages/Dashboard";
+  SurveyNew, Email_List, Profile } from "pages/Dashboard";
 import { Alert } from "components/ui/Alert";
 
 import "./sass/App.scss";
@@ -29,7 +29,6 @@ const App = () => {
 
   const auth = useSelector((store) => {
 
-    console.log("auth: ", store.auth);
     return store.auth
   });
 
@@ -37,6 +36,7 @@ const App = () => {
     
     if (auth.user !== "" || auth.user !== null) {
       dispatch(fetchSurveys());
+      dispatch(fetchProfile(auth?.user?._id));
     } 
   }, [auth, dispatch])
   
@@ -82,6 +82,7 @@ const App = () => {
           <Route path="surveydetail/:surveyId" element={<SurveyDetail />} />
           <Route path="surveys/new" element={<SurveyNew />} />
           <Route path="email-list" element={<Email_List />} />
+          <Route path="profile/:profileId" element={<Profile />} />
         </Route>
    
       </Routes>

@@ -4,6 +4,10 @@
   min-height: 50rem;
   height: auto;
 
+  @include respond(bp-medium) {
+    padding: 4rem;
+  }
+
   .email-list__heading {
     display: flex;
     margin: 0 auto;
@@ -61,6 +65,22 @@
     grid-template-columns: 53rem 11rem;
     justify-content: center;
     column-gap: 2rem;
+
+    @include respond(bp-medium) {
+      grid-template-columns: 36rem 11rem;
+    }
+
+    @include respond(bp-smallest) {
+      grid-template-columns: 1fr;
+      row-gap: 2rem;
+     
+    }
+
+    .btn--primary {
+      justify-self: flex-end;
+      padding: 1rem 2.7rem;
+      font-size: 2rem;
+    }
   }
 
 }
