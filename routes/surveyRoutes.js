@@ -94,9 +94,7 @@ module.exports = app => {
 
   app.post('/api/surveys/webhooks', (req, res) => {
     const p = new Path('/api/surveys/:surveyId/:choice');
-    console.log("================webhook function called====================");
-    console.log('webhook function called');
-    console.log('====================================');
+
 
     _.chain(req.body)
       .map(({
@@ -170,10 +168,10 @@ module.exports = app => {
     /*
      TODO: Uncomment this code to send an email, after we figure out why Sendgrid is not working
     */
-    // const mailer = new Mailer(survey, surveyTemplate(survey));
+    const mailer = new Mailer(survey, surveyTemplate(survey));
 
     try {
-      // await mailer.send();  <--- this as well
+      await mailer.send();  
       await survey.save();
       req.user.credits -= 1;
       const user = await req.user.save();

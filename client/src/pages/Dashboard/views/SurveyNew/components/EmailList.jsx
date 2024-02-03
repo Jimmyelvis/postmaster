@@ -7,6 +7,7 @@ import AddBtn from 'assets/images/btn-new.svg';
 import { Avatar } from 'pages/Dashboard/components/Avatar';
 import { fetchEmails } from "ReduxStore";
 import { closeModal } from "ReduxStore/slices/dashboardUISlice";
+import { SectionHeading } from "pages/Dashboard/components/SectionHeading";
 
 export const EmailList = ({
   setAddedEmails
@@ -113,10 +114,9 @@ export const EmailList = ({
   return (
     <Panel className="panel-dashboard email-list">
     <div className="email-list__heading mb-lg">
-      <div className="icon-heading">
-        <img src={SurveyIcon} alt="" className="icon survey-list-icon" />
-        <h2 className="heading-2 mb-md">Email List</h2>
-      </div>
+      <SectionHeading
+        title="Email List"
+      >
 
       <p>These are your saved emails</p>
 
@@ -137,6 +137,8 @@ export const EmailList = ({
       ) : (
         ""
       )}
+
+      </SectionHeading>
 
     </div>
 

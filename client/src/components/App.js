@@ -36,7 +36,7 @@ const App = () => {
     
     if (auth.user !== "" || auth.user !== null) {
       dispatch(fetchSurveys());
-      dispatch(fetchProfile(auth?.user?._id));
+       
     } 
   }, [auth, dispatch])
   

@@ -60,14 +60,23 @@ module.exports = (app) => {
   
 
   app.post("/api/profile", requireLogin, async (req, res) => {
-    const { bio, email, companyname, logo, phone } = req.body;
+    const { company_bio, email, 
+      company_name, company_website, company_address,
+      company_city, company_state, company_zip, company_country,
+      logo, phone  } = req.body;
 
     const profile = new Profile({
-      bio: bio,
-      email: email,
-      companyname: companyname,
-      logo: logo,
-      phone: phone,
+      company_bio, 
+      email, 
+      company_name, 
+      logo, 
+      phone,
+      company_website,
+      company_address,
+      company_city,
+      company_state,
+      company_zip,
+      company_country,
       user: req.user.id,
       dateCreated: Date.now(),
     });
@@ -114,6 +123,8 @@ module.exports = (app) => {
       if (!updatedProfile) {
         return res.status(404).send({ message: "Profile not found." });
       }
+
+      console.log('updatedProfile', updatedProfile);
   
       res.send(updatedProfile);
     } catch (err) {

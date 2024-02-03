@@ -15,13 +15,13 @@ const fetchProfile = createAsyncThunk('profile/fetchProfile', async () => {
   }
 });
 
-const updateProfile = createAsyncThunk('profile/updateProfile', async (profileData, { dispatch}) => {
+const createProfile = createAsyncThunk('profile/createProfile', async (profileData, { dispatch}) => {
   try {
-    const response = await axios.patch('/api/profile', profileData);
+    const response = await axios.post('/api/profile', profileData);
 
     console.log('response.data', response.data);
-    dispatch(setAlertWithTimeout({ msg: 'Profile Updated', alertType: 'success' }));
-    dispatch(fetchProfile());
+    dispatch(setAlertWithTimeout({ msg: 'Profile Created', alertType: 'success' }));
+    // dispatch(fetchProfile());
     return response.data;
   }
 
@@ -30,4 +30,18 @@ const updateProfile = createAsyncThunk('profile/updateProfile', async (profileDa
   }
 });
 
-export { fetchProfile, updateProfile };
+const updateProfile = createAsyncThunk('profile/updateProfile', async (profileData, { dispatch}) => {
+  try {
+    const response = await axios.patch('/api/profile', profileData);
+
+    console.log('response.data', response.data);
+    dispatch(setAlertWithTimeout({ msg: 'Profile Updated', alertType: 'success' }));
+    return response.data;
+  }
+
+  catch (error) {
+    console.error(error);
+  }
+});
+
+export { fetchProfile, updateProfile, createProfile };

@@ -18,10 +18,9 @@ export const ViewProfile = () => {
   });
 
 
-  const { email, company_name, company_website, phone, company_address, company_city, company_state, company_zip, company_country, company_bio } = values;
 
-  const apiResponse = useSelector(state => state.profile); 
-  const profile = apiResponse.profile.profile;
+  const {profile} = useSelector((state) => state.profile);
+
 
   useEffect(() => {
     if (profile) {
@@ -39,7 +38,7 @@ export const ViewProfile = () => {
         company_bio: profile?.company_bio || '',
       }));
     }
-  }, [profile]);
+  }, []);
 
   const formatLabel = (str) => {
     return str

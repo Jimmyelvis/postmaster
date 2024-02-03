@@ -4,14 +4,17 @@ import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import TextFieldGroup from 'components/ui/Forms/TextFieldGroup';
 import TextAreaFieldGroup from 'components/ui/Forms/TextAreaFieldGroup';
+import { createProfile } from 'ReduxStore';
 
 export const CreateProfile = () => {
+
+  const dispatch = useDispatch();
   
   const [values, setValues] = useState({
     email: '',
     company_name: '',
     company_website: '',
-    company_phone: '',
+    phone: '',
     company_address: '',
     company_city: '',
     company_state: '',
@@ -20,12 +23,27 @@ export const CreateProfile = () => {
     company_bio: '',
   });
 
-  const { email, company_name, company_website, company_phone, company_address, company_city, company_state, company_zip, company_country, company_bio } = values;
+  const { email, company_name, company_website, phone, company_address, company_city, company_state, company_zip, company_country, company_bio } = values;
 
 
   const onSubmit = (e) => { 
     e.preventDefault();
     console.log(values);
+
+    const profileData = {
+      email,
+      company_name,
+      company_website,
+      phone,
+      company_address,
+      company_city,
+      company_state,
+      company_zip,
+      company_country,
+      company_bio,
+    };
+
+    dispatch(createProfile(profileData));
 
    }
 
@@ -41,7 +59,7 @@ export const CreateProfile = () => {
       email: '',
       company_name: '',
       company_website: '',
-      company_phone: '',
+      phone: '',
       company_address: '',
       company_city: '',
       company_state: '',
@@ -85,9 +103,8 @@ export const CreateProfile = () => {
 
         <TextFieldGroup
           placeholder="Company Phone Number"
-          name="company_phone"
-          value={company_phone}
-          type="number"
+          name="phone"
+          value={phone}
           onChange={onChange}
           info="Phone number for your company"
         />

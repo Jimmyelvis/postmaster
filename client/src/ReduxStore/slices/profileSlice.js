@@ -1,10 +1,11 @@
 import { createSlice, current } from '@reduxjs/toolkit';
-import { fetchProfile, updateProfile } from '../thunks/profileThunk';
+import { fetchProfile, updateProfile, createProfile } from '../thunks/profileThunk';
 
 
 const initialState = {
   profile: null,
   error: null,
+  loading: true
 };
 
 const profileSlice = createSlice({
@@ -19,17 +20,35 @@ const profileSlice = createSlice({
     },
   },
   extraReducers (builder) {
-    builder.addCase(fetchProfile.fulfilled, (state, action) => {
+    builder.addCase(createProfile.pending, (state, action) => {
+      state.loading = true;
+    })
+    builder.addCase(createProfile.fulfilled, (state, action) => {
       state.profile = action.payload;
+      state.loading = false;
+    })
+    builder.addCase(createProfile.rejected, (state, action) => {
+      state.error = action.payload;
+      state.loading = false;
+    })
+    builder.addCase(fetchProfile.pending, (state, action) => {
+      state.loading = true;
+    })
+    builder.addCase(fetchProfile.fulfilled, (state, action) => {
+      state.profile = action.payload?.profile
+      state.loading = false;
     })
     builder.addCase(fetchProfile.rejected, (state, action) => {
       state.error = action.payload;
+      state.loading = false;
     })
     builder.addCase(updateProfile.fulfilled, (state, action) => {
       state.profile = action.payload;
+      state.loading = false;
     })
     builder.addCase(updateProfile.rejected, (state, action) => {
       state.error = action.payload;
+      state.loading = false;
     })
   }
 });

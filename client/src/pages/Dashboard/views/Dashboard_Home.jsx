@@ -53,14 +53,6 @@ export const Dashboard_Home = () => {
         return total;
       }, { yes: 0, no: 0 });
 
-      // let subTotal = total.yes + total.no;
-
-      console.log("newtotal: ", newtotal.yes + newtotal.no);
-
-      console.log({
-        yes: newtotal.yes / (newtotal.yes + newtotal.no) * 100,
-        
-      });
 
       return {
         yes: newtotal.yes / (newtotal.yes + newtotal.no) * 100,
@@ -85,9 +77,7 @@ export const Dashboard_Home = () => {
       percentage: ((item.value / total) * 100).toFixed(2) + '%' // Keeping two decimal places
     }));
 
-    // console.log(dataWithPercentage);
-    
-    
+
     // Custom label component
     const renderCustomizedLabel = ({
       cx, cy, midAngle, innerRadius, outerRadius, value, name, percent
@@ -258,12 +248,10 @@ export const Dashboard_Home = () => {
   
     surveyList.forEach((survey) => { // Using forEach instead of map as we're not transforming the array
       if (survey?.totalResponded) {
-        console.log("called here first");
         totalResponses += survey.totalResponded > 0;
       }
     });
   
-    console.log("totalResponses", totalResponses);
   
     return ((totalResponses / surveyList.length) * 100).toFixed(0) + "%";
   };

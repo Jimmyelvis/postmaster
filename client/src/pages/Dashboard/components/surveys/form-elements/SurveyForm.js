@@ -19,37 +19,37 @@ const SurveyForm = ({ review }) => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch()
 
-  // const [values, setValues] = useState({
-  //   title : `${state.surveys.title}`,
-  //   subject: `${state.surveys.subject}`,
-  //   body: `${state.surveys.body}`,
-  //   recipients: `${state.surveys.recipients}`,
-  // });
+  const [values, setValues] = useState({
+    title : `${state.surveys.title}`,
+    subject: `${state.surveys.subject}`,
+    body: `${state.surveys.body}`,
+    recipients: `${state.surveys.recipients}`,
+  });
 
 
     /*
   Testing only
   */
 
-  let currentTime = new Date();
+//   let currentTime = new Date();
 
-let hours = currentTime.getHours();
-let minutes = currentTime.getMinutes();
-let seconds = currentTime.getSeconds();
-let milliseconds = currentTime.getMilliseconds();
+// let hours = currentTime.getHours();
+// let minutes = currentTime.getMinutes();
+// let seconds = currentTime.getSeconds();
+// let milliseconds = currentTime.getMilliseconds();
 
-let formattedTime =  seconds.toString().padStart(2, '0') + '.' + 
-                    milliseconds.toString().padStart(3, '0');
+// let formattedTime =  seconds.toString().padStart(2, '0') + '.' + 
+//                     milliseconds.toString().padStart(3, '0');
 
 
-  const [values, setValues] = useState({
-    title : `${formattedTime} Brand New test 2023`,
-    subject: `${formattedTime} Testing 2023`,
-    body: `I'm baby street art humblebrag bicycle rights yuccie, kombucha af hella occupy pinterest kale chips bushwick. Retro la croix keffiyeh etsy DSA. Man bun raw denim quinoa meditation, waistcoat schlitz disrupt shaman. Echo park drinking vinegar paleo aesthetic, street art cred letterpress 90's hammock live-edge mixtape vinyl ethical affogato scenester. Poke flannel williamsburg bodega boys celiac pork belly locavore semiotics. Wayfarers gentrify chartreuse crucifix tote bag small batch raw denim cornhole ennui.
+//   const [values, setValues] = useState({
+//     title : `${formattedTime} Brand New test 2023`,
+//     subject: `${formattedTime} Testing 2023`,
+//     body: `I'm baby street art humblebrag bicycle rights yuccie, kombucha af hella occupy pinterest kale chips bushwick. Retro la croix keffiyeh etsy DSA. Man bun raw denim quinoa meditation, waistcoat schlitz disrupt shaman. Echo park drinking vinegar paleo aesthetic, street art cred letterpress 90's hammock live-edge mixtape vinyl ethical affogato scenester. Poke flannel williamsburg bodega boys celiac pork belly locavore semiotics. Wayfarers gentrify chartreuse crucifix tote bag small batch raw denim cornhole ennui.
 
-    Sus gatekeep cardigan roof party skateboard microdosing messenger bag health goth leggings. Ennui swag authentic, fashion axe iceland vice mumblecore. Ugh brunch selvage hexagon raw denim swag. Put a bird on it gatekeep activated charcoal shoreditch occupy cornhole. Succulents wayfarers keffiyeh austin gorpcore etsy gluten-free letterpress pour-over franzen hot chicken hella.`,
-    recipients: `dylancougar@yahoo.com,jinjoe@zoho.com`,
-  });
+//     Sus gatekeep cardigan roof party skateboard microdosing messenger bag health goth leggings. Ennui swag authentic, fashion axe iceland vice mumblecore. Ugh brunch selvage hexagon raw denim swag. Put a bird on it gatekeep activated charcoal shoreditch occupy cornhole. Succulents wayfarers keffiyeh austin gorpcore etsy gluten-free letterpress pour-over franzen hot chicken hella.`,
+//     recipients: `dylancougar@yahoo.com,jinjoe@zoho.com`,
+//   });
 
   /* testing only */
 
