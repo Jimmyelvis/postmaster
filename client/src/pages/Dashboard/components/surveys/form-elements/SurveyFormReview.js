@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom'; // Updated import for React Router 6
+import { useNavigate } from 'react-router-dom'; 
 import formFields from './formFields';
 import { submitSurvey, clearErrors } from 'ReduxStore';
 
@@ -8,7 +8,7 @@ import { submitSurvey, clearErrors } from 'ReduxStore';
 const SurveyFormReview = ({ onCancel }) => {
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Replace withRouter with useNavigate
+  const navigate = useNavigate(); 
 
   const state = useSelector((state) => state);
 
@@ -68,12 +68,6 @@ const SurveyFormReview = ({ onCancel }) => {
             e.preventDefault();
             console.log("Survey Results:", values);
             handleSurveySubmit(values);
-
-            // dispatch(submitSurvey(values));
-
-
-            // onSurveySubmit(e);
-            // navigate('/surveys');
           } }
           className="btn btn--primary"
         >

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom'; // Updated import for React Router 6
+import { useNavigate } from 'react-router-dom';
 import formFields from './formFields';
-// import { submitSurvey } from '../../actions'; // Import the specific action
+
 import { createSlice, configureStore } from '@reduxjs/toolkit';
 
 // Define Redux slice and reducer using Redux Toolkit

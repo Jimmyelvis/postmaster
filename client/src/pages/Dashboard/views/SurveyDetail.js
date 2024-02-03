@@ -26,57 +26,47 @@ export const SurveyDetail = () => {
 
     const yes = survey?.yes;
     const no = survey?.no;
+
+    const total = yes + no;
   
-    // const data01 = [
-    //   { name: "No", value: no },
-    //   { name: "Yes", value: yes },
-    // ];
 
-    const getYesNoTotals = () => {
 
-      if (survey) {
-
-        let yesTotal = survey.yes;
-        let noTotal = survey.no;
-  
-        return {
-          yes: yesTotal / (yesTotal + noTotal) * 100 ,
-          no: noTotal / (yesTotal + noTotal) * 100,
-        }
-      };
-  
-    }
-
-      
-      const totals = getYesNoTotals();
-    
       const data01 = [
-        { name: "No", value: totals.no },
-        { name: "Yes", value: totals.yes },
+        { 
+          name: "No", 
+          value: no, 
+          percentage: ((no / total) * 100).toFixed(0) 
+        },
+        { 
+          name: "Yes", 
+          value: yes, 
+          percentage: ((yes / total) * 100).toFixed(0) 
+        },
       ];
   
     
     
     // Custom label component
     const renderCustomizedLabel = ({
-      cx, cy, midAngle, innerRadius, outerRadius, value
+      cx, cy, midAngle, innerRadius, outerRadius, value, index, payload
     }) => {
-      const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+      const radius = innerRadius + (outerRadius - innerRadius) * 0.4;
       const x = cx + radius * Math.cos(-midAngle * Math.PI / 180);
       const y = cy + radius * Math.sin(-midAngle * Math.PI / 180);
+      const percentage = payload.percentage;
   
       return (
         <text 
           x={x} 
           y={y} 
           fill="white" 
-          textAnchor={x > cx ? 'start' : 'end'} 
+          textAnchor="middle"
           dominantBaseline="central"
           fontWeight="bold" // Makes the text bold
           fontFamily="Arial, sans-serif"
-          fontSize="40"
+          fontSize="20"
         >
-          {value}
+          {`${payload.name}: ${percentage}%`} 
         </text>
       );
     };
@@ -106,8 +96,8 @@ export const SurveyDetail = () => {
         outerRadius={180}
         label={renderCustomizedLabel}
         labelLine={false}
-        startAngle={90} // Change the starting angle
-        endAngle={-270} // Change the ending angle
+        startAngle={90} 
+        endAngle={-270} 
         stroke="none"
         filter="url(#shadow)"
       >

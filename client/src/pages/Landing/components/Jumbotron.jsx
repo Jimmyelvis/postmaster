@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Modal from "pages/Dashboard/components/Modal";
+import Modal from "components/ui/Modal";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Laptop from "assets/images/laptop.svg";

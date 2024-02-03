@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { toggleSideBar } from 'ReduxStore/slices/dashboardUISlice';
 import { Search } from "../Search";
 import { openModal } from "ReduxStore/slices/dashboardUISlice";
-import Modal from 'pages/Dashboard/components/Modal';
+import Modal from "components/ui/Modal";
 import { Mobile } from "./components/Mobile";
 
 

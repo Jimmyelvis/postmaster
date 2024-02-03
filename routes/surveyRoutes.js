@@ -92,53 +92,64 @@ module.exports = app => {
     res.send('Thanks For Voting');
   });
 
-  app.post('/api/surveys/webhooks', (req, res) => {
+  app.post('/api/surveys/webhooks', async (req, res) => {
     const p = new Path('/api/surveys/:surveyId/:choice');
 
+    // Validate URLs Before Parsing: https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url
+    const isValidHttpUrl = (string) => {
+      let url;
+      
+      try {
+        url = new URL(string);
+      } catch (_) {
+        return false; 
+      }
+    
+      return url.protocol === "http:" || url.protocol === "https:";
+    };
+  
+    // Parse and filter valid responses
+    const events = req.body
+      .map(({ email, url }) => {
 
-    _.chain(req.body)
-      .map(({
-        email,
-        url
-      }) => {
+        if (!isValidHttpUrl(url)) {
+          console.error(`Invalid URL skipped: ${url}`);
+          return null;
+        }
+
+        console.log(url); 
         const match = p.test(new URL(url).pathname);
         if (match) {
-          return {
-            email,
-            surveyId: match.surveyId,
-            choice: match.choice
-          };
+          return { email, surveyId: match.surveyId, choice: match.choice };
         }
+        return null;
       })
-      .compact()
-      .uniqBy('email', 'surveyId')
-      .each(({
-        surveyId,
-        email,
-        choice
-      }) => {
-        Survey.updateOne({
-          _id: surveyId,
-          recipients: {
-            $elemMatch: {
-              email: email,
-              responded: false
-            }
-          }
-        }, {
-          $inc: {
-            [choice]: 1
-          },
-          $set: {
-            'recipients.$.responded': true
-          },
-          lastResponded: new Date()
-        }).exec();
-      })
-      .value();
+      .filter(event => event !== null);
+  
+    // Remove duplicates
+    const uniqueEvents = Array.from(new Map(events.map(event => [event.email + event.surveyId, event])).values());
 
+  
+    // Update surveys based on the unique events
+    for (let { surveyId, email, choice } of uniqueEvents) {
+      await Survey.updateOne({
+        _id: surveyId,
+        recipients: {
+          $elemMatch: {
+            email: email,
+            responded: false
+          }
+        }
+      }, {
+        $inc: { [choice]: 1 },
+        $set: { 'recipients.$.responded': true },
+        lastResponded: new Date()
+      });
+    }
+  
     res.send({});
   });
+  
 
   app.post('/api/surveys/', requireLogin, requireCredits, async (req, res) => {
 
@@ -223,22 +234,3 @@ module.exports = app => {
 
 };
 
-
-// BEFORE LODASH CHAIN METHOD
-//
-// app.post('/api/surveys/webhooks', (req, res) => {
-//   const p = new Path('/api/surveys/:surveyId/:choice');
-//
-//   const events = _.map(req.body, ({ email, url }) => {
-//     const match = p.test(new URL (url).pathname);
-//     if (match) {
-//        return { email, surveyId: match.surveyId, choice: match.choice };
-//      }
-//   });
-//
-//   const compactEvents =_.compact(events);
-//   const uniqueEvents = _.uniqBy(compactEvents, 'email', 'surveyId');
-//
-//   console.log(uniqueEvents);
-//   res.send({});
-// });

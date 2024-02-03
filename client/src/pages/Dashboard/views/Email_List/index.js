@@ -16,7 +16,7 @@ import {
     multiDeleteEmails
 } from 'ReduxStore';
 import { openModal, closeModal, setOrigin } from "ReduxStore/slices/dashboardUISlice";
-import Modal from 'pages/Dashboard/components/Modal';
+import Modal from "components/ui/Modal";
 import { AddEmails } from 'pages/Dashboard/views/Email_List/components/AddEmails';
 import { SectionHeading } from 'pages/Dashboard/components/SectionHeading';
 
