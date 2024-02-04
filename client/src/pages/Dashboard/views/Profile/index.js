@@ -68,14 +68,19 @@ export const Profile = () => {
 
   return (
     <Panel className="panel-dashboard profile-page">
-      <ul className="profile-tabs">
-        <li className={view === View_Profile ? "active" : "profile-tab"} onClick={() => setView(View_Profile)}>
-          View Profile
-        </li>
-        <li className={view === Edit_Profile ? "active" : "profile-tab"} onClick={() => setView(Edit_Profile)}>
-          Edit Profile
-        </li>
-      </ul>
+
+      {
+        profile && (
+          <ul className="profile-tabs">
+            <li className={view === View_Profile ? "active" : "profile-tab"} onClick={() => setView(View_Profile)}>
+              View Profile
+            </li>
+            <li className={view === Edit_Profile ? "active" : "profile-tab"} onClick={() => setView(Edit_Profile)}>
+              Edit Profile
+            </li>
+          </ul>
+        )
+      }
 
       {renderTitle()}
 

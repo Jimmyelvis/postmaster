@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import Modal from "pages/Dashboard/components/Modal";
+import { openModal, setOrigin } from "ReduxStore/slices/dashboardUISlice";
+import { Register } from "components/ui/Layout/AuthForms/Register";
 
 export const Footer = () => {
   const [isShowing, setIsShowing] = useState(false);
@@ -20,15 +23,25 @@ export const Footer = () => {
     setIsShowing(false);
   };
 
-  const onRegisterSubmit = (e) => {
-    e.preventDefault();
 
-    const userData = {
-      username,
-      password,
-    };
+  
+  /**
+   * Piece of state that will be used to determine, what component
+   * that wil be rendered in the modal
+   */
+  const [modalTarget, setModalTarget] = useState(null);
 
-    // dispatch(registerUser(userData));
+  /*
+    This will be used to determine what component called the modal
+    this will be passed as a prop to the modal component, and the 
+    modal context 
+  */
+  const [compOrigin, setCompOrigin] = useState(null);
+
+  const checkTarget = () => {
+    if (modalTarget === "footer register modal") {
+      return <Register />;
+    }
   };
 
   const onChange = (e) => {
@@ -56,12 +69,20 @@ export const Footer = () => {
 
         {
           auth.user === "" ? (
-          <button className="btn btn--signup-header" onClick={openModalHandler}>
+          <button className="btn btn--signup-header" 
+          onClick={(e) => {
+            dispatch(openModal());
+            e.preventDefault();
+            setModalTarget("footer register modal");
+            setCompOrigin("footer");
+            dispatch(setOrigin("footer"));
+          }}
+          >
             <h5>SIGN UP</h5>
           </button>) : (  "" )
         }
         <div className="copyright">
-          <p>&copy; 2023 ThePostMaster</p>
+          <p>&copy; 2024 ThePostMaster</p>
         </div>
       </>
     );
@@ -73,11 +94,13 @@ export const Footer = () => {
 
   return (
     <>
-      <div className="footer">{renderContent()}</div>
-      {isShowing && <div onClick={closeModalHandler} className="back-drop" />}
-      {/* <Modal className="modal" show={isShowing} close={closeModalHandler} heading="Login">
-        Modal content for now
-      </Modal> */}
+      <div className="footer">
+        {renderContent()}
+      </div>
+      
+      <Modal selector={"#modal"} modalTarget={modalTarget} modalOrigin={compOrigin} overlayColor={"rgba(1, 5, 16, 0.94)"}>
+        {checkTarget()}
+      </Modal>
     </>
   );
 };
