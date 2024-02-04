@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import TwitterIcon from "assets/images/twitter.svg";
-import FacebookIcon from "assets/images/facebook.svg";
-// import { registerUser } from "../../actions";
 
 export const Footer = () => {
   const [isShowing, setIsShowing] = useState(false);

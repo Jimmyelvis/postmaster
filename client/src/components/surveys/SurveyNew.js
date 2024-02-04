@@ -5,8 +5,6 @@ import SiteHeader from '../../pages/Dashboard/components/dashheader';
 import SurveyForm from './SurveyForm';
 import SurveyFormReview from './SurveyFormReview';
 import Payments from '../../pages/Dashboard/components/Payments';
-// import { fetchSurvey } from '../../actions';
-import plus from '../../images/plus-btn.png';
 
 const SurveyNew = () => {
   const [showFormReview, setShowFormReview] = useState(false);
