@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
-import logo from 'images/new-logo.png';
+import logo from 'assets/images/new-logo.png';
 
 const DashHeader = () => {
 
