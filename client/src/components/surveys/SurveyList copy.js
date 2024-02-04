@@ -278,3 +278,4 @@ export default connect(
   mapStateToProps,
   { fetchSurveys, deleteSurvey, sortSurveys }
 )(SurveyList);
+
