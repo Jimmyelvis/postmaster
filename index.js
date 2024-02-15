@@ -1,6 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
+const { engine } = require('express-handlebars');
+const Handlebars = require('handlebars');
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
+
 
 const passport = require("passport");
 // const passportLocal = require("passport-local").Strategy;
@@ -32,6 +36,14 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+// Set up Handlebars
+app.engine('handlebars', engine({
+  handlebars: allowInsecurePrototypeAccess(Handlebars)
+}));
+app.set('view engine', 'handlebars');
+app.set('views', './services/emailTemplates');
 
 // Import routes
 require("./routes/authRoutes")(app);

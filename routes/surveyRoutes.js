@@ -9,7 +9,11 @@ const requireCredits = require('../middlewares/requireCredits');
 const Mailer = require('../services/Mailer');
 const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
 
+const emailTemplate = require('../services/emailTemplates/emailTemplate');
+
 const Survey = mongoose.model('surveys');
+const keys = require('../config/keys');
+const Profile = mongoose.model('profile');
 
 module.exports = app => {
 
@@ -161,6 +165,10 @@ module.exports = app => {
       recipients
     } = req.body;
 
+    const profile = await Profile.findOne({ user: req.user.id })
+        .populate("user", ["username"])
+        .select('-emailList'); // Excluding the emailList field
+
 
     const survey = new Survey({
       title: title,
@@ -174,24 +182,35 @@ module.exports = app => {
       dateSent: Date.now()
     });
 
-    // Great place to send an email!
+    res.render('emailTemplate', {
+      layout: false, // This tells Express Handlebars not to use a default layout
+      survey: survey,
+      keys: keys,
+      profile: profile
+    }, async (err, html) => {
 
-    /*
-     TODO: Uncomment this code to send an email, after we figure out why Sendgrid is not working
-    */
-    const mailer = new Mailer(survey, surveyTemplate(survey));
+      if (err) {
+        console.log(err);
+        return res.status(500).send('Error rendering email');
+      }
 
-    try {
-      await mailer.send();  
-      await survey.save();
-      req.user.credits -= 1;
-      const user = await req.user.save();
+      // Great place to send an email!
+      const mailer = new Mailer(survey, html);
+  
+      try {
+        await mailer.send();  
+        await survey.save();
+        req.user.credits -= 1;
+        const user = await req.user.save();
+  
+        res.send(user);
+      } catch (err) {
+        console.log("error: ", err);
+        res.status(422).send(err);
+      }
 
-      res.send(user);
-    } catch (err) {
-      console.log("error: ", err);
-      res.status(422).send(err);
-    }
+    });
+
 
   });
 

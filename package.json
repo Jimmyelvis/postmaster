@@ -17,22 +17,24 @@
   "author": "Mark Mckinstry",
   "license": "ISC",
   "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.5",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.18.2",
     "concurrently": "^3.5.1",
     "cookie-session": "^2.0.0-beta.3",
     "express": "^4.16.2",
+    "express-handlebars": "^7.1.2",
     "localtunnel": "^1.8.3",
     "lodash": "^4.17.5",
+    "mongoose": "^5.2.17",
     "nodemon": "^1.12.1",
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
     "passport-google-oauth20": "^2.0.0",
+    "passport-local": "^1.0.0",
     "path-parser": "^3.0.1",
     "sendgrid": "^5.2.3",
-    "stripe": "^5.4.0",
-    "passport-local": "^1.0.0",
-    "mongoose": "^5.2.17"
+    "stripe": "^5.4.0"
   },
   "devDependencies": {
     "forever": "^0.15.3"

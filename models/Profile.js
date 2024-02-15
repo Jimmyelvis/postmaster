@@ -17,6 +17,7 @@ const profileSchema = new Schema({
   company_bio: String,
   logo: String,
   phone: String,
+  banner: String,
   dateCreated: Date,
   dateUpdated : Date,
   emailList: {

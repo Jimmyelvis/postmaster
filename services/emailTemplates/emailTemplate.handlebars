@@ -1,0 +1,216 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Modern HTML Email Template</title>
+  <style type="text/css">
+    body {
+      margin: 0;
+      background-color: #cccccc;
+    }
+
+    table {
+      border-spacing: 0;
+    }
+
+    td {
+      padding: 0;
+    }
+
+    img {
+      border: 0;
+    }
+
+    .wrapper {
+      width: 100%;
+      table-layout: fixed;
+      background-color: #cccccc;
+      padding-bottom: 60px;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+
+    .main {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      border-spacing: 0;
+      font-family: sans-serif;
+      background-color: #ffffff;
+      /* border-radius: 8px; */
+      overflow: hidden;
+      color: rgb(96, 96, 175);
+    }
+
+    .two-columns {
+      text-align: center;
+      font-size: 0;
+    }
+
+    .two-columns .column {
+      width: 100%;
+      max-width: 300px;
+      display: inline-block;
+      vertical-align: top;
+      text-align: center;
+    }
+
+    .two-columns.last {
+      padding: 15px 0;
+    }
+
+    .two-columns .padding {
+      padding: 20px
+    }
+
+    .two-columns .content {
+      font-size: 15px;
+      line-height: 20px;
+      padding: 0 5px;
+      text-align: left;
+    }
+
+    .three-columns {
+      text-align: center;
+      font-size: 0;
+      padding: 15px 0 25px;
+    }
+
+    .three-columns .column {
+      width: 100%;
+      max-width: 200px;
+      display: inline-block;
+      vertical-align: top;
+      text-align: center;
+    }
+
+    .three-columns .padding {
+      padding: 0 15px;
+    }
+
+    .three-columns .content {
+      font-size: 15px;
+      line-height: 20px;
+      padding: 0 5px;
+      text-align: left;
+    }
+
+    .button {
+      background-color: #eaeaee;
+      border: none;
+      color: #6a54b6;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 15px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    .button-dark {
+      background-color: #6a54b6;
+      border: none;
+      color: #eaeaee;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 15px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <center class="wrapper">
+
+    <table class="main" width="100%">
+
+      <!-- TOP BORDER -->
+      <tr>
+        <td height="8" style="background-color: #82829c;">
+          <h3 style="color: #ffffff; font-weight:bold; text-align:center">We'd love to have your feedback!</h3>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p style="text-align: center;">Please answer the following question:</p>
+        </td>
+      </tr>
+
+
+      <tr>
+        <td style="padding: 15px 0 50px;">
+          <table width="100%">
+            <tr>
+              <td style="text-align: center; padding: 15px;">
+                <p style="line-height: 23px; font-size: 15px; padding: 5px 15px;">
+                  {{survey.body}}
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <!-- TWO COLUMN SECTION -->
+
+      <tr>
+        <td style="background-color: #82829c; color: #fff;">
+          <table width="100%">
+
+            <tr>
+              <td class="two-columns">
+
+                <table class="column">
+                  <tr>
+                    <td class="padding">
+                      <table class="content">
+                        <tr>
+                          <td style="text-align: center;">
+                            <a style="color:#ffffff; text-decoration:none" href="{{keys.redirectDomain}}/api/surveys/{{survey.id}}/yes"
+                              style="margin: 0 10px;">Yes</a>
+
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+
+                <table class="column">
+                  <tr>
+                    <td class="padding">
+                      <table class="content">
+                        <tr>
+                          <td style="text-align: center;">
+                            <a style="color:#ffffff; text-decoration:none" href="{{keys.redirectDomain}}/api/surveys/{{survey.id}}/no"
+                              style="margin: 0 10px;">No</a>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+              </td>
+            </tr>
+
+          </table>
+        </td>
+      </tr>
+
+    </table>
+
+
+  </center>
+</body>
+
+</html>
