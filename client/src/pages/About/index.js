@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import People from "assets/images/people.png";
 import { OurTeam } from './components/Ourteam';
+import { useDocumentTitle } from "hooks/useDocumentTitle";
 
 
 const About = () => {
@@ -14,6 +15,8 @@ const About = () => {
   const closeModalHandler = () => {
     setIsShowing(false);
   };
+
+  useDocumentTitle("About Us");
 
   return (
     <>

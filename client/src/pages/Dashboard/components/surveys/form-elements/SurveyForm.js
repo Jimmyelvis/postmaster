@@ -27,9 +27,9 @@ const SurveyForm = ({ review }) => {
   // });
 
 
-    /*
+/*
   Testing only
-  */
+*/
 
   let currentTime = new Date();
 

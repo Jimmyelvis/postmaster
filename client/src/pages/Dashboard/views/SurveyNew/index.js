@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Panel } from "components/ui/Layout/Panel";
@@ -8,6 +8,7 @@ import SurveyFormReview from "../../components/surveys/form-elements/SurveyFormR
 import SurveyIcon from "assets/images/survey-icon.svg";
 import Payments from "../../components/Payments";
 import { SectionHeading } from "pages/Dashboard/components/SectionHeading";
+import { useDocumentTitle } from "hooks/useDocumentTitle";
 
 export const SurveyNew = () => {
   const [showFormReview, setShowFormReview] = useState(false);
@@ -16,6 +17,8 @@ export const SurveyNew = () => {
     auth: state.auth,
     surveys: state.surveys,
   }));
+
+  useDocumentTitle("Survey Creation");
 
   const renderContent = () => {
     if (showFormReview) {

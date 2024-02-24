@@ -9,6 +9,7 @@ import { ViewProfile } from "./components/ViewProfile";
 import { fetchProfile } from "ReduxStore";
 import { Spinner } from "components/ui/LoadingAnimations/Spinner";
 import { Colorfullsquare } from "components/ui/LoadingAnimations/Colorfullsquare";
+import { useDocumentTitle } from "hooks/useDocumentTitle";
 
 export const Profile = () => {
   const { profileId } = useParams();
@@ -22,6 +23,8 @@ export const Profile = () => {
   const loading = useSelector((state) => state.profile.loading);
 
   const profileState = useSelector((state) => state.profile);
+
+  useDocumentTitle("Your User Profile");
 
   const View_Profile = "View Profile";
   const Edit_Profile = "Edit Profile";

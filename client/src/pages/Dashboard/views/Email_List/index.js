@@ -19,6 +19,7 @@ import { openModal, closeModal, setOrigin } from "ReduxStore/slices/dashboardUIS
 import Modal from "components/ui/Modal";
 import { AddEmails } from 'pages/Dashboard/views/Email_List/components/AddEmails';
 import { SectionHeading } from 'pages/Dashboard/components/SectionHeading';
+import { useDocumentTitle } from 'hooks/useDocumentTitle';
 
 export const Email_List = () => {
   const [list, setList] = useState([])
@@ -36,6 +37,8 @@ export const Email_List = () => {
     auth: store.auth,
     emails: store.emails.emailList,
   }));
+
+  useDocumentTitle("Your Email List");
 
     /**
  * Piece of state that will be used to determine, what component

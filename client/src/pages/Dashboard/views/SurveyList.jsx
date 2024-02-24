@@ -7,6 +7,7 @@ import { fetchSurveys, deleteSurvey } from 'ReduxStore';
 import SortableTable from 'components/ui/Table/SortableTable';
 import { getFormattedDate } from 'utils/formatDate';
 import { SectionHeading } from '../components/SectionHeading';
+import { useDocumentTitle } from 'hooks/useDocumentTitle';
 
 
 export const SurveyList = () => {
@@ -21,6 +22,8 @@ export const SurveyList = () => {
   }));
 
   const dispatch = useDispatch();
+
+  useDocumentTitle('Your Survey List');
 
   useEffect(() => {
     dispatch(fetchSurveys());

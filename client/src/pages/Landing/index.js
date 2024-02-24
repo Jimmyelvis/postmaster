@@ -6,9 +6,12 @@ import { Carousel } from "./components/Carousel";
 import { OurComp } from "./components/Ourcomp";
 import { OurTeam }  from "../About/components/Ourteam";
 import { Customers } from "./components/Customers";
+import { useDocumentTitle } from "hooks/useDocumentTitle";
 
 const Landing = () => {
   const [isShowing, setIsShowing] = useState(false);
+
+  useDocumentTitle("Welcome to The PostMaster");
 
   const openModalHandler = (e) => {
     e.preventDefault();

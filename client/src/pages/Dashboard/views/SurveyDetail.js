@@ -7,6 +7,7 @@ import { fetchSurvey } from 'ReduxStore';
 import SurveyIcon from "assets/images/survey-icon.svg";
 import { dashBoardPath } from 'pages/Dashboard/utils/constants';
 import { PieChart, Pie, Cell, Tooltip } from "recharts";
+import { useDocumentTitle } from 'hooks/useDocumentTitle';
 
 
 
@@ -21,6 +22,7 @@ export const SurveyDetail = () => {
   }, [dispatch, surveyId]);
 
 
+  useDocumentTitle(`Survey: ${survey?.title}`);
 
   const getChartData = () => {
 

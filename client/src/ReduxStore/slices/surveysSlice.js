@@ -35,6 +35,12 @@ const surveysSlice = createSlice({
       state.body = '';
       state.recipients = '';
     },
+    editFormValues: (state, action) => {
+      state.title = action.payload.title;
+      state.subject = action.payload.subject;
+      state.body = action.payload.body;
+      state.recipients = action.payload.recipients;
+    },
   },
   extraReducers(builder) {
     builder
@@ -94,6 +100,6 @@ const surveysSlice = createSlice({
 
 export const surveysReducer = surveysSlice.reducer;
 
-export const { getFormValues, clearFormValues } = surveysSlice.actions;
+export const { getFormValues, clearFormValues, editFormValues } = surveysSlice.actions;
 
 

@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useDocumentTitle } from "hooks/useDocumentTitle";
 
 const Contact = () => {
   const [isShowing, setIsShowing] = useState(false);
+
+  useDocumentTitle("Contact Us");
 
   const openModalHandler = (e) => {
     e.preventDefault();

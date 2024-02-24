@@ -157,10 +157,10 @@
       align-items: center;
 
       .image-container {
-        width: 35rem;
+        width: 31rem;
         /* or some percentage */
         height: 0;
-        padding-top: 35rem;
+        padding-top: 31rem;
         /* This is for a 16:9 aspect ratio. Adjust as needed. */
         position: relative;
         -webkit-mask-image: url('/assets/images/polygon-photo-bg.svg');

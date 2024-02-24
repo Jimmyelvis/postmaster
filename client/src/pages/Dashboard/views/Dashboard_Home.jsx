@@ -13,6 +13,7 @@ import { PieChart, Pie, Cell, Tooltip,
   LabelList, Text, ResponsiveContainer
 } from "recharts";
 import { SectionHeading } from "../components/SectionHeading";
+import { useDocumentTitle } from "hooks/useDocumentTitle";
 
 
 
@@ -21,6 +22,8 @@ export const Dashboard_Home = () => {
   const [isLoadingSurveys, setIsLoadingSurveys] = useState(false);
   const [loadingSurveysError, setLoadingSurveysError] = useState(null);
   const dispatch = useDispatch();
+
+  useDocumentTitle('Dashboard Home');
 
 
 

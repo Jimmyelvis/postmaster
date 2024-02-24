@@ -178,7 +178,7 @@
     left: 100%;
     width: 8rem;
     bottom: 3rem;
-    transform: translateX(100%);
+    transform: translateX(70%);
 
     @include respond(bp-large) {
       transform: translateX(60%);    
