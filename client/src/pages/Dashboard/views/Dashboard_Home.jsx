@@ -14,6 +14,7 @@ import { PieChart, Pie, Cell, Tooltip,
 } from "recharts";
 import { SectionHeading } from "../components/SectionHeading";
 import { useDocumentTitle } from "hooks/useDocumentTitle";
+import { closeModal } from "ReduxStore/slices/dashboardUISlice";
 
 
 
@@ -25,6 +26,12 @@ export const Dashboard_Home = () => {
 
   useDocumentTitle('Dashboard Home');
 
+  useEffect
+
+
+  useEffect(() => {
+    dispatch(closeModal());
+  }, []);
 
 
   useEffect(() => {

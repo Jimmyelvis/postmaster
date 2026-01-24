@@ -26,6 +26,7 @@
     "express-handlebars": "^7.1.2",
     "localtunnel": "^1.8.3",
     "lodash": "^4.17.5",
+    "mailgun-js": "^0.22.0",
     "mongoose": "^5.2.17",
     "nodemon": "^1.12.1",
     "passport": "^0.4.0",

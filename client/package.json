@@ -29,7 +29,7 @@
     "uuid": "^8.3.0"
   },
   "scripts": {
-    "start": "set PORT=3011 && react-scripts start",
+    "start": "set PORT=3032 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

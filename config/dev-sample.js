@@ -8,5 +8,7 @@ module.exports = {
   stripePublishableKey: 'your stripePublishableKey goes here',
   stripeSecretKey: 'your stripeSecretKey goes here',
   sendGridKey: 'your sendGridKey goes here',
-  redirectDomain: 'http://localhost:3000'
+  redirectDomain: 'http://localhost:3000',
+  mailgunKey: 'your mailgunKey goes here',
+  mailgunDomain: 'your mailgunDomain goes here',
 };

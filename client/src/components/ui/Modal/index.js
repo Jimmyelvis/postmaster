@@ -25,10 +25,14 @@ const Modal = ({ children, selector, overlayColor, modalTarget, modalOrigin, del
 
     if (isModalOpen == true) {
        document.body.classList.add("overflow");
-    }
+    } 
+    
+    // else {
+    //    document.body.classList.remove("overflow");
+    // }
 
     return () => {
-       document.body.classList.remove("overflow");
+            document.body.classList.remove("overflow");
     }
     
   });

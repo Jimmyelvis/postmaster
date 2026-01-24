@@ -11,5 +11,7 @@ module.exports = {
   stripeSecretKey: process.env.STRIPE_SECRET_KEY,
   sendGridKey: process.env.SEND_GRID_KEY,
   redirectDomain: process.env.REDIRECT_DOMAIN,
-  fromEmail: process.env.FROM_EMAIL
+  fromEmail: process.env.FROM_EMAIL,
+  mailgunKey: process.env.MAILGUN_KEY,
+  mailgunDomain: process.env.MAILGUN_DOMAIN,
 };
