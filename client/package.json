@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@faker-js/faker": "^7.6.0",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^0.18.0",
     "chart.js": "^4.4.0",
     "classnames": "^2.2.6",
     "dayjs": "^1.11.7",
-    "@faker-js/faker": "^7.6.0",
     "framer-motion": "^6.5.1",
     "http-proxy-middleware": "^0.20.0",
     "materialize-css": "^0.100.2",
@@ -26,6 +26,7 @@
     "redux": "^4.2.0",
     "redux-form": "^7.2.3",
     "redux-thunk": "^2.4.0",
+    "server": "file:..",
     "uuid": "^8.3.0"
   },
   "scripts": {
@@ -35,6 +36,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "ajv": "^8.12.0",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.20",
     "sass": "^1.50.1",
